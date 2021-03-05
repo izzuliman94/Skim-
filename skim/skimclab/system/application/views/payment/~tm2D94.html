@@ -1,0 +1,2065 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>SKIM</title>
+<link href="<?php echo base_url();?>/css/sippsstyle.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="<?php echo base_url();?>/js/switchcontent.js" >
+
+/***********************************************
+* Switch Content script- © Dynamic Drive (www.dynamicdrive.com)
+* This notice must stay intact for legal use. Last updated April 05th, 2007.
+* Visit http://www.dynamicdrive.com/ for full source code
+***********************************************/
+
+</script>
+ <link href="<?php echo base_url();?>js/scwdatepicker/scw.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="<?php echo base_url();?>js/scwdatepicker/scw.js"></script>
+<script>
+
+function clearfield(){
+	
+	document.frmpayment.txtfcl.value = "0";
+	document.frmpayment.txtcountry.value = ""; 
+	document.frmpayment.txtpaclab.value = "";	
+	document.frmpayment.txtamtdisc.value = "0";
+	document.frmpayment.txtrmkdisc.value = "";
+
+	document.frmpayment.txtchqclab.value = "";
+	document.frmpayment.txtadmfees.checked = false;
+	document.frmpayment.txtsitcent.checked = false;
+	document.frmpayment.txtgrncad.checked = false;
+	document.frmpayment.txtclabadmfee.value = "0";
+	document.frmpayment.txtclabgcfee.value = "0";
+	document.frmpayment.txtclabtcfee.value = "0";
+	document.frmpayment.txtamtclab.value = "0.00";
+	document.frmpayment.txtamtclab_only.value = "0.00";
+	document.frmpayment.txtamtclab_tax.value = "0.00";
+	
+	document.frmpayment.txtchqclabren.value = "";
+	document.frmpayment.txtadmfeesext.checked = false;
+	document.frmpayment.txtadmfeesextgc.checked = false;
+	document.frmpayment.txtclabrenfee.value = "0";
+	document.frmpayment.txtclabrengcfee.value = "0";
+	document.frmpayment.txtamtclabren.value = "0.00";
+	document.frmpayment.txtamtclabren_t.value = "0.00";
+	document.frmpayment.txtamtclabren_o.value = "0.00";
+	
+	document.frmpayment.txtchqcontreg.value = "";
+	document.frmpayment.txtcontreg1.checked = false;
+	document.frmpayment.txtcontreg2.checked = false;
+	document.frmpayment.txtcontreg3.checked = false;
+	document.frmpayment.txtclabregfee.value = "0";
+	document.frmpayment.txtamtreg.value = "0.00";
+	document.frmpayment.txtamtreg_t.value = "0.00";
+	document.frmpayment.txtamtreg_o.value = "0.00";
+	
+	document.frmpayment.txtchqcontren.value = "";
+	document.frmpayment.txtcontren1.checked = false;
+	document.frmpayment.txtcontren2.checked = false;
+	document.frmpayment.txtcontren3.checked = false;
+	document.frmpayment.txtcontrenfee.value = "0";
+	document.frmpayment.txtamtcontren.value = "0.00";
+	document.frmpayment.txtamtcontren_t.value = "0.00";
+	document.frmpayment.txtamtcontren_o.value = "0.00";
+	
+	document.frmpayment.txtchqrehire.value = "";
+	document.frmpayment.txtrehire1.checked = false;
+	document.frmpayment.txtrehire2.checked = false;	
+	document.frmpayment.txtclabrehfee.value = "0";
+	document.frmpayment.txtamtrehire.value = "0.00";
+	document.frmpayment.txtamtrehire_t.value = "0.00";
+	document.frmpayment.txtamtrehire_o.value = "0.00";
+	
+	document.frmpayment.txtchqclabloc.value = "";
+	document.frmpayment.txtlocald.checked = false;
+	document.frmpayment.txtlocalr.checked = false;
+	document.frmpayment.txtclablwfee.value = "0";
+	document.frmpayment.txtamtlocal.value = "0.00";
+	document.frmpayment.txtamtlocal_t.value = "0.00";
+	document.frmpayment.txtamtlocal_o.value = "0.00";
+	
+	document.frmpayment.txtchqgreen.value = "";
+	document.frmpayment.txtgreenw.checked = false;
+	document.frmpayment.txtgreenr.checked = false;
+	document.frmpayment.txtclabgreenfee.value = "0";
+	document.frmpayment.txtamtgreen.value = "0.00";
+	document.frmpayment.txtamtgreen_t.value = "0.00";
+	document.frmpayment.txtamtgreen_o.value = "0.00";
+	
+	document.frmpayment.txtchqclabfee.value = "";
+	document.frmpayment.txtmember.checked = false;
+	document.frmpayment.txtintro.checked = false;
+	document.frmpayment.txtclabfee.value = "0";
+	document.frmpayment.txtamtclabfee.value = "0.00";
+	document.frmpayment.txtamtclabfee_t.value = "0.00";
+	document.frmpayment.txtamtclabfee_o.value = "0.00";
+	
+	document.frmpayment.txtchqjim.value = "";
+	document.frmpayment.txtjimplks.checked = false;
+	document.frmpayment.txtjimfees.checked = false;
+	document.frmpayment.txtjimvisa.checked = false;
+	document.frmpayment.txtjimlevi.checked = false;	
+	document.frmpayment.txtjimsp.checked = false;
+	document.frmpayment.txtjimcp.checked = false;
+	document.frmpayment.txtjimcompund.checked = false;
+	document.frmpayment.txtamtjim.value = "0.00";
+	document.frmpayment.txtamtjim_plks.value = "0.00";
+	document.frmpayment.txtamtjim_fees.value = "0.00";
+	document.frmpayment.txtamtjim_visa.value = "0.00";
+	document.frmpayment.txtamtjim_levi.value = "0.00";
+	document.frmpayment.txtamtjim_sp.value = "0.00";
+	document.frmpayment.txtamtjim_cp.value = "0.00";
+	document.frmpayment.txtamtjim_compound.value = "0.00";
+	
+	document.frmpayment.txtchqfomema.value = "";
+	document.frmpayment.txtmale.checked = false;
+	document.frmpayment.txtfemale.checked = false;
+	document.frmpayment.txtamtfomema.value = "0.00";
+	document.frmpayment.txtamtfomema_t.value = "0.00";
+	document.frmpayment.txtamtfomema_o.value = "0.00";
+	
+	document.frmpayment.txtchqins.value = "";
+	document.frmpayment.txtig.checked = false;
+	document.frmpayment.txtFWCS.checked = false;
+	document.frmpayment.txtFWHS.checked = false;
+	document.frmpayment.txtamtins.value = "0.00";
+	document.frmpayment.txtamtins_t.value = "0.00";
+	document.frmpayment.txtamtins_o.value = "0.00";
+	document.frmpayment.txtamtins_ig.value = "0.00";
+	document.frmpayment.txtamtins_fwcs.value = "0.00";
+	document.frmpayment.txtamtins_fwhs.value = "0.00";
+	
+	document.frmpayment.txtchqagency.value = "";
+	document.frmpayment.txtagencyfees.checked = false;
+	document.frmpayment.txtagencyfeesgc.checked = false;
+	document.frmpayment.txtclabtransfee.value = "0";
+	document.frmpayment.txtclabtransgcfee.value = "0";
+	document.frmpayment.txtamtagency.value = "0.00";
+	document.frmpayment.txtamtagency_t.value = "0.00";
+	document.frmpayment.txtamtagency_o.value = "0.00";
+	document.frmpayment.txttc_fees.value = "0.00";
+	document.frmpayment.txttc_cost.value = "0.00";
+	
+	document.frmpayment.txtchqothr.value = "";
+	document.frmpayment.txtothremarks.value = "";
+	document.frmpayment.txtothersfees.checked = false;
+	document.frmpayment.txtothersfees2.checked = false;	
+	document.frmpayment.txtamtothr.value = "0.00";
+	document.frmpayment.txtamtothr_t.value = "0.00";
+	document.frmpayment.txtamtothr_o.value = "0.00";	
+}
+
+function resetfield(){
+
+	document.frmpayment.txtchqclab.value = "";
+	document.frmpayment.txtadmfees.checked = false;
+	document.frmpayment.txtsitcent.checked = false;
+	document.frmpayment.txtgrncad.checked = false;
+	document.frmpayment.txtclabadmfee.value = "0";
+	document.frmpayment.txtclabgcfee.value = "0";
+	document.frmpayment.txtclabtcfee.value = "0";
+	document.frmpayment.txtamtclab.value = "0.00";
+	document.frmpayment.txtamtclab_only.value = "0.00";
+	document.frmpayment.txtamtclab_tax.value = "0.00";
+	
+	document.frmpayment.txtchqclabren.value = "";
+	document.frmpayment.txtadmfeesext.checked = false;
+	document.frmpayment.txtadmfeesextgc.checked = false;
+	document.frmpayment.txtclabrenfee.value = "0";
+	document.frmpayment.txtclabrengcfee.value = "0";
+	document.frmpayment.txtamtclabren.value = "0.00";
+	document.frmpayment.txtamtclabren_t.value = "0.00";
+	document.frmpayment.txtamtclabren_o.value = "0.00";
+	
+	document.frmpayment.txtchqcontreg.value = "";
+	document.frmpayment.txtcontreg1.checked = false;
+	document.frmpayment.txtcontreg2.checked = false;
+	document.frmpayment.txtcontreg3.checked = false;
+	document.frmpayment.txtclabregfee.value = "0";
+	document.frmpayment.txtamtreg.value = "0.00";
+	document.frmpayment.txtamtreg_t.value = "0.00";
+	document.frmpayment.txtamtreg_o.value = "0.00";
+	
+	document.frmpayment.txtchqcontren.value = "";
+	document.frmpayment.txtcontren1.checked = false;
+	document.frmpayment.txtcontren2.checked = false;
+	document.frmpayment.txtcontren3.checked = false;
+	document.frmpayment.txtcontrenfee.value = "0";
+	document.frmpayment.txtamtcontren.value = "0.00";
+	document.frmpayment.txtamtcontren_t.value = "0.00";
+	document.frmpayment.txtamtcontren_o.value = "0.00";
+	
+	document.frmpayment.txtchqrehire.value = "";
+	document.frmpayment.txtrehire1.checked = false;
+	document.frmpayment.txtrehire2.checked = false;	
+	document.frmpayment.txtclabrehfee.value = "0";
+	document.frmpayment.txtamtrehire.value = "0.00";
+	document.frmpayment.txtamtrehire_t.value = "0.00";
+	document.frmpayment.txtamtrehire_o.value = "0.00";
+	
+	document.frmpayment.txtchqclabloc.value = "";
+	document.frmpayment.txtlocald.checked = false;
+	document.frmpayment.txtlocalr.checked = false;
+	document.frmpayment.txtclablwfee.value = "0";
+	document.frmpayment.txtamtlocal.value = "0.00";
+	document.frmpayment.txtamtlocal_t.value = "0.00";
+	document.frmpayment.txtamtlocal_o.value = "0.00";
+	
+	document.frmpayment.txtchqgreen.value = "";
+	document.frmpayment.txtgreenw.checked = false;
+	document.frmpayment.txtgreenr.checked = false;
+	document.frmpayment.txtclabgreenfee.value = "0";
+	document.frmpayment.txtamtgreen.value = "0.00";
+	document.frmpayment.txtamtgreen_t.value = "0.00";
+	document.frmpayment.txtamtgreen_o.value = "0.00";
+	
+	document.frmpayment.txtchqclabfee.value = "";
+	document.frmpayment.txtmember.checked = false;
+	document.frmpayment.txtintro.checked = false;
+	document.frmpayment.txtclabfee.value = "0";
+	document.frmpayment.txtamtclabfee.value = "0.00";
+	document.frmpayment.txtamtclabfee_t.value = "0.00";
+	document.frmpayment.txtamtclabfee_o.value = "0.00";
+	
+	document.frmpayment.txtchqjim.value = "";
+	document.frmpayment.txtjimplks.checked = false;
+	document.frmpayment.txtjimfees.checked = false;
+	document.frmpayment.txtjimvisa.checked = false;
+	document.frmpayment.txtjimlevi.checked = false;	
+	document.frmpayment.txtjimsp.checked = false;
+	document.frmpayment.txtjimcp.checked = false;
+	document.frmpayment.txtjimcompund.checked = false;
+	document.frmpayment.txtamtjim.value = "0.00";
+	document.frmpayment.txtamtjim_plks.value = "0.00";
+	document.frmpayment.txtamtjim_fees.value = "0.00";
+	document.frmpayment.txtamtjim_visa.value = "0.00";
+	document.frmpayment.txtamtjim_levi.value = "0.00";
+	document.frmpayment.txtamtjim_sp.value = "0.00";
+	document.frmpayment.txtamtjim_cp.value = "0.00";
+	document.frmpayment.txtamtjim_compound.value = "0.00";
+	
+	document.frmpayment.txtchqfomema.value = "";
+	document.frmpayment.txtmale.checked = false;
+	document.frmpayment.txtfemale.checked = false;
+	document.frmpayment.txtamtfomema.value = "0.00";
+	document.frmpayment.txtamtfomema_t.value = "0.00";
+	document.frmpayment.txtamtfomema_o.value = "0.00";
+	
+	document.frmpayment.txtchqins.value = "";
+	document.frmpayment.txtig.checked = false;
+	document.frmpayment.txtFWCS.checked = false;
+	document.frmpayment.txtFWHS.checked = false;
+	document.frmpayment.txtamtins.value = "0.00";
+	document.frmpayment.txtamtins_t.value = "0.00";
+	document.frmpayment.txtamtins_o.value = "0.00";
+	document.frmpayment.txtamtins_ig.value = "0.00";
+	document.frmpayment.txtamtins_fwcs.value = "0.00";
+	document.frmpayment.txtamtins_fwhs.value = "0.00";
+	
+	document.frmpayment.txtchqagency.value = "";
+	document.frmpayment.txtagencyfees.checked = false;
+	document.frmpayment.txtagencyfeesgc.checked = false;
+	document.frmpayment.txtclabtransfee.value = "0";
+	document.frmpayment.txtclabtransgcfee.value = "0";
+	document.frmpayment.txtamtagency.value = "0.00";
+	document.frmpayment.txtamtagency_t.value = "0.00";
+	document.frmpayment.txtamtagency_o.value = "0.00";
+	document.frmpayment.txttc_fees.value = "0.00";
+	document.frmpayment.txttc_cost.value = "0.00";
+	
+	document.frmpayment.txtchqothr.value = "";
+	document.frmpayment.txtothremarks.value = "";
+	document.frmpayment.txtothersfees.checked = false;
+	document.frmpayment.txtothersfees2.checked = false;	
+	document.frmpayment.txtamtothr.value = "0.00";
+	document.frmpayment.txtamtothr_t.value = "0.00";
+	document.frmpayment.txtamtothr_o.value = "0.00";
+}
+
+function valid(tp){
+ 
+if(tp == 'V'){ //VDR	 
+	clearfield();
+
+	document.frmpayment.txtadmfees.disabled = false;
+	document.frmpayment.txtsitcent.disabled = false;
+	document.frmpayment.txtgrncad.disabled = false;
+	
+	document.frmpayment.txtadmfeesext.disabled = true;
+	document.frmpayment.txtadmfeesextgc.disabled = true;
+	document.frmpayment.txtcontreg1.disabled = true;
+	document.frmpayment.txtcontreg2.disabled = true;
+	document.frmpayment.txtcontreg3.disabled = true;	
+	document.frmpayment.txtcontren1.disabled = true;
+	document.frmpayment.txtcontren2.disabled = true;
+	document.frmpayment.txtcontren3.disabled = true;	
+	document.frmpayment.txtrehire1.disabled = true;
+	document.frmpayment.txtrehire2.disabled = true;	
+	document.frmpayment.txtlocald.disabled = true;
+	document.frmpayment.txtlocalr.disabled = true;
+ 	document.frmpayment.txtgreenw.disabled = true;
+	document.frmpayment.txtgreenr.disabled = true;
+	document.frmpayment.txtmember.disabled = true;
+	document.frmpayment.txtintro.disabled = true;
+	
+	document.frmpayment.txtjimplks.disabled = false;
+	document.frmpayment.txtjimfees.disabled = false;
+	document.frmpayment.txtjimvisa.disabled = false;
+	document.frmpayment.txtjimlevi.disabled = false;
+
+	document.frmpayment.txtjimsp.disabled = true;
+	document.frmpayment.txtjimcp.disabled = true;
+	document.frmpayment.txtjimcompund.disabled = true;
+	
+	document.frmpayment.txtmale.disabled = false;
+	document.frmpayment.txtfemale.disabled = false;
+	document.frmpayment.txtig.disabled = false;
+	document.frmpayment.txtFWCS.disabled = false;
+	document.frmpayment.txtFWHS.disabled = false;
+	
+	document.frmpayment.txtagencyfees.disabled = true;
+	document.frmpayment.txtagencyfeesgc.disabled = true;
+	document.frmpayment.txtothersfees.disabled = false;
+	document.frmpayment.txtothersfees2.disabled = false;	
+	
+	document.frmpayment.txtfcl.disabled = false;
+	document.frmpayment.txtbtncountry.disabled = false; 
+	document.frmpayment.txtbtnpano.disabled = false;
+	
+}else if(tp == 'R') { //Renewal Permit
+	clearfield();
+	
+	document.frmpayment.txtadmfeesext.disabled = false;
+	document.frmpayment.txtadmfeesextgc.disabled = false;	
+
+	document.frmpayment.txtadmfees.disabled = true;
+	document.frmpayment.txtsitcent.disabled = true;
+	document.frmpayment.txtgrncad.disabled = true;		
+	document.frmpayment.txtcontreg1.disabled = true;
+	document.frmpayment.txtcontreg2.disabled = true;
+	document.frmpayment.txtcontreg3.disabled = true;	
+	document.frmpayment.txtcontren1.disabled = true;
+	document.frmpayment.txtcontren2.disabled = true;
+	document.frmpayment.txtcontren3.disabled = true;	
+	document.frmpayment.txtrehire1.disabled = true;
+	document.frmpayment.txtrehire2.disabled = true;	
+	document.frmpayment.txtlocald.disabled = true;
+	document.frmpayment.txtlocalr.disabled = true;
+ 	document.frmpayment.txtgreenw.disabled = true;
+	document.frmpayment.txtgreenr.disabled = true;
+	document.frmpayment.txtmember.disabled = true;
+	document.frmpayment.txtintro.disabled = true;
+	document.frmpayment.txtjimplks.disabled = false;
+	document.frmpayment.txtjimfees.disabled = false;
+	document.frmpayment.txtjimvisa.disabled = false;
+	document.frmpayment.txtjimlevi.disabled = false;
+	document.frmpayment.txtjimsp.disabled = false;
+	document.frmpayment.txtjimcp.disabled = true;
+	document.frmpayment.txtjimcompund.disabled = false;
+	document.frmpayment.txtmale.disabled = false;
+	document.frmpayment.txtfemale.disabled = false;
+	document.frmpayment.txtig.disabled = false;
+	document.frmpayment.txtFWCS.disabled = false;
+	document.frmpayment.txtFWHS.disabled = false;	
+	document.frmpayment.txtagencyfees.disabled = true;
+	document.frmpayment.txtagencyfeesgc.disabled = true;
+	document.frmpayment.txtothersfees.disabled = false;
+	document.frmpayment.txtothersfees2.disabled = false;	
+	
+	document.frmpayment.txtfcl.disabled = false;
+	document.frmpayment.txtbtncountry.disabled = false; 
+	document.frmpayment.txtbtnpano.disabled = false;
+
+}else if(tp == 'CR') { //Contractor Registration 
+	clearfield();
+
+	document.frmpayment.txtadmfees.disabled = true;
+	document.frmpayment.txtsitcent.disabled = true;
+	document.frmpayment.txtgrncad.disabled = true;	
+	document.frmpayment.txtadmfeesext.disabled = true;
+	document.frmpayment.txtadmfeesextgc.disabled = true;
+	document.frmpayment.txtcontreg1.disabled = false;
+	document.frmpayment.txtcontreg2.disabled = false;
+	document.frmpayment.txtcontreg3.disabled = false;	
+	document.frmpayment.txtcontren1.disabled = true;
+	document.frmpayment.txtcontren2.disabled = true;
+	document.frmpayment.txtcontren3.disabled = true;	
+	document.frmpayment.txtrehire1.disabled = true;
+	document.frmpayment.txtrehire2.disabled = true;	
+	document.frmpayment.txtlocald.disabled = true;
+	document.frmpayment.txtlocalr.disabled = true;
+ 	document.frmpayment.txtgreenw.disabled = true;
+	document.frmpayment.txtgreenr.disabled = true;
+	document.frmpayment.txtmember.disabled = true;
+	document.frmpayment.txtintro.disabled = true;
+	document.frmpayment.txtjimplks.disabled = true;
+	document.frmpayment.txtjimfees.disabled = true;
+	document.frmpayment.txtjimvisa.disabled = true;
+	document.frmpayment.txtjimlevi.disabled = true;
+	document.frmpayment.txtjimsp.disabled = true;
+	document.frmpayment.txtjimcp.disabled = true;
+	document.frmpayment.txtjimcompund.disabled = true;
+	document.frmpayment.txtmale.disabled = true;
+	document.frmpayment.txtfemale.disabled = true;
+	document.frmpayment.txtig.disabled = true;
+	document.frmpayment.txtFWCS.disabled = true;
+	document.frmpayment.txtFWHS.disabled = true;	
+	document.frmpayment.txtagencyfees.disabled = true;
+	document.frmpayment.txtagencyfeesgc.disabled = true;
+	document.frmpayment.txtothersfees.disabled = false;
+	document.frmpayment.txtothersfees2.disabled = false;	
+	
+	document.frmpayment.txtfcl.disabled = false;
+	document.frmpayment.txtbtncountry.disabled = true; 
+	document.frmpayment.txtbtnpano.disabled = true;	
+
+}else if(tp == 'CRN') { //Contractor Renewal  
+	clearfield();
+
+	document.frmpayment.txtadmfees.disabled = true;
+	document.frmpayment.txtsitcent.disabled = true;
+	document.frmpayment.txtgrncad.disabled = true;	
+	document.frmpayment.txtadmfeesext.disabled = true;
+	document.frmpayment.txtadmfeesextgc.disabled = true;
+	document.frmpayment.txtcontreg1.disabled = true;
+	document.frmpayment.txtcontreg2.disabled = true;
+	document.frmpayment.txtcontreg3.disabled = true;	
+	document.frmpayment.txtcontren1.disabled = false;
+	document.frmpayment.txtcontren2.disabled = false;
+	document.frmpayment.txtcontren3.disabled = false;	
+	document.frmpayment.txtrehire1.disabled = true;
+	document.frmpayment.txtrehire2.disabled = true;	
+	document.frmpayment.txtlocald.disabled = true;
+	document.frmpayment.txtlocalr.disabled = true;
+ 	document.frmpayment.txtgreenw.disabled = true;
+	document.frmpayment.txtgreenr.disabled = true;
+	document.frmpayment.txtmember.disabled = true;
+	document.frmpayment.txtintro.disabled = true;
+	document.frmpayment.txtjimplks.disabled = true;
+	document.frmpayment.txtjimfees.disabled = true;
+	document.frmpayment.txtjimvisa.disabled = true;
+	document.frmpayment.txtjimlevi.disabled = true;
+	document.frmpayment.txtjimsp.disabled = true;
+	document.frmpayment.txtjimcp.disabled = true;
+	document.frmpayment.txtjimcompund.disabled = true;
+	document.frmpayment.txtmale.disabled = true;
+	document.frmpayment.txtfemale.disabled = true;
+	document.frmpayment.txtig.disabled = true;
+	document.frmpayment.txtFWCS.disabled = true;
+	document.frmpayment.txtFWHS.disabled = true;	
+	document.frmpayment.txtagencyfees.disabled = true;
+	document.frmpayment.txtagencyfeesgc.disabled = true;
+	document.frmpayment.txtothersfees.disabled = false;
+	document.frmpayment.txtothersfees2.disabled = false;	
+	
+	document.frmpayment.txtfcl.disabled = false;
+	document.frmpayment.txtbtncountry.disabled = true; 
+	document.frmpayment.txtbtnpano.disabled = true;	
+		
+ }else if(tp == 'REH') { //Rehiring    
+	clearfield();
+
+	document.frmpayment.txtadmfees.disabled = true;
+	document.frmpayment.txtsitcent.disabled = true;
+	document.frmpayment.txtgrncad.disabled = true;	
+	document.frmpayment.txtadmfeesext.disabled = true;
+	document.frmpayment.txtadmfeesextgc.disabled = true;
+	document.frmpayment.txtcontreg1.disabled = true;
+	document.frmpayment.txtcontreg2.disabled = true;
+	document.frmpayment.txtcontreg3.disabled = true;	
+	document.frmpayment.txtcontren1.disabled = true;
+	document.frmpayment.txtcontren2.disabled = true;
+	document.frmpayment.txtcontren3.disabled = true;	
+	document.frmpayment.txtrehire1.disabled = false;
+	document.frmpayment.txtrehire2.disabled = false;	
+	document.frmpayment.txtlocald.disabled = true;
+	document.frmpayment.txtlocalr.disabled = true;
+ 	document.frmpayment.txtgreenw.disabled = false;
+	document.frmpayment.txtgreenr.disabled = false;
+	document.frmpayment.txtmember.disabled = true;
+	document.frmpayment.txtintro.disabled = true;
+	document.frmpayment.txtjimplks.disabled = false;
+	document.frmpayment.txtjimfees.disabled = false;
+	document.frmpayment.txtjimvisa.disabled = false;
+	document.frmpayment.txtjimlevi.disabled = false;
+	document.frmpayment.txtjimsp.disabled = false;
+	document.frmpayment.txtjimcp.disabled = false;
+	document.frmpayment.txtjimcompund.disabled = false;
+	document.frmpayment.txtmale.disabled = false;
+	document.frmpayment.txtfemale.disabled = false;
+	document.frmpayment.txtig.disabled = false;
+	document.frmpayment.txtFWCS.disabled = false;
+	document.frmpayment.txtFWHS.disabled = false;	
+	document.frmpayment.txtagencyfees.disabled = true;
+	document.frmpayment.txtagencyfeesgc.disabled = true;
+	document.frmpayment.txtothersfees.disabled = false;
+	document.frmpayment.txtothersfees2.disabled = false;	
+	
+	document.frmpayment.txtfcl.disabled = false;
+	document.frmpayment.txtbtncountry.disabled = false; 
+	document.frmpayment.txtbtnpano.disabled = true;
+	
+ }else if(tp == 'LW') { //Local Worker   
+	clearfield();
+	
+	document.frmpayment.txtadmfees.disabled = true;
+	document.frmpayment.txtsitcent.disabled = true;
+	document.frmpayment.txtgrncad.disabled = true;	
+	document.frmpayment.txtadmfeesext.disabled = true;
+	document.frmpayment.txtadmfeesextgc.disabled = true;
+	document.frmpayment.txtcontreg1.disabled = true;
+	document.frmpayment.txtcontreg2.disabled = true;
+	document.frmpayment.txtcontreg3.disabled = true;	
+	document.frmpayment.txtcontren1.disabled = true;
+	document.frmpayment.txtcontren2.disabled = true;
+	document.frmpayment.txtcontren3.disabled = true;	
+	document.frmpayment.txtrehire1.disabled = true;
+	document.frmpayment.txtrehire2.disabled = true;	
+	document.frmpayment.txtlocald.disabled = false;
+	document.frmpayment.txtlocalr.disabled = false;
+ 	document.frmpayment.txtgreenw.disabled = true;
+	document.frmpayment.txtgreenr.disabled = true;
+	document.frmpayment.txtmember.disabled = true;
+	document.frmpayment.txtintro.disabled = true;
+	document.frmpayment.txtjimplks.disabled = true;
+	document.frmpayment.txtjimfees.disabled = true;
+	document.frmpayment.txtjimvisa.disabled = true;
+	document.frmpayment.txtjimlevi.disabled = true;
+	document.frmpayment.txtjimsp.disabled = true;
+	document.frmpayment.txtjimcp.disabled = true;
+	document.frmpayment.txtjimcompund.disabled = true;
+	document.frmpayment.txtmale.disabled = true;
+	document.frmpayment.txtfemale.disabled = true;
+	document.frmpayment.txtig.disabled = true;
+	document.frmpayment.txtFWCS.disabled = true;
+	document.frmpayment.txtFWHS.disabled = true;	
+	document.frmpayment.txtagencyfees.disabled = true;
+	document.frmpayment.txtagencyfeesgc.disabled = true;
+	document.frmpayment.txtothersfees.disabled = false;
+	document.frmpayment.txtothersfees2.disabled = false;	
+	
+	document.frmpayment.txtfcl.disabled = false;
+	document.frmpayment.txtbtncountry.disabled = true; 
+	document.frmpayment.txtbtnpano.disabled = true;
+
+}else if(tp == 'GRC') { //GREEN CARD
+   
+	clearfield();
+	
+	document.frmpayment.txtadmfees.disabled = true;
+	document.frmpayment.txtsitcent.disabled = true;
+	document.frmpayment.txtgrncad.disabled = true;	
+	document.frmpayment.txtadmfeesext.disabled = true;
+	document.frmpayment.txtadmfeesextgc.disabled = true;
+	document.frmpayment.txtcontreg1.disabled = true;
+	document.frmpayment.txtcontreg2.disabled = true;
+	document.frmpayment.txtcontreg3.disabled = true;	
+	document.frmpayment.txtcontren1.disabled = true;
+	document.frmpayment.txtcontren2.disabled = true;
+	document.frmpayment.txtcontren3.disabled = true;	
+	document.frmpayment.txtrehire1.disabled = true;
+	document.frmpayment.txtrehire2.disabled = true;	
+	document.frmpayment.txtlocald.disabled = true;
+	document.frmpayment.txtlocalr.disabled = true;
+ 	document.frmpayment.txtgreenw.disabled = false;
+	document.frmpayment.txtgreenr.disabled = false;
+	document.frmpayment.txtmember.disabled = true;
+	document.frmpayment.txtintro.disabled = true;
+	document.frmpayment.txtjimplks.disabled = true;
+	document.frmpayment.txtjimfees.disabled = true;
+	document.frmpayment.txtjimvisa.disabled = true;
+	document.frmpayment.txtjimlevi.disabled = true;
+	document.frmpayment.txtjimsp.disabled = true;
+	document.frmpayment.txtjimcp.disabled = true;
+	document.frmpayment.txtjimcompund.disabled = true;
+	document.frmpayment.txtmale.disabled = true;
+	document.frmpayment.txtfemale.disabled = true;
+	document.frmpayment.txtig.disabled = true;
+	document.frmpayment.txtFWCS.disabled = true;
+	document.frmpayment.txtFWHS.disabled = true;	
+	document.frmpayment.txtagencyfees.disabled = true;
+	document.frmpayment.txtagencyfeesgc.disabled = true;
+	document.frmpayment.txtothersfees.disabled = false;
+	document.frmpayment.txtothersfees2.disabled = false;	
+	
+	document.frmpayment.txtfcl.disabled = false;
+	document.frmpayment.txtbtncountry.disabled = false; 
+	document.frmpayment.txtbtnpano.disabled = true;	
+
+}else if(tp == 'FEE') { //CLAB FEE
+   
+	clearfield();
+	
+	document.frmpayment.txtadmfees.disabled = true;
+	document.frmpayment.txtsitcent.disabled = true;
+	document.frmpayment.txtgrncad.disabled = true;	
+	document.frmpayment.txtadmfeesext.disabled = true;
+	document.frmpayment.txtadmfeesextgc.disabled = true;
+	document.frmpayment.txtcontreg1.disabled = true;
+	document.frmpayment.txtcontreg2.disabled = true;
+	document.frmpayment.txtcontreg3.disabled = true;	
+	document.frmpayment.txtcontren1.disabled = true;
+	document.frmpayment.txtcontren2.disabled = true;
+	document.frmpayment.txtcontren3.disabled = true;	
+	document.frmpayment.txtrehire1.disabled = true;
+	document.frmpayment.txtrehire2.disabled = true;	
+	document.frmpayment.txtlocald.disabled = true;
+	document.frmpayment.txtlocalr.disabled = true;
+ 	document.frmpayment.txtgreenw.disabled = true;
+	document.frmpayment.txtgreenr.disabled = true;
+	document.frmpayment.txtmember.disabled = false;
+	document.frmpayment.txtintro.disabled = false;
+	document.frmpayment.txtjimplks.disabled = true;
+	document.frmpayment.txtjimfees.disabled = true;
+	document.frmpayment.txtjimvisa.disabled = true;
+	document.frmpayment.txtjimlevi.disabled = true;
+	document.frmpayment.txtjimsp.disabled = true;
+	document.frmpayment.txtjimcp.disabled = true;
+	document.frmpayment.txtjimcompund.disabled = true;
+	document.frmpayment.txtmale.disabled = true;
+	document.frmpayment.txtfemale.disabled = true;
+	document.frmpayment.txtig.disabled = true;
+	document.frmpayment.txtFWCS.disabled = true;
+	document.frmpayment.txtFWHS.disabled = true;	
+	document.frmpayment.txtagencyfees.disabled = true;
+	document.frmpayment.txtagencyfeesgc.disabled = true;
+	document.frmpayment.txtothersfees.disabled = false;
+	document.frmpayment.txtothersfees2.disabled = false;	
+	
+	document.frmpayment.txtfcl.disabled = false;
+	document.frmpayment.txtbtncountry.disabled = true; 
+	document.frmpayment.txtbtnpano.disabled = true;	
+
+}else if(tp == 'T') { //Transit Center
+   
+	clearfield();
+	
+	document.frmpayment.txtadmfees.disabled = true;
+	document.frmpayment.txtsitcent.disabled = true;
+	document.frmpayment.txtgrncad.disabled = true;	
+	document.frmpayment.txtadmfeesext.disabled = true;
+	document.frmpayment.txtadmfeesextgc.disabled = true;
+	document.frmpayment.txtcontreg1.disabled = true;
+	document.frmpayment.txtcontreg2.disabled = true;
+	document.frmpayment.txtcontreg3.disabled = true;	
+	document.frmpayment.txtcontren1.disabled = true;
+	document.frmpayment.txtcontren2.disabled = true;
+	document.frmpayment.txtcontren3.disabled = true;	
+	document.frmpayment.txtrehire1.disabled = true;
+	document.frmpayment.txtrehire2.disabled = true;	
+	document.frmpayment.txtlocald.disabled = true;
+	document.frmpayment.txtlocalr.disabled = true;
+ 	document.frmpayment.txtgreenw.disabled = true;
+	document.frmpayment.txtgreenr.disabled = true;
+	document.frmpayment.txtmember.disabled = true;
+	document.frmpayment.txtintro.disabled = true;
+	document.frmpayment.txtjimplks.disabled = true;
+	document.frmpayment.txtjimfees.disabled = true;
+	document.frmpayment.txtjimvisa.disabled = true;
+	document.frmpayment.txtjimlevi.disabled = true;
+	document.frmpayment.txtjimsp.disabled = true;
+	document.frmpayment.txtjimcp.disabled = true;
+	document.frmpayment.txtjimcompund.disabled = true;
+	document.frmpayment.txtmale.disabled = false;
+	document.frmpayment.txtfemale.disabled = false;
+	document.frmpayment.txtig.disabled = true;
+	document.frmpayment.txtFWCS.disabled = true;
+	document.frmpayment.txtFWHS.disabled = true;	
+	document.frmpayment.txtagencyfees.disabled = false;
+	document.frmpayment.txtagencyfeesgc.disabled = false;
+	document.frmpayment.txtothersfees.disabled = false;
+	document.frmpayment.txtothersfees2.disabled = false;	
+	
+	document.frmpayment.txtfcl.disabled = false;
+	document.frmpayment.txtbtncountry.disabled = false; 
+	document.frmpayment.txtbtnpano.disabled = true;	
+	
+}else if(tp == 'CP') { //Cancel Permit  
+	clearfield();
+
+	document.frmpayment.txtadmfees.disabled = true;
+	document.frmpayment.txtsitcent.disabled = true;
+	document.frmpayment.txtgrncad.disabled = true;	
+	document.frmpayment.txtadmfeesext.disabled = true;
+	document.frmpayment.txtadmfeesextgc.disabled = true;
+	document.frmpayment.txtcontreg1.disabled = true;
+	document.frmpayment.txtcontreg2.disabled = true;
+	document.frmpayment.txtcontreg3.disabled = true;	
+	document.frmpayment.txtcontren1.disabled = true;
+	document.frmpayment.txtcontren2.disabled = true;
+	document.frmpayment.txtcontren3.disabled = true;	
+	document.frmpayment.txtrehire1.disabled = true;
+	document.frmpayment.txtrehire2.disabled = true;	
+	document.frmpayment.txtlocald.disabled = true;
+	document.frmpayment.txtlocalr.disabled = true;
+ 	document.frmpayment.txtgreenw.disabled = true;
+	document.frmpayment.txtgreenr.disabled = true;
+	document.frmpayment.txtmember.disabled = true;
+	document.frmpayment.txtintro.disabled = true;
+	document.frmpayment.txtjimplks.disabled = true;
+	document.frmpayment.txtjimfees.disabled = true;
+	document.frmpayment.txtjimvisa.disabled = true;
+	document.frmpayment.txtjimlevi.disabled = true;
+	document.frmpayment.txtjimsp.disabled = true;
+	document.frmpayment.txtjimcp.disabled = false;
+	document.frmpayment.txtjimcompund.disabled = true;
+	document.frmpayment.txtmale.disabled = true;
+	document.frmpayment.txtfemale.disabled = true;
+	document.frmpayment.txtig.disabled = true;
+	document.frmpayment.txtFWCS.disabled = true;
+	document.frmpayment.txtFWHS.disabled = true;	
+	document.frmpayment.txtagencyfees.disabled = true
+	document.frmpayment.txtagencyfeesgc.disabled = true;
+	document.frmpayment.txtothersfees.disabled = false;
+	document.frmpayment.txtothersfees2.disabled = false;	
+	
+	document.frmpayment.txtfcl.disabled = false;
+	document.frmpayment.txtbtncountry.disabled = false; 
+	document.frmpayment.txtbtnpano.disabled = false;	
+
+}else if(tp == 'COM') { //Compound  
+	clearfield();
+	
+	document.frmpayment.txtadmfees.disabled = true;
+	document.frmpayment.txtsitcent.disabled = true;
+	document.frmpayment.txtgrncad.disabled = true;	
+	document.frmpayment.txtadmfeesext.disabled = true;
+	document.frmpayment.txtadmfeesextgc.disabled = true;
+	document.frmpayment.txtcontreg1.disabled = true;
+	document.frmpayment.txtcontreg2.disabled = true;
+	document.frmpayment.txtcontreg3.disabled = true;	
+	document.frmpayment.txtcontren1.disabled = true;
+	document.frmpayment.txtcontren2.disabled = true;
+	document.frmpayment.txtcontren3.disabled = true;	
+	document.frmpayment.txtrehire1.disabled = true;
+	document.frmpayment.txtrehire2.disabled = true;	
+	document.frmpayment.txtlocald.disabled = true;
+	document.frmpayment.txtlocalr.disabled = true;
+ 	document.frmpayment.txtgreenw.disabled = true;
+	document.frmpayment.txtgreenr.disabled = true;
+	document.frmpayment.txtmember.disabled = true;
+	document.frmpayment.txtintro.disabled = true;
+	document.frmpayment.txtjimplks.disabled = true;
+	document.frmpayment.txtjimfees.disabled = true;
+	document.frmpayment.txtjimvisa.disabled = true;
+	document.frmpayment.txtjimlevi.disabled = true;
+	document.frmpayment.txtjimsp.disabled = true;
+	document.frmpayment.txtjimcp.disabled = true;
+	document.frmpayment.txtjimcompund.disabled = false;
+	document.frmpayment.txtmale.disabled = true;
+	document.frmpayment.txtfemale.disabled = true;
+	document.frmpayment.txtig.disabled = true;
+	document.frmpayment.txtFWCS.disabled = true;
+	document.frmpayment.txtFWHS.disabled = true;	
+	document.frmpayment.txtagencyfees.disabled = true
+	document.frmpayment.txtagencyfeesgc.disabled = true;
+	document.frmpayment.txtothersfees.disabled = false;
+	document.frmpayment.txtothersfees2.disabled = false;	
+	
+	document.frmpayment.txtfcl.disabled = false;
+	document.frmpayment.txtbtncountry.disabled = true; 
+	document.frmpayment.txtbtnpano.disabled = true;	
+
+}else if(tp == 'SP') { //Special Pass   
+	clearfield();	
+	
+	document.frmpayment.txtadmfees.disabled = true;
+	document.frmpayment.txtsitcent.disabled = true;
+	document.frmpayment.txtgrncad.disabled = true;	
+	document.frmpayment.txtadmfeesext.disabled = true;
+	document.frmpayment.txtadmfeesextgc.disabled = true;
+	document.frmpayment.txtcontreg1.disabled = true;
+	document.frmpayment.txtcontreg2.disabled = true;
+	document.frmpayment.txtcontreg3.disabled = true;	
+	document.frmpayment.txtcontren1.disabled = true;
+	document.frmpayment.txtcontren2.disabled = true;
+	document.frmpayment.txtcontren3.disabled = true;	
+	document.frmpayment.txtrehire1.disabled = true;
+	document.frmpayment.txtrehire2.disabled = true;	
+	document.frmpayment.txtlocald.disabled = true;
+	document.frmpayment.txtlocalr.disabled = true;
+ 	document.frmpayment.txtgreenw.disabled = true;
+	document.frmpayment.txtgreenr.disabled = true;
+	document.frmpayment.txtmember.disabled = true;
+	document.frmpayment.txtintro.disabled = true;
+	document.frmpayment.txtjimplks.disabled = true;
+	document.frmpayment.txtjimfees.disabled = true;
+	document.frmpayment.txtjimvisa.disabled = true;
+	document.frmpayment.txtjimlevi.disabled = true;
+	document.frmpayment.txtjimsp.disabled = false;
+	document.frmpayment.txtjimcp.disabled = true;
+	document.frmpayment.txtjimcompund.disabled = true;
+	document.frmpayment.txtmale.disabled = true;
+	document.frmpayment.txtfemale.disabled = true;
+	document.frmpayment.txtig.disabled = true;
+	document.frmpayment.txtFWCS.disabled = true;
+	document.frmpayment.txtFWHS.disabled = true;	
+	document.frmpayment.txtagencyfees.disabled = true
+	document.frmpayment.txtagencyfeesgc.disabled = true;
+	document.frmpayment.txtothersfees.disabled = false;
+	document.frmpayment.txtothersfees2.disabled = false;	
+	
+	document.frmpayment.txtfcl.disabled = false;
+	document.frmpayment.txtbtncountry.disabled = true; 
+	document.frmpayment.txtbtnpano.disabled = true;
+	
+}else if(tp == 'O') { //Others  
+	clearfield();
+	
+	document.frmpayment.txtadmfees.disabled = true;
+	document.frmpayment.txtsitcent.disabled = true;
+	document.frmpayment.txtgrncad.disabled = true;	
+	document.frmpayment.txtadmfeesext.disabled = true;
+	document.frmpayment.txtadmfeesextgc.disabled = true;
+	document.frmpayment.txtcontreg1.disabled = true;
+	document.frmpayment.txtcontreg2.disabled = true;
+	document.frmpayment.txtcontreg3.disabled = true;	
+	document.frmpayment.txtcontren1.disabled = true;
+	document.frmpayment.txtcontren2.disabled = true;
+	document.frmpayment.txtcontren3.disabled = true;	
+	document.frmpayment.txtrehire1.disabled = true;
+	document.frmpayment.txtrehire2.disabled = true;	
+	document.frmpayment.txtlocald.disabled = true;
+	document.frmpayment.txtlocalr.disabled = true;
+ 	document.frmpayment.txtgreenw.disabled = true;
+	document.frmpayment.txtgreenr.disabled = true;
+	document.frmpayment.txtmember.disabled = true;
+	document.frmpayment.txtintro.disabled = true;
+	document.frmpayment.txtjimplks.disabled = true;
+	document.frmpayment.txtjimfees.disabled = true;
+	document.frmpayment.txtjimvisa.disabled = true;
+	document.frmpayment.txtjimlevi.disabled = true;
+	document.frmpayment.txtjimsp.disabled = true;
+	document.frmpayment.txtjimcp.disabled = true;
+	document.frmpayment.txtjimcompund.disabled = true;
+	document.frmpayment.txtmale.disabled = true;
+	document.frmpayment.txtfemale.disabled = true;
+	document.frmpayment.txtig.disabled = true;
+	document.frmpayment.txtFWCS.disabled = true;
+	document.frmpayment.txtFWHS.disabled = true;	
+	document.frmpayment.txtagencyfees.disabled = true
+	document.frmpayment.txtagencyfeesgc.disabled = true;
+	document.frmpayment.txtothersfees.disabled = false;
+	document.frmpayment.txtothersfees2.disabled = false;	
+	document.frmpayment.txtfcl.disabled = false;
+	document.frmpayment.txtbtncountry.disabled = false; 
+	document.frmpayment.txtbtnpano.disabled = true;
+	
+}
+
+}
+
+function opencontractor(){
+var frm = "receipt";
+var url = "<?php echo site_url('contPayment/ctr_list');?>/" + frm
+window.open(url, 'Contractor List', 'height=350, toolbar=no, directories=no, status=no, location=no, menubar=no, scrollbars=yes') 
+}
+
+function countrylist(){
+var frm = "receipt";
+var url = "<?php echo site_url('contPayment/opencountrylist');?>/" + frm
+window.open(url, 'Contractor List', 'height=350, toolbar=no, directories=no, status=no, location=no, menubar=no, scrollbars=yes')
+}
+
+function palist(){
+var pmttype = document.frmpayment.optpmttype.value;
+var url = "<?php echo site_url('contPayment/openpalist');?>/" + pmttype
+window.open(url, 'Contractor List', 'height=350, toolbar=no, directories=no, status=no, location=no, menubar=no, scrollbars=yes')
+}
+
+function getwono(){
+	var pmttype = document.frmpayment.optpmttype.value;
+	if(pmttype == 0){ alert('Please Select Payment Type');return false }
+	if(pmttype == 'V' || pmttype == 'R'){
+
+	var url = "<?php echo site_url('contPayment/workorderlist');?>/" + pmttype
+	window.open(url, 'Workorder List', 'height=350, toolbar=no, directories=no, status=no, location=no, menubar=no, scrollbars=yes') 
+    }
+}
+
+function getclabval_adminfees(){
+	var pmttype = document.frmpayment.optpmttype.value;
+	var fcl = document.frmpayment.txtfcl.value;
+	var disc = document.frmpayment.txtamtdisc.value;
+	
+	if(fcl == "" || fcl == 0){ alert('Please Insert No Of FCL'); document.frmpayment.txtadmfees.checked = false; return false;}
+
+	fee = 350;
+	amtonly = (fee * fcl) - disc;
+	amttax = amtonly * 0.06 ;
+	amt = amtonly + amttax;	
+	
+	if(document.frmpayment.txtadmfees.checked == true){
+		document.frmpayment.txtclabadmfee.value = fee;
+		document.frmpayment.txtamtclab_tax.value = eval(document.frmpayment.txtamtclab_tax.value) + eval(amttax) 
+		document.frmpayment.txtamtclab_only.value = eval(document.frmpayment.txtamtclab_only.value) + eval(amtonly) 
+		document.frmpayment.txtamtclab.value = eval(document.frmpayment.txtamtclab.value) + eval(amt);
+	}else{
+		document.frmpayment.txtclabadmfee.value = "0";
+		document.frmpayment.txtamtclab_tax.value = eval(document.frmpayment.txtamtclab_tax.value) - eval(amttax) 
+		document.frmpayment.txtamtclab_only.value = eval(document.frmpayment.txtamtclab_only.value) - eval(amtonly)
+		document.frmpayment.txtamtclab.value = eval(document.frmpayment.txtamtclab.value) - eval(amt);
+	}
+}
+
+function getclabval_transit(){
+	var pmttype = document.frmpayment.optpmttype.value;
+	var fcl = document.frmpayment.txtfcl.value;
+	if(fcl == "" || fcl == 0){ alert('Please Insert No Of FCL'); document.frmpayment.txtsitcent.checked = false; return false;}
+
+	fee = 350;
+	amtonly = fee * fcl;
+	amttax = amtonly * 0.06;
+	amt = amtonly + amttax;
+	
+	if(document.frmpayment.txtsitcent.checked == true){
+		document.frmpayment.txtclabtcfee.value = fee;
+		document.frmpayment.txtamtclab_tax.value = eval(document.frmpayment.txtamtclab_tax.value) + eval(amttax) 
+		document.frmpayment.txtamtclab_only.value = eval(document.frmpayment.txtamtclab_only.value) + eval(amtonly) 
+		document.frmpayment.txtamtclab.value = eval(document.frmpayment.txtamtclab.value) + eval(amt);
+	}else{
+		document.frmpayment.txtclabtcfee.value = 0;
+		document.frmpayment.txtamtclab_tax.value = eval(document.frmpayment.txtamtclab_tax.value) - eval(amttax) 
+		document.frmpayment.txtamtclab_only.value = eval(document.frmpayment.txtamtclab_only.value) - eval(amtonly)
+		document.frmpayment.txtamtclab.value = eval(document.frmpayment.txtamtclab.value) - eval(amt);
+	}	
+}
+
+function getclabval_greencard(){
+	var pmttype = document.frmpayment.optpmttype.value;
+	var fcl = document.frmpayment.txtfcl.value;
+
+	if(fcl == "" || fcl == 0){ 
+		alert('Please Insert No Of FCL'); 
+		if(pmttype == 'V') {document.frmpayment.txtgrncad.checked = false; return false;}
+		else if(pmttype == 'R') {document.frmpayment.txtadmfeesextgc.checked = false; return false;}
+		else if(pmttype == 'T') {document.frmpayment.txtagencyfeesgc.checked = false; return false;}
+	}
+
+	if(pmttype == 'V' || pmttype == 'R' || pmttype == 'T'){		
+		if(pmttype == 'R' ){fee=50;} else {fee=125;}
+		amtonly = fee * fcl ;
+		amttax = amtonly * 0.06 ;
+		amt = amtonly + amttax; 	
+	} 
+		
+	if(pmttype == 'V'){
+		if(document.frmpayment.txtgrncad.checked == true){
+			document.frmpayment.txtclabgcfee.value = fee;
+			document.frmpayment.txtamtclab_tax.value = eval(document.frmpayment.txtamtclab_tax.value) + eval(amttax) 
+			document.frmpayment.txtamtclab_only.value = eval(document.frmpayment.txtamtclab_only.value) + eval(amtonly) 
+			document.frmpayment.txtamtclab.value = eval(document.frmpayment.txtamtclab.value) + eval(amt);
+		}else{
+			document.frmpayment.txtclabgcfee.value = 0;
+			document.frmpayment.txtamtclab_tax.value = eval(document.frmpayment.txtamtclab_tax.value) - eval(amttax) 
+			document.frmpayment.txtamtclab_only.value = eval(document.frmpayment.txtamtclab_only.value) - eval(amtonly)
+			document.frmpayment.txtamtclab.value = eval(document.frmpayment.txtamtclab.value) - eval(amt);
+		}
+	}	
+	if(pmttype == 'R'){
+		if(document.frmpayment.txtadmfeesextgc.checked == true){
+			document.frmpayment.txtclabrengcfee.value = fee;
+			document.frmpayment.txtamtclabren_t.value = eval(document.frmpayment.txtamtclabren_t.value) + eval(amttax); 
+			document.frmpayment.txtamtclabren_o.value = eval(document.frmpayment.txtamtclabren_o.value) + eval(amtonly) 
+			document.frmpayment.txtamtclabren.value = eval(document.frmpayment.txtamtclabren.value) + eval(amt);
+		}else{
+			document.frmpayment.txtclabrengcfee.value = 0;
+			document.frmpayment.txtamtclabren_t.value = eval(document.frmpayment.txtamtclabren_t.value) - eval(amttax);
+			document.frmpayment.txtamtclabren_o.value = eval(document.frmpayment.txtamtclabren_o.value) - eval(amtonly) 
+			document.frmpayment.txtamtclabren.value = eval(document.frmpayment.txtamtclabren.value) - eval(amt);
+		}	
+	}	
+	if(pmttype == 'T'){
+		if(document.frmpayment.txtagencyfeesgc.checked == true){
+		   document.frmpayment.txtclabtransgcfee.value = fee;
+		   document.frmpayment.txtamtagency.value = eval(document.frmpayment.txtamtagency.value) + eval(amt);
+		   document.frmpayment.txtamtagency_o.value = eval(document.frmpayment.txtamtagency_o.value) + eval(amtonly);
+		   document.frmpayment.txtamtagency_t.value = eval(document.frmpayment.txtamtagency_t.value) + eval(gst);
+		}else{
+		   document.frmpayment.txtclabtransgcfee.value = 0;
+		   document.frmpayment.txtamtagency.value = eval(document.frmpayment.txtamtagency.value) - eval(amt);
+		   document.frmpayment.txtamtagency_o.value = eval(document.frmpayment.txtamtagency_o.value) - eval(amtonly);
+		   document.frmpayment.txtamtagency_t.value = eval(document.frmpayment.txtamtagency_t.value) - eval(gst);
+		}
+	}
+}
+
+function getclabval_adminfeesrenewal(){
+	var pmttype = document.frmpayment.optpmttype.value;
+	var fcl = document.frmpayment.txtfcl.value;
+	var disc = document.frmpayment.txtamtdisc.value;
+	
+	if(fcl == "" || fcl == 0){ alert('Please Insert No Of FCL'); document.frmpayment.txtadmfeesext.checked = false; return false;}
+	
+	fee = 300;
+	amtonly = (fee * fcl) - disc;
+	amttax = amtonly * 0.06;
+	amt = amtonly + amttax;
+	
+	if(document.frmpayment.txtadmfeesext.checked == true){
+		document.frmpayment.txtclabrenfee.value = fee;
+		document.frmpayment.txtadmfeesext.value = eval(document.frmpayment.txtadmfeesext.value) + eval(amt);
+		document.frmpayment.txtamtclabren_t.value = eval(document.frmpayment.txtamtclabren_t.value) + eval(amttax); 
+		document.frmpayment.txtamtclabren_o.value = eval(document.frmpayment.txtamtclabren_o.value) + eval(amtonly) 
+		document.frmpayment.txtamtclabren.value = eval(document.frmpayment.txtamtclabren.value) + eval(amt);
+	}else{
+		document.frmpayment.txtclabrenfee.value = 0;
+		document.frmpayment.txtadmfeesext.value = eval(document.frmpayment.txtadmfeesext.value) - eval(amt);
+		document.frmpayment.txtamtclabren_t.value = eval(document.frmpayment.txtamtclabren_t.value) - eval(amttax);
+		document.frmpayment.txtamtclabren_o.value = eval(document.frmpayment.txtamtclabren_o.value) - eval(amtonly) 
+		document.frmpayment.txtamtclabren.value = eval(document.frmpayment.txtamtclabren.value) - eval(amt);
+	}	    
+}
+
+function getcont_reg(x){
+	var pmttype = document.frmpayment.optpmttype.value;
+	var disc = document.frmpayment.txtamtdisc.value;
+	//var fcl = document.frmpayment.txtfcl.value;
+	//if(fcl == "" || fcl == 0){ alert('Please Insert No Of FCL'); document.frmpayment.txtgrncad.checked = false; return false;}
+
+	if(x == '1') { fee=20;}
+	if(x == '2') { fee=40;}
+	if(x == '3') { fee=50;}
+	
+	amtonly = fee - disc;
+	gst = amtonly * 0.00 ;
+	amt = amtonly + gst;
+	
+	if(x == '1'){
+		if(document.frmpayment.txtcontreg1.checked == true){
+			document.frmpayment.txtclabregfee.value = fee;
+			document.frmpayment.txtcontreg2.checked = false;
+			document.frmpayment.txtcontreg3.checked = false;
+			document.frmpayment.txtamtreg.value = eval(amt);
+			document.frmpayment.txtamtreg_o.value = eval(amtonly);
+			document.frmpayment.txtamtreg_t.value = eval(gst);
+		}else{
+			document.frmpayment.txtclabregfee.value = 0;
+			document.frmpayment.txtamtreg.value = 0;
+			document.frmpayment.txtamtreg_t.value = 0;
+			document.frmpayment.txtamtreg_o.value = 0;
+		}
+	}else if(x == '2'){
+		if(document.frmpayment.txtcontreg2.checked == true){
+			document.frmpayment.txtclabregfee.value = fee;
+			document.frmpayment.txtcontreg1.checked = false;
+			document.frmpayment.txtcontreg3.checked = false;
+			document.frmpayment.txtamtreg_o.value = eval(amtonly);
+			document.frmpayment.txtamtreg.value = eval(amt);
+			document.frmpayment.txtamtreg_t.value = eval(gst);
+		}else{
+			document.frmpayment.txtclabregfee.value = 0;
+			document.frmpayment.txtamtreg.value = 0;
+			document.frmpayment.txtamtreg_t.value = 0;
+			document.frmpayment.txtamtreg_o.value = 0;
+		}
+	}else if(x == '3'){
+		if(document.frmpayment.txtcontreg3.checked == true){
+			document.frmpayment.txtclabregfee.value = fee;
+			document.frmpayment.txtcontreg1.checked = false;
+			document.frmpayment.txtcontreg2.checked = false;
+			document.frmpayment.txtamtreg_o.value = eval(amtonly);
+			document.frmpayment.txtamtreg.value = eval(amt);
+			document.frmpayment.txtamtreg_t.value = eval(gst);
+		}else{
+			document.frmpayment.txtclabregfee.value = 0;
+			document.frmpayment.txtamtreg.value = 0;
+			document.frmpayment.txtamtreg_t.value = 0;
+			document.frmpayment.txtamtreg_o.value = 0;
+		}		
+	} 
+}
+
+function getcont_renw(x){
+	var pmttype = document.frmpayment.optpmttype.value;
+	var disc = document.frmpayment.txtamtdisc.value;
+	//var fcl = document.frmpayment.txtfcl.value;
+	//if(fcl == "" || fcl == 0){ alert('Please Insert No Of FCL'); document.frmpayment.txtgrncad.checked = false; return false;}
+
+	if(x == '1') { fee=20;}
+	if(x == '2') { fee=40;}
+	if(x == '3') { fee=50;}
+
+	amtonly = fee - disc;
+	gst = amtonly * 0.00 ;
+	amt = amtonly + gst;	
+	
+	if(x == '1'){
+		if(document.frmpayment.txtcontren1.checked == true){
+			document.frmpayment.txtcontrenfee.value = fee;
+			document.frmpayment.txtcontren2.checked = false;
+			document.frmpayment.txtcontren3.checked = false;
+			document.frmpayment.txtamtcontren.value = eval(amt);
+			document.frmpayment.txtamtcontren_o.value = eval(amtonly);
+			document.frmpayment.txtamtcontren_t.value = eval(gst);
+		}else{
+			document.frmpayment.txtcontrenfee.value = 0;
+			document.frmpayment.txtamtcontren.value = 0;
+			document.frmpayment.txtamtcontren_t.value = 0;
+			document.frmpayment.txtamtcontren_o.value = 0;
+		}
+	}else if(x == '2'){
+		if(document.frmpayment.txtcontren2.checked == true){
+			document.frmpayment.txtcontrenfee.value = fee;
+			document.frmpayment.txtcontren1.checked = false;
+			document.frmpayment.txtcontren3.checked = false;
+			document.frmpayment.txtamtcontren.value = eval(amt);
+			document.frmpayment.txtamtcontren_o.value = eval(amtonly);
+			document.frmpayment.txtamtcontren_t.value = eval(gst);
+		}else{
+			document.frmpayment.txtcontrenfee.value = 0;
+			document.frmpayment.txtamtcontren.value =  0;
+			document.frmpayment.txtamtcontren_t.value = 0;
+			document.frmpayment.txtamtcontren_o.value = 0;
+		}		
+	}else if(x == '3'){
+		if(document.frmpayment.txtcontren3.checked == true){
+			document.frmpayment.txtcontrenfee.value = fee;
+			document.frmpayment.txtcontren1.checked = false;
+			document.frmpayment.txtcontren2.checked = false;
+			document.frmpayment.txtamtcontren.value = eval(amt);
+			document.frmpayment.txtamtcontren_o.value = eval(amtonly);
+			document.frmpayment.txtamtcontren_t.value = eval(gst);
+		}else{
+			document.frmpayment.txtcontrenfee.value = 0;
+			document.frmpayment.txtamtcontren.value = 0;
+			document.frmpayment.txtamtcontren_t.value = 0;
+			document.frmpayment.txtamtcontren_o.value = 0;
+		}		
+	}	
+	//alert('Fee = '+fee+'\nGST='+gst+'\nTotal='+amt);   
+}
+
+function getgreen_card(x){
+	var pmttype = document.frmpayment.optpmttype.value;
+	var disc = document.frmpayment.txtamtdisc.value;
+	var fcl = document.frmpayment.txtfcl.value;
+	if(fcl == "" || fcl == 0){ alert('Please Insert No Of FCL'); document.frmpayment.txtgreenw.checked = false; return false;}
+
+	if(x == '1') { fee=125;}
+	if(x == '2') { fee=50;}
+
+	amtonly = (fcl * fee) - disc;
+	gst = amtonly * 0.06 ;
+	num = amtonly + gst;
+	amt = num.toFixed(2);	
+	
+	if(x == '1'){
+		if(document.frmpayment.txtgreenw.checked == true){
+			document.frmpayment.txtclabgreenfee.value = fee;
+			document.frmpayment.txtgreenr.checked = false;
+			document.frmpayment.txtamtgreen.value = eval(amt);
+			document.frmpayment.txtamtgreen_t.value = eval(gst);
+			document.frmpayment.txtamtgreen_o.value = eval(amtonly);
+		}else{
+			document.frmpayment.txtclabgreenfee.value = 0;
+			document.frmpayment.txtamtgreen.value = 0;
+			document.frmpayment.txtamtgreen_t.value = 0;
+			document.frmpayment.txtamtgreen_o.value = 0;
+		}
+	}else if(x == '2'){
+		if(document.frmpayment.txtgreenr.checked == true){
+			document.frmpayment.txtclabgreenfee.value = fee;
+			document.frmpayment.txtgreenw.checked = false;
+			document.frmpayment.txtamtgreen.value = eval(amt);
+			document.frmpayment.txtamtgreen_t.value = eval(gst);
+			document.frmpayment.txtamtgreen_o.value = eval(amtonly);
+		}else{
+			document.frmpayment.txtclabgreenfee.value = 0;
+			document.frmpayment.txtamtgreen.value = 0;
+			document.frmpayment.txtamtgreen_t.value = 0;
+			document.frmpayment.txtamtgreen_o.value = 0;
+		}		
+	}	 
+}
+
+function getval_rehire(x){
+	var pmttype = document.frmpayment.optpmttype.value;
+	var disc = document.frmpayment.txtamtdisc.value;
+	var fcl = document.frmpayment.txtfcl.value;
+	if(fcl == "" || fcl == 0){ alert('Please Insert No Of FCL'); document.frmpayment.txtgrncad.checked = false; return false;}
+
+	if(x == '1') { fee=175;}
+	if(x == '2') { fee=175;}
+	
+	amtonly = (fcl * fee) - disc;
+	gst = amtonly * 0.06;
+	num = amtonly + gst;
+	amt = num.toFixed(2);
+		
+	if(x == '1'){
+		if(document.frmpayment.txtrehire1.checked == true){
+			document.frmpayment.txtclabrehfee.value = fee;
+			document.frmpayment.txtrehire2.checked = false;
+			document.frmpayment.txtamtrehire.value = eval(amt);
+			document.frmpayment.txtamtrehire_t.value = eval(gst);
+			document.frmpayment.txtamtrehire_o.value = eval(amtonly);
+		}else{
+			document.frmpayment.txtclabrehfee.value = 0;
+			document.frmpayment.txtamtrehire.value = 0;
+			document.frmpayment.txtamtrehire_t.value = 0;
+			document.frmpayment.txtamtrehire_o.value = 0;
+		}
+	}else if(x == '2'){
+		if(document.frmpayment.txtrehire2.checked == true){
+			document.frmpayment.txtclabrehfee.value = fee;
+			document.frmpayment.txtrehire1.checked = false;
+			document.frmpayment.txtamtrehire.value = eval(amt);
+			document.frmpayment.txtamtrehire_t.value = eval(gst);
+			document.frmpayment.txtamtrehire_o.value = eval(amtonly);
+		}else{
+			document.frmpayment.txtclabrehfee.value = 0;
+			document.frmpayment.txtamtrehire.value = 0;
+			document.frmpayment.txtamtrehire_t.value = 0;
+			document.frmpayment.txtamtrehire_o.value = 0;
+		}		
+	}	 
+}
+
+function getlocaldis(){
+	fcl = document.frmpayment.txtfcl.value; 
+	var disc = document.frmpayment.txtamtdisc.value;	
+	if(fcl == "" || fcl == 0){ alert('Please Insert No Of FCL'); document.frmpayment.txtlocald.checked = false; return false;}
+	fee = 50;
+	amtonly = (fee * fcl) - disc;
+	gst = amtonly * 0.06 ;
+	amt = amtonly + gst; 
+
+	if(document.frmpayment.txtlocald.checked == true){
+		document.frmpayment.txtlocalr.checked = false;
+		document.frmpayment.txtclablwfee.value = fee;
+		document.frmpayment.txtamtlocal_t.value = eval(gst);
+		document.frmpayment.txtamtlocal_o.value = eval(amtonly);
+		document.frmpayment.txtamtlocal.value = eval(amt);
+	}else{
+		document.frmpayment.txtclablwfee.value = 0;
+		document.frmpayment.txtamtlocal.value = 0;
+		document.frmpayment.txtamtlocal_o.value = 0;
+		document.frmpayment.txtamtlocal_t.value = 0;
+	}
+}
+
+function getlocalreim(){
+	fcl = document.frmpayment.txtfcl.value; 
+	var disc = document.frmpayment.txtamtdisc.value;	
+	if(fcl == "" || fcl == 0){ alert('Please Insert No Of FCL'); document.frmpayment.txtlocalr.checked = false; return false;}
+
+	fee = 200;
+	amtonly = (fee * fcl) - disc;
+	gst = amtonly * 0.06 ;
+	amt = amtonly + gst; 
+	
+	if(document.frmpayment.txtlocalr.checked == true){
+		document.frmpayment.txtlocald.checked = false;
+		document.frmpayment.txtclablwfee.value = fee;
+		document.frmpayment.txtamtlocal_t.value = eval(gst);
+		document.frmpayment.txtamtlocal_o.value = eval(amtonly);
+		document.frmpayment.txtamtlocal.value = eval(amt);
+	}else{
+		document.frmpayment.txtclablwfee.value = 0;
+		document.frmpayment.txtamtlocal.value = 0;
+		document.frmpayment.txtamtlocal_t.value = 0;
+		document.frmpayment.txtamtlocal_o.value = 0;
+	}  
+}
+
+function getval_cfee(x){
+	var pmttype = document.frmpayment.optpmttype.value;
+	var disc = document.frmpayment.txtamtdisc.value;
+	//var fcl = document.frmpayment.txtfcl.value;
+	//if(fcl == "" || fcl == 0){ alert('Please Insert No Of FCL'); document.frmpayment.txtgrncad.checked = false; return false;}
+
+	if(x == '1') { fee=50;}
+	if(x == '2') { fee=0;}
+
+	amtonly = fee - disc;
+	gst = amtonly * 0.06 ;
+	num = amtonly + gst;
+	amt = num.toFixed(2);
+	
+	if(x == '1'){
+		if(document.frmpayment.txtmember.checked == true){
+			document.frmpayment.txtclabfee.value = fee;
+			document.frmpayment.txtintro.checked = false;
+			document.frmpayment.txtamtclabfee.value = eval(amt);
+			document.frmpayment.txtamtclabfee_t.value = eval(gst);
+			document.frmpayment.txtamtclabfee_o.value = eval(amtonly);
+		}else{
+			document.frmpayment.txtclabfee.value = 0;
+			document.frmpayment.txtamtclabfee.value = 0;
+			document.frmpayment.txtamtclabfee_t.value = 0;
+			document.frmpayment.txtamtclabfee_o.value = 0;
+		}
+	}else if(x == '2'){
+		if(document.frmpayment.txtintro.checked == true){
+			document.frmpayment.txtclabfee.value = fee;
+			document.frmpayment.txtmember.checked = false;
+			document.frmpayment.txtamtclabfee.value = 0; //eval(amt);
+			document.frmpayment.txtamtclabfee_t.value = 0;//eval(gst);
+			document.frmpayment.txtamtclabfee_o.value = 0;//eval(amtonly);
+		}else{
+			document.frmpayment.txtclabfee.value = 0;
+			document.frmpayment.txtamtclabfee.value = 0;
+			document.frmpayment.txtamtclabfee_t.value = 0;
+			document.frmpayment.txtamtclabfee_o.value = 0;
+		}		
+	}		  
+}
+
+function get_introducer(x){	
+	jum = x;
+	gst = jum ;
+	amt = eval(jum) + eval(gst);
+	document.frmpayment.txtamtclabfee_t.value = gst;
+	document.frmpayment.txtamtclabfee.value = amt;	
+}
+
+function getjimval_plks(){ 
+	var pmttype = document.frmpayment.optpmttype.value;  
+	var fcl = document.frmpayment.txtfcl.value; 
+
+	if(fcl == "" || fcl == 0){ alert('Please Insert No Of FCL'); document.frmpayment.txtjimplks.checked = false; return false;}
+	
+	fee=60;
+	amt = fee * fcl; 
+
+	if(document.frmpayment.txtjimplks.checked == true){
+	  document.frmpayment.txtamtjim_plks.value = eval(document.frmpayment.txtamtjim_plks.value) + eval(amt);
+	  document.frmpayment.txtamtjim.value = eval(document.frmpayment.txtamtjim.value) + eval(amt);
+	}else{
+	  document.frmpayment.txtamtjim_plks.value = eval(document.frmpayment.txtamtjim_plks.value) - eval(amt);
+	  document.frmpayment.txtamtjim.value = eval(document.frmpayment.txtamtjim.value) - eval(amt);
+	}
+	//alert('FCL No = '+fcl+'\nAmount = '+amt);   
+}
+
+function getjimval_fees(){   
+	fcl = document.frmpayment.txtfcl.value; 
+
+	if(fcl == "" || fcl == 0){ alert('Please Insert No Of FCL'); document.frmpayment.txtjimfees.checked = false; return false;}
+	
+	fee = 125;
+	amt = fee * fcl; 
+
+	if(document.frmpayment.txtjimfees.checked == true){
+	   document.frmpayment.txtamtjim_fees.value = eval(document.frmpayment.txtamtjim_fees.value) + eval(amt);
+	   document.frmpayment.txtamtjim.value = eval(document.frmpayment.txtamtjim.value) + eval(amt);
+	}else{
+	   document.frmpayment.txtamtjim_fees.value = eval(document.frmpayment.txtamtjim_fees.value) - eval(amt);
+	   document.frmpayment.txtamtjim.value = eval(document.frmpayment.txtamtjim.value) - eval(amt);
+	}
+	//alert('FCL No = '+fcl+'\nAmount = '+amt);     
+}
+
+function getjimval_levi(){   
+	fcl = document.frmpayment.txtfcl.value; 
+
+	if(fcl == "" || fcl == 0){ alert('Please Insert No Of FCL'); document.frmpayment.txtjimfees.checked = false; return false;}
+	fee = 1850;
+	amt = fee * fcl; 
+
+	if(document.frmpayment.txtjimlevi.checked == true){
+	   document.frmpayment.txtamtjim_levi.value = eval(document.frmpayment.txtamtjim_levi.value) + eval(amt);
+	   document.frmpayment.txtamtjim.value = eval(document.frmpayment.txtamtjim.value) + eval(amt);
+	}else{
+	   document.frmpayment.txtamtjim_levi.value = eval(document.frmpayment.txtamtjim_levi.value) - eval(amt);
+	  document.frmpayment.txtamtjim.value = eval(document.frmpayment.txtamtjim.value) - eval(amt);
+	}
+	//alert('FCL No = '+fcl+'\nAmount = '+amt);     
+}
+
+function getjimval_visa(){  
+	visa = document.frmpayment.txtvisa.value;   
+	fcl = document.frmpayment.txtfcl.value;
+		
+	if(fcl == "" || fcl == 0){ alert('Please Insert No Of FCL'); document.frmpayment.txtjimvisa.checked = false; return false;}
+	if(visa == ""){ alert('Please Select Country'); document.frmpayment.txtjimvisa.checked = false; return false; }
+	
+	amt = visa * fcl; 
+	
+	if(document.frmpayment.txtjimvisa.checked == true){
+	   document.frmpayment.txtamtjim_visa.value = eval(document.frmpayment.txtamtjim_visa.value) + eval(amt);
+	   document.frmpayment.txtamtjim.value = eval(document.frmpayment.txtamtjim.value) + eval(amt);
+	}else{
+	  document.frmpayment.txtamtjim_visa.value = eval(document.frmpayment.txtamtjim_visa.value) - eval(amt);
+	  document.frmpayment.txtamtjim.value = eval(document.frmpayment.txtamtjim.value) - eval(amt);
+	}
+	//alert('FCL No = '+fcl+'\nAmount = '+amt);     
+}
+
+function getcancelpermit(){
+	fcl = document.frmpayment.txtfcl.value; 
+	fine = document.frmpayment.txtfine.value;
+	
+	if(fcl == "" || fcl == 0){ alert('Please Insert No Of FCL'); document.frmpayment.txtjimcp.checked = false; return false;}
+	if(fine == "" || fine == 0){ alert('Please Select Country'); document.frmpayment.txtjimcp.checked = false; return false; }
+	
+	amt = fine * fcl;
+	
+	if(document.frmpayment.txtjimcp.checked == true){
+		document.frmpayment.txtamtjim_cp.value = eval(document.frmpayment.txtamtjim_cp.value) + eval(amt);
+		document.frmpayment.txtamtjim.value = eval(document.frmpayment.txtamtjim.value) + eval(amt);
+	}else{
+		document.frmpayment.txtamtjim_cp.value = eval(document.frmpayment.txtamtjim_cp.value) - eval(amt);
+		document.frmpayment.txtamtjim.value = eval(document.frmpayment.txtamtjim.value) - eval(amt);
+	}
+	//alert('FCL No = '+fcl+'\nFine = '+fine+'\nAmount='+amt+'\nCountry = '+fine); 
+}
+
+function getfomema(x){
+	var fcl = document.frmpayment.txtfcl.value;
+	if(fcl == "" || fcl == 0){ alert('Please Insert No Of FCL'); document.frmpayment.txtmale.checked = false; document.frmpayment.txtfemale.checked = false; return false;}
+
+	//fee = 180;
+	if(x == '1') { fee=180;}
+	if(x == '2') { fee=20;}
+	amtonly = fcl * fee;
+	gst = amtonly * 0.00 ;
+	num = amtonly + gst;
+	amt = num.toFixed(2);	
+	
+	if(x == '1'){
+		if(document.frmpayment.txtmale.checked == true){
+			document.frmpayment.txtfemale.checked = false;
+			document.frmpayment.txtamtfomema.value = eval(amt);
+			document.frmpayment.txtamtfomema_t.value = eval(gst);
+			document.frmpayment.txtamtfomema_o.value = eval(amtonly);
+		}else{
+			document.frmpayment.txtamtfomema.value = 0;
+			document.frmpayment.txtamtfomema_t.value = 0;
+			document.frmpayment.txtamtfomema_o.value = 0;
+		}
+	}else if(x == '2'){
+		if(document.frmpayment.txtfemale.checked == true){
+			document.frmpayment.txtmale.checked = false;
+			document.frmpayment.txtamtfomema.value = eval(amt);
+			document.frmpayment.txtamtfomema_t.value = eval(gst);
+			document.frmpayment.txtamtfomema_o.value = eval(amtonly);
+		}else{
+			document.frmpayment.txtamtfomema.value = 0;
+			document.frmpayment.txtamtfomema_t.value = 0;
+			document.frmpayment.txtamtfomema_o.value = 0;
+		}		
+	}	
+	//alert('Fee = '+fee+'\nGST='+gst+'\nTotal='+amt);   
+}
+
+function getins_ig(){
+	fcl = document.frmpayment.txtfcl.value; 
+	fine = document.frmpayment.txtfine.value; 
+
+	if(fcl == "" || fcl == 0){ alert('Please Insert No Of FCL'); document.frmpayment.txtig.checked = false; return false;}	
+	if(fine == "" || fine == 0){ alert('Please Select Country'); document.frmpayment.txtig.checked = false; return false; }
+	
+	fee = 50;
+	stamp = 10;
+	calcig =  ((fcl * fine * 18) / 12) * 0.01;
+	if(calcig > 50) {
+		gst = calcig * 0.06 ;
+		amtonly = calcig + stamp;
+		num = amtonly + gst;
+	}else{
+		gst = fee * 0.06 ;
+		amtonly = fee + stamp;
+		num = amtonly + gst;
+	} 
+	amt = num.toFixed(2);
+	
+	if(document.frmpayment.txtig.checked == true){
+	   document.frmpayment.txtamtins_ig.value = eval(document.frmpayment.txtamtins_ig.value) + eval(amt);
+	   document.frmpayment.txtamtins.value = eval(document.frmpayment.txtamtins.value) + eval(amt);
+	   document.frmpayment.txtamtins_t.value = eval(document.frmpayment.txtamtins_t.value) + eval(gst);
+	   document.frmpayment.txtamtins_o.value = eval(document.frmpayment.txtamtins_o.value) + eval(amtonly);
+	}else{
+	   document.frmpayment.txtamtins_ig.value = eval(document.frmpayment.txtamtins_ig.value) - eval(amt);
+	   document.frmpayment.txtamtins.value = eval(document.frmpayment.txtamtins.value) - eval(amt);
+	   document.frmpayment.txtamtins_t.value = eval(document.frmpayment.txtamtins_t.value) - eval(gst);
+	   document.frmpayment.txtamtins_o.value = eval(document.frmpayment.txtamtins_o.value) - eval(amtonly);
+	}
+	//alert('FCL No = '+fcl+'\nFee = '+fee+'\nStamp = '+stamp+'\nFine = '+fine+'\nGST = '+gst+'\nCalc IG='+calcig+'\nAmt only='+amtonly+'\namt='+amt); 
+}
+
+function getins_fwcs(){
+	fcl = document.frmpayment.txtfcl.value; 
+	if(fcl == "" || fcl == 0){ alert('Please Insert No Of FCL'); document.frmpayment.txtig.checked = false; return false;}
+
+	fee = 72;
+	stamp = 10;
+	gst = fcl * fee * 0.06 ;
+	amtonly = fcl * fee + stamp;
+	num = amtonly + gst;
+	amt = num.toFixed(2);	
+
+	if(document.frmpayment.txtFWCS.checked == true){		
+		document.frmpayment.txtamtins_fwcs.value = eval(document.frmpayment.txtamtins_fwcs.value) + eval(amt);
+		document.frmpayment.txtamtins.value = eval(document.frmpayment.txtamtins.value) + eval(amt);
+		document.frmpayment.txtamtins_t.value = eval(document.frmpayment.txtamtins_t.value) + eval(gst);
+		document.frmpayment.txtamtins_o.value = eval(document.frmpayment.txtamtins_o.value) + eval(amtonly);
+	}else{
+		document.frmpayment.txtamtins_fwcs.value = eval(document.frmpayment.txtamtins_fwcs.value) - eval(amt);
+		document.frmpayment.txtamtins.value = eval(document.frmpayment.txtamtins.value) - eval(amt);
+		document.frmpayment.txtamtins_t.value = eval(document.frmpayment.txtamtins_t.value) - eval(gst);
+		document.frmpayment.txtamtins_o.value = eval(document.frmpayment.txtamtins_o.value) - eval(amtonly);
+	}
+	//alert('FCL No = '+fcl+'\nFee = '+fee+'\nStamp = '+stamp+'\nGST = '+gst+'\nAmount='+amt); 
+}
+
+function getins_fwhs(){
+	fcl = document.frmpayment.txtfcl.value; 
+	if(fcl == "" || fcl == 0){ alert('Please Insert No Of FCL'); document.frmpayment.txtFWHS.checked = false; return false;}
+
+	fee = 120;
+	stamp = 10;
+	gst = fcl * fee * 0.06;
+	amtonly = fcl * fee + stamp;
+	num = amtonly + gst;
+	amt = num.toFixed(2);
+
+	if(document.frmpayment.txtFWHS.checked == true){
+	   document.frmpayment.txtamtins_fwhs.value = eval(document.frmpayment.txtamtins_fwhs.value) + eval(amt);
+	   document.frmpayment.txtamtins.value = eval(document.frmpayment.txtamtins.value) + eval(amt);
+	   document.frmpayment.txtamtins_t.value = eval(document.frmpayment.txtamtins_t.value) + eval(gst);
+	   document.frmpayment.txtamtins_o.value = eval(document.frmpayment.txtamtins_o.value) + eval(amtonly);
+	}else{
+	   document.frmpayment.txtamtins_fwhs.value =eval( document.frmpayment.txtamtins_fwhs.value) - eval(amt);
+	   document.frmpayment.txtamtins.value = eval(document.frmpayment.txtamtins.value) - eval(amt);
+	   document.frmpayment.txtamtins_t.value = eval(document.frmpayment.txtamtins_t.value) - eval(gst);
+	   document.frmpayment.txtamtins_o.value = eval(document.frmpayment.txtamtins_o.value) - eval(amtonly);
+	}
+	//alert('FCL No = '+fcl+'\nFee = '+fee+'\nStamp = '+stamp+'\nGST = '+gst+'\nAmount='+amt); 
+}
+
+function getcompound(){
+    fcl = document.frmpayment.txtfcl.value; 
+	
+	if(fcl == "" || fcl == 0){ alert('Please Insert No Of FCL'); document.frmpayment.txtjimcompund.checked = false; return false;}
+
+	fee=1000;
+	amt = fee * fcl;
+	
+	 if(document.frmpayment.txtjimcompund.checked == true){
+	   document.frmpayment.txtamtjim_compound.value = eval(document.frmpayment.txtamtjim_compound.value) + eval(amt);
+	   document.frmpayment.txtamtjim.value = eval(document.frmpayment.txtamtjim.value) + eval(amt);
+	}else{
+	   document.frmpayment.txtamtjim_compound.value = eval(document.frmpayment.txtamtjim_compound.value) - eval(amt);
+	   document.frmpayment.txtamtjim.value = eval(document.frmpayment.txtamtjim.value) - eval(amt);
+	}
+	//alert('FCL No = '+fcl+'\nFee = '+fee+'\nAmount='+amt); 	
+}
+
+function getsp(){
+	fcl = document.frmpayment.txtfcl.value; 
+	
+	if(fcl == "" || fcl == 0){ alert('Please Insert No Of FCL'); document.frmpayment.txtjimsp.checked = false; return false;}	
+	
+	fee=100;
+	amt = fee * fcl;
+
+	 if(document.frmpayment.txtjimsp.checked == true){
+	   document.frmpayment.txtamtjim_sp.value = eval(document.frmpayment.txtamtjim_sp.value) + eval(amt);
+	   document.frmpayment.txtamtjim.value = eval(document.frmpayment.txtamtjim.value) + eval(amt);
+	}else{
+	   document.frmpayment.txtamtjim_sp.value = eval(document.frmpayment.txtamtjim_sp.value) - eval(amt);
+	   document.frmpayment.txtamtjim.value = eval(document.frmpayment.txtamtjim.value) - eval(amt);
+	}
+	//alert('FCL No = '+fcl+'\nFee = '+fee+'\nAmount='+amt); 	
+}
+
+function gettransit(){
+    var fcl = document.frmpayment.txtfcl.value;
+	var disc = document.frmpayment.txtamtdisc.value;
+	if(fcl == "" || fcl == 0){ alert('Please Insert No Of FCL'); document.frmpayment.txtagencyfees.checked = false; return false;}
+	
+	fee = 350;
+	amtonly = (fee * fcl) - disc;
+	gst = amtonly * 0.06 ;
+	amt = amtonly + gst;
+	
+	if(document.frmpayment.txtagencyfees.checked == true){
+	   document.frmpayment.txtclabtransfee.value = fee;
+	   document.frmpayment.txtamtagency.value = eval(document.frmpayment.txtamtagency.value) + eval(amt);
+	   document.frmpayment.txtamtagency_o.value = eval(document.frmpayment.txtamtagency_o.value) + eval(amtonly);
+	   document.frmpayment.txtamtagency_t.value = eval(document.frmpayment.txtamtagency_t.value) + eval(gst);
+	}else{
+	   document.frmpayment.txtclabtransfee.value = 0;
+	   document.frmpayment.txtamtagency.value = eval(document.frmpayment.txtamtagency.value) - eval(amt);
+	   document.frmpayment.txtamtagency_o.value = eval(document.frmpayment.txtamtagency_o.value) - eval(amtonly);
+	   document.frmpayment.txtamtagency_t.value = eval(document.frmpayment.txtamtagency_t.value) - eval(gst);
+	}
+}
+
+function get_others(x){
+	
+	jum = x;
+	gst = jum * 0.06 ;
+	amt = eval(jum) + eval(gst);
+	document.frmpayment.txtamtothr_t.value = gst;
+	document.frmpayment.txtamtothr.value = amt;	
+}
+
+</script>
+</head>
+<body ccID="71058">
+<?php $accessibility = $this->session->userdata('emp_accessibility'); ?>
+<h4 ccID="71140"><a ccID="71144" href="addpayment">Payment Receipt</a> <img ccID="71185" src="<?php echo base_url();?>/images/right_arrow.gif" width="13" height="14" /> New Payment </h4>
+<form ccID="71289" name="frmpayment" method="post" action="<?php echo site_url();?>/contPayment/savepaymentrcpt">
+<table ccID="71391"  width="100%">
+<tr ccID="71414">
+    <td ccID="71424" width="20%">Regional :</td>
+	<td ccID="71458" colspan="2"><select ccID="71474" name="selregion">
+	<option ccID="71502" value=""></option>
+    <?php foreach($allRegion->result() as $region){ ?>
+    <option ccID="71590" value="<?php echo $region->regional_id;?>"><?php echo $region->regional_desc;?></option>
+    <?php } ?>
+	</select></td>
+    <td ccID="71725">Cancel Receipt 
+      <input ccID="71752" type="checkbox" name="txtCancel" value="1" onclick="" disabled="disabled"/></td>
+</tr>
+<tr ccID="71848">
+    <td ccID="71858" width="20%">Official Receipt No. :</td>
+	<td ccID="71904" colspan="3"><input ccID="71920" type="text" value="<auto generate>" readonly/></td>
+</tr>
+<tr ccID="71987">
+    <td ccID="71997">Payment Type:</td>
+	<td ccID="72022" colspan="3">
+		<Select ccID="72042" name="optpmttype" onchange="valid(this.value)">
+		<option ccID="72101" value="0"></option>
+		<option ccID="72132" value="V">VDR</option>
+		<option ccID="72166" value="R">Renewal Permit</option>
+		<option ccID="72211" value="CR">Contractor Registration</option>
+		<option ccID="72266" value="CRN">Contractor Renewal</option>
+		<option ccID="72317" value="REH">Rehiring</option>
+		<option ccID="72358" value="LW">Local Worker</option>
+		<option ccID="72402" value="GRC">Green Card</option>
+		<option ccID="72445" value="FEE">CLAB Fee</option>
+		<option ccID="72486" value="T">Transit Centre</option>
+		<option ccID="72531" value="CP">Cancel Permit</option>		
+		<option ccID="72578" value="COM">Compound</option>					
+		<option ccID="72624" value="SP">Special Pass</option>
+		<option ccID="72668" value="O">Others</option>					
+		</Select>
+	</td>
+</tr>
+<!--tr>
+    <td width="20%">Workorder No. :</td>
+	<td colspan="3"><input type="text" name="txtwono" value="" readonly/><input type="hidden" name="txtwoid" value="" readonly/>&nbsp;<input type="button" value="..." onclick="getwono()"/></td>
+</tr-->
+<tr ccID="72988">
+    <td ccID="72998">Date Created</td>
+	<td ccID="73022" colspan="3"><input ccID="73038" type="text" name="txtcreateddate" value="<?php echo date("d-M-Y") ?>" readonly/></td>
+</tr>
+
+<tr ccID="73141">
+    <td ccID="73151">Received From</td>
+	<td ccID="73176" colspan="3"><input ccID="73192" type="text" name="txtrecfrom" value="" size="60" />
+	<input ccID="73253" type="button" value="..." onclick="opencontractor()"/></td>
+</tr>
+<tr ccID="73328">
+    <td ccID="73338">Address:</td>
+	<td ccID="73358" colspan="3">
+	<textarea ccID="73377" name="txtaddr1" ssize="60" height="4" style="width: 363px"></textarea></td>
+</tr>
+<tr ccID="73471">
+    <td ccID="73481">No Of (FCL/Posting/LW )</td>
+	<td ccID="73516" colspan="3"><input ccID="73532" type="text" name="txtfcl" value="0"  onchange="resetfield()" style='width:80px;text-align:center;'/></td>
+</tr>
+<tr ccID="73653">
+    <td ccID="73663">Country:</td>
+	<td ccID="73683" colspan="3"><input ccID="73699" type="text" name="txtcountry" value=""  size="20" />
+	<input ccID="73761" type="button" name="txtbtncountry" value="..." onclick="countrylist()" disabled/></td>
+</tr>
+<tr ccID="73863">
+    <td ccID="73873">P.A No</td>
+	<td ccID="73891" colspan="3">
+		<input ccID="73911" type="text" name="txtpaclab" value="" size="20" readonly/>
+		<input ccID="73980" type="button" name="txtbtnpano" value="..." onclick="palist()" disabled/>
+	</td>	
+</tr>
+<tr ccID="74078">
+	<td ccID="74085">Discount Amount</td>
+	<td ccID="74112" colspan="3">
+		<!--input type="checkbox" name="txtchkdisc" value="1" onclick="discount()" disabled/-->
+		<input ccID="74223" type="text" name="txtamtdisc" value="0" onchange="resetfield()" style='width:80px;text-align:center;' />
+	</td>
+</tr>
+<tr ccID="74351">
+	<td ccID="74358">Discount Remarks</td>
+	<td ccID="74386" colspan="3"><textarea ccID="74402" cols="40" rows="2" name="txtrmkdisc"></textarea></td>
+</tr>
+<tr ccID="74474"><td ccID="74478" colspan="4">&nbsp;</td></tr>
+
+<tr ccID="74514">
+	<td ccID="74521" colspan="4">
+		<!--TABLE  border="0" width="100%" height="40px" cellspacing="0" cellpadding="0" style="border-collapse: collapse;" bordercolor="#FFFFFF"-->
+		<table ccID="74685" width="100%" border="1" style="border-collapse: collapse;" bordercolor="#FFFFFF" cellpadding=3>
+			<tr ccID="74792">
+				<td ccID="74802" width="15%" align="center" height="35">&nbsp;CHEQUE NO./<br ccID="74862" /> BANK DRAFT </td>
+				<td ccID="74891" width="15%" align="center">PAYMENT TO</td>
+				<td ccID="74943" width="40%" >DESCRIPTION OF PAYMENT</td>
+				<td ccID="74993" width="10%" align="center">AMOUNT</td>
+				<td ccID="75041" width="10%" align="center">SST (6%)</td>
+				<td ccID="75091" width="10%" align="center">TOTAL</td>
+			</tr>
+			<tr ccID="75147">
+				<td ccID="75157" height="30" align="center" valign=top><input ccID="75199" type="text" name="txtchqclab" value="" size="20" /></td>
+				<td ccID="75268" align="center" valign=top>CLAB</td>
+				<td ccID="75313">
+					<table ccID="75324" width="100%" border="0" style="border-collapse: collapse;" cellpadding=0>
+						<tr ccID="75412">
+							<td ccID="75425" width=50%><input ccID="75439" type="checkbox" name="txtadmfees" value="1" onclick="getclabval_adminfees()" disabled/>&nbsp;ADMIN / AGENCY FEE</td>
+							<td ccID="75571"><input ccID="75575" type="checkbox" name="txtgrncad" value="1" onclick="getclabval_greencard()" disabled/>&nbsp;GREEN CARD</td>								
+						</tr>
+						<tr ccID="75718">
+							<td ccID="75731"><input ccID="75735" type="checkbox" name="txtsitcent" value="1" onclick="getclabval_transit()" disabled/>&nbsp;TRANSIT CENTRE</td>
+							<td ccID="75861"></td>							
+						</tr>
+					</table>
+				</td>
+				<td ccID="75922" align="center" valign=top>
+					<input ccID="75959" type="text" name="txtamtclab_only" value="0" style='width:80px;text-align:center;' readonly />
+					<input ccID="76067" type="hidden" name="txtclabadmfee" value="0" size=5 />	
+					<input ccID="76136" type="hidden" name="txtclabgcfee" value="0" size=5 />	
+					<input ccID="76204" type="hidden" name="txtclabtcfee" value="0" size=5 />	
+				</td>
+				<td ccID="76282" align="center" valign=top>
+					<input ccID="76319" type="text" name="txtamtclab_tax" value="0" style='width:80px;text-align:center;' readonly />  				
+				</td>
+				<td ccID="76442" align="center" valign=top>
+					<input ccID="76479" type="text" name="txtamtclab" value="0" style='width:80px;text-align:center;'  />
+				</td>
+			</tr>
+			<tr ccID="76593">
+				<td ccID="76603" height="30" align="center" valign=top><input ccID="76645" type="text" name="txtchqclabren" value="" size="20" /></td>
+				<td ccID="76717" align="center" valign=top>Renewal Permit</td>
+				<td ccID="76772">
+					<table ccID="76783" width="100%" border="0" style="border-collapse: collapse;" cellpadding=2>
+						<tr ccID="76871">
+							<td ccID="76884" width=50%><input ccID="76898" type="checkbox" name="txtadmfeesext" value="1" onclick="getclabval_adminfeesrenewal()" disabled/>&nbsp;ADMIN FEE EXT</td>
+							<td ccID="77035"><input ccID="77039" type="checkbox" name="txtadmfeesextgc" value="1" onclick="getclabval_greencard()" disabled/>&nbsp;GREEN CARD</td>	
+						</tr>
+					</table>
+				</td>
+				<td ccID="77205" align="center" >
+					<input ccID="77232" type="text" name="txtamtclabren_o" value="0" style='width:80px;text-align:center;' readonly />
+					<input ccID="77340" type="hidden" name="txtclabrenfee" value="0" size=5 />	
+					<input ccID="77409" type="hidden" name="txtclabrengcfee" value="0" size=5 />
+				</td>
+				<td ccID="77489" align="center" >
+					<input ccID="77516" type="text" name="txtamtclabren_t" value="0" style='width:80px;text-align:center;' readonly />			
+				</td>
+				<td ccID="77637" align="center" >
+					<input ccID="77664" type="text" name="txtamtclabren" value="0" style='width:80px;text-align:center;'  />
+				</td>
+			</tr>			
+			<tr ccID="77784">
+				<td ccID="77794" height="30" align="center" valign=top><input ccID="77836" type="text" name="txtchqcontreg" value="" size="20" /></td>
+				<td ccID="77908" align="center" valign=top>Contractor Registration</td>
+				<td ccID="77972">
+					<table ccID="77983" width="100%" border="0" style="border-collapse: collapse;" cellpadding=2>
+						<tr ccID="78071">
+							<td ccID="78084" width=50%><input ccID="78098" type="checkbox" name="txtcontreg1" value="1" onclick="getcont_reg(1)" disabled/>&nbsp;REGISTRATION YEAR 1</td>
+							<td ccID="78224"></td>
+						</tr>
+						<tr ccID="78254">
+							<td ccID="78267"><input ccID="78271" type="checkbox" name="txtcontreg2" value="1" onclick="getcont_reg(2)" disabled/>&nbsp;REGISTRATION YEAR 2</td>
+							<td ccID="78397"></td>
+						</tr>
+						<tr ccID="78427">
+							<td ccID="78440"><input ccID="78444" type="checkbox" name="txtcontreg3" value="1" onclick="getcont_reg(3)" disabled/>&nbsp;REGISTRATION YEAR 3</td>
+							<td ccID="78570"></td>
+						</tr>
+						
+					</table>
+				</td>
+				<td ccID="78632" align="center" valign=top>
+					<input ccID="78669" type="text" name="txtamtreg_o" value="0" style='width:80px;text-align:center;' readonly />
+					<input ccID="78773" type="hidden" name="txtclabregfee" value="0" size=5 />	
+				</td>
+				<td ccID="78852" align="center" valign=top>
+					<input ccID="78889" type="text" name="txtamtreg_t" value="0" style='width:80px;text-align:center;' readonly />
+				</td>
+				<td ccID="79003" align="center" valign=top>
+					<input ccID="79040" type="text" name="txtamtreg" value="0" style='width:80px;text-align:center;'  />
+				</td>
+			</tr>	
+			<tr ccID="79154">
+				<td ccID="79164" height="30" align="center" valign=top><input ccID="79206" type="text" name="txtchqcontren" value="" size="20" /></td>
+				<td ccID="79278" align="center" valign=top>Contractor Renewal</td>
+				<td ccID="79337">
+					<table ccID="79348" width="100%" border="0" style="border-collapse: collapse;" cellpadding=2>
+						<tr ccID="79436">
+							<td ccID="79449" width=50%><input ccID="79463" type="checkbox" name="txtcontren1" value="1" onclick="getcont_renw(1)" disabled/>&nbsp;RENEWAL YEAR 1</td>
+							<td ccID="79585"></td>
+						</tr>
+						<tr ccID="79615">
+							<td ccID="79628" ><input ccID="79633" type="checkbox" name="txtcontren2" value="1" onclick="getcont_renw(2)" disabled/>&nbsp;RENEWAL YEAR 2</td>
+							<td ccID="79755"></td>
+						</tr>
+						<tr ccID="79785">
+							<td ccID="79798" ><input ccID="79803" type="checkbox" name="txtcontren3" value="1" onclick="getcont_renw(3)" disabled/>&nbsp;RENEWAL YEAR 3</td>
+							<td ccID="79925"></td>
+						</tr>
+					</table>
+				</td>
+				<td ccID="79979" align="center" valign=top>
+					<input ccID="80016" type="text" name="txtamtcontren_o" value="0" style='width:80px;text-align:center;' readonly>
+					<input ccID="80122" type="hidden" name="txtcontrenfee" value="0" size=5 />
+				</td>
+				<td ccID="80200" align="center" valign=top>
+					<input ccID="80237" type="text" name="txtamtcontren_t" value="0" style='width:80px;text-align:center;' readonly />
+				</td>
+				<td ccID="80355" align="center" valign=top>
+					<input ccID="80392" type="text" name="txtamtcontren" value="0" style='width:80px;text-align:center;'  />
+				</td>
+			</tr>			
+			<tr ccID="80512">
+				<td ccID="80522" height="30" align="center" valign=top><input ccID="80564" type="text" name="txtchqrehire" value="" size="20" /></td>
+				<td ccID="80635" align="center" valign=top>Rehiring</td>
+				<td ccID="80684">
+					<table ccID="80695" width="100%" border="0" style="border-collapse: collapse;" cellpadding=2>
+						<tr ccID="80783">
+							<td ccID="80796" width=50%><input ccID="80810" type="checkbox" name="txtrehire1" value="1" onclick="getval_rehire(1)" disabled/>&nbsp;1st PAYMENT</td>
+							<td ccID="80929"><input ccID="80933" type="checkbox" name="txtrehire2" value="1" onclick="getval_rehire(2)" disabled/>&nbsp;2nd PAYMENT</td>
+						</tr>
+					</table>
+				</td>
+				<td ccID="81088" align="center">
+					<input ccID="81114" type="text" name="txtamtrehire_o" value="0" style='width:80px;text-align:center;' readonly />
+					<input ccID="81221" type="hidden" name="txtclabrehfee" value="0" size=5 />
+				</td>
+				<td ccID="81299" align="center">
+					<input ccID="81325" type="text" name="txtamtrehire_t" value="0" style='width:80px;text-align:center;' readonly />
+				</td>
+				<td ccID="81442" align="center">
+					<input ccID="81468" type="text" name="txtamtrehire" value="0" style='width:80px;text-align:center;'  />
+				</td>
+			</tr>
+			<tr ccID="81584">
+				<td ccID="81594" height="30" align="center"><input ccID="81625" type="text" name="txtchqclabloc" value="" size="20" /></td>
+				<td ccID="81697" align="center">CLAB ( Local Worker )</td>
+				<td ccID="81748">
+					<table ccID="81759" width="100%" border="0" style="border-collapse: collapse;" cellpadding=2>
+						<tr ccID="81847">
+							<td ccID="81860" width=50%><input ccID="81874" type="checkbox" name="txtlocald" value="1" onclick="getlocaldis()" disabled="disabled"/>&nbsp; DISBURSEMENT</td>
+							<td ccID="82002"><input ccID="82006" type="checkbox" name="txtlocalr" value="1" onclick="getlocalreim()" disabled="disabled"/>&nbsp; REIMBURSEMENT</td>
+						</tr>
+					</table>
+				</td>
+				<td ccID="82172" align="center">
+					<input ccID="82198" type="text" name="txtamtlocal_o" value="0" style='width:80px;text-align:center;' readonly />
+					<input ccID="82304" type="hidden" name="txtclablwfee" value="0" size=5 />
+				</td>
+				<td ccID="82381" align="center" >
+					<input ccID="82408" type="text" name="txtamtlocal_t" value="0" style='width:80px;text-align:center;' readonly />
+				</td>
+				<td ccID="82524" align="center">
+					<input ccID="82550" type="text" name="txtamtlocal" value="0" style='width:80px;text-align:center;'  />
+				</td>
+			</tr>
+			<tr ccID="82665">
+				<td ccID="82675" height="30" align="center" valign=top><input ccID="82717" type="text" name="txtchqgreen" value="" size="20" /></td>
+				<td ccID="82787" align="center" valign=top>Green Card</td>
+				<td ccID="82838">
+					<table ccID="82849" width="100%" border="0" style="border-collapse: collapse;" cellpadding=2>
+						<tr ccID="82937">
+							<td ccID="82950" width=50%><input ccID="82964" type="checkbox" name="txtgreenw" value="1" onclick="getgreen_card(1)" disabled/>&nbsp;NEW</td>
+							<td ccID="83074"><input ccID="83078" type="checkbox" name="txtgreenr" value="1" onclick="getgreen_card(2)" disabled/>&nbsp;RENEW</td>
+						</tr>
+					</table>
+				<td ccID="83215" align="center" >
+					<input ccID="83242" type="text" name="txtamtgreen_o" value="0" style='width:80px;text-align:center;' readonly />
+					<input ccID="83348" type="hidden" name="txtclabgreenfee" value="0" size=5 />
+				</td>
+				<td ccID="83428" align="center" >
+					<input ccID="83455" type="text" name="txtamtgreen_t" value="0" style='width:80px;text-align:center;' readonly />
+				</td>
+				<td ccID="83571" align="center">
+					<input ccID="83597" type="text" name="txtamtgreen" value="0" style='width:80px;text-align:center;'  />
+				</td>
+			</tr>
+			<tr ccID="83712">
+				<td ccID="83722" height="30" align="center" valign=top><input ccID="83764" type="text" name="txtchqclabfee" value="" size="20" /></td>
+				<td ccID="83836" align="center" valign=top>CLAB FEE</td>
+				<td ccID="83885">
+					<table ccID="83896" width="100%" border="0" style="border-collapse: collapse;" cellpadding=2>
+						<tr ccID="83984">
+							<td ccID="83997" width=50%><input ccID="84011" type="checkbox" name="txtmember" value="1" onclick="getval_cfee(1)" disabled/>&nbsp;Membership</td>
+							<td ccID="84126"><input ccID="84130" type="checkbox" name="txtintro" value="1" onclick="getval_cfee(2)" disabled/>&nbsp;Introducer</td>
+						</tr>
+					</table>
+				</td>
+				<td ccID="84280" align="center">
+					<input ccID="84306" type="text" name="txtamtclabfee_o" value="0" onchange="get_introducer(this.value)" style='width:80px;text-align:center;'  />
+					<input ccID="84444" type="hidden" name="txtclabfee" value="0" size=5 />
+				</td>
+				<td ccID="84519" align="center">
+					<input ccID="84545" type="text" name="txtamtclabfee_t" value="0" style='width:80px;text-align:center;'  />
+				</td>
+				<td ccID="84655" align="center">
+					<input ccID="84681" type="text" name="txtamtclabfee" value="0" style='width:80px;text-align:center;'  />
+				</td>
+			</tr>
+			<tr ccID="84798">
+				<td ccID="84808" height="30" align="center" valign=top><input ccID="84850" type="text" name="txtchqjim" value="" size="20" /></td>
+				<td ccID="84918" align="center" valign=top>JIM</td>
+				<td ccID="84962">
+					<table ccID="84973" width="100%" border="0" style="border-collapse: collapse;" cellpadding=2>
+						<tr ccID="85061">
+							<td ccID="85074" width=50%><input ccID="85088" type="checkbox" name="txtjimplks" value="1" onclick="getjimval_plks()" disabled/>&nbsp;PLKS</td>
+							<td ccID="85200"><input ccID="85204" type="checkbox" name="txtjimfees" value="1" onclick="getjimval_fees()" disabled/>&nbsp;FEES</td>
+						</tr>
+						<tr ccID="85328">
+							<td ccID="85341"><input ccID="85345" type="checkbox" name="txtjimvisa" value="1" onchange="getjimval_visa()" disabled/>&nbsp;VISA</td>
+							<td ccID="85458"><input ccID="85462" name="txtjimlevi" type="checkbox" id="txtjimlevi" value="1" onclick="getjimval_levi()" disabled/>&nbsp;LEVY</td>
+						</tr>
+						<tr ccID="85602">
+							<td ccID="85615"><input ccID="85619" type="checkbox" name="txtjimsp" value="1" onclick="getsp()" disabled/>&nbsp;SP</td>
+							<td ccID="85718"><input ccID="85722" type="checkbox" name="txtjimcp" value="1"  onclick="getcancelpermit()" disabled/>&nbsp;CP</td>
+						</tr>
+						<tr ccID="85844">
+							<td ccID="85857"><input ccID="85861" type="checkbox" name="txtjimcompund" value="1" onclick="getcompound()" disabled/>&nbsp;COMPOUND</td>
+							<td ccID="85977"></td>
+						</tr>
+						<tr ccID="86007">
+							<td ccID="86020"></td>
+							<td ccID="86038"></td>
+						</tr>
+					</table>
+				</td>		
+				<td ccID="86094" align="center" valign=top>
+					
+				</td>
+				<td ccID="86148" align="center" valign=top>
+					<input ccID="86185" type="hidden" name="txtamtjim_plks" value="0" size="20" />
+					<input ccID="86257" type="hidden" name="txtamtjim_fees" value="0" size="20" />
+					<input ccID="86329" type="hidden" name="txtamtjim_visa" value="0" size="20" />
+					<input ccID="86401" type="hidden" name="txtamtjim_levi" value="0" size="20" />
+					<input ccID="86473" type="hidden" name="txtamtjim_sp" value="0" size="20" />
+					<input ccID="86543" type="hidden" name="txtamtjim_cp" value="0" size="20" />
+					<input ccID="86613" type="hidden" name="txtamtjim_compound" value="0" size="20" />
+				</td>
+				<td ccID="86699" align="center" valign=top>
+					<input ccID="86736" type="text" name="txtamtjim" value="0" style='width:80px;text-align:center;'  />
+				</td>
+			</tr>
+			<tr ccID="86849">
+				<td ccID="86859" height="30" align="center"><input ccID="86890" type="text" name="txtchqfomema" value="" size="20" /></td>
+				<td ccID="86961" align="center">FOMEMA</td>				
+				<td ccID="87001">
+					<table ccID="87012" width="100%" border="0" style="border-collapse: collapse;" cellpadding=2>
+						<tr ccID="87100">
+							<td ccID="87113" width=50%><input ccID="87127" type="checkbox" name="txtmale" value="1" onclick="getfomema(1)" disabled/>&nbsp;MEDICAL</td>
+							<td ccID="87235"><input ccID="87239" type="checkbox" name="txtfemale" value="1" onclick="getfomema(2)" disabled/>&nbsp;ONLINE FEES</td>
+						</tr>
+					</table>
+				</td>
+				<td ccID="87389" align="center" valign=top>
+					<input ccID="87426" type="text" name="txtamtfomema_o" value="0" style='width:80px;text-align:center;' readonly />
+				</td>
+				<td ccID="87543" align="center" valign=top>
+					<input ccID="87580" type="text" name="txtamtfomema_t" value="0" style='width:80px;text-align:center;' readonly />
+				</td>
+				<td ccID="87697" align="center" valign=top>
+					<input ccID="87734" type="text" name="txtamtfomema" value="0" style='width:80px;text-align:center;'  />
+				</td>
+			</tr>
+			<tr ccID="87850">
+				<td ccID="87860" height="30" align="center" valign=top><input ccID="87902" type="text" name="txtchqins" value="" size="20" /></td>
+				<td ccID="87970" align="center" valign=top>INSURANCE</td>
+				<td ccID="88020">
+					<table ccID="88031" width="100%" border="0" style="border-collapse: collapse;" cellpadding=2>
+						<tr ccID="88119">
+							<td ccID="88132" width=50%><input ccID="88146" type="checkbox" name="txtig" value="1" onclick="getins_ig()" disabled/>&nbsp;IG</td>
+							<td ccID="88246"><input ccID="88250" type="checkbox" name="txtFWCS" value="1" onclick="getins_fwcs()" disabled/>&nbsp;FWCS</td>
+						</tr>
+						<tr ccID="88368">
+							<td ccID="88381"><input ccID="88385" type="checkbox" name="txtFWHS" value="1" onclick="getins_fwhs()" disabled/>&nbsp;FWHS</td>
+							<td ccID="88491"></td>
+						</tr>
+					</table>
+				</td>
+				<td ccID="88545" align="center" valign=top>
+					<input ccID="88582" type="text" name="txtamtins_o" value="0" style='width:80px;text-align:center;' readonly />
+					<input ccID="88686" type="hidden" name="txtamtins_ig" value="0" style='width:80px;text-align:center;' />
+					<input ccID="88784" type="hidden" name="txtamtins_fwcs" value="0" style='width:80px;text-align:center;' />
+					<input ccID="88884" type="hidden" name="txtamtins_fwhs" value="0" style='width:80px;text-align:center;' />	
+				</td>
+				<td ccID="88995" align="center" valign=top>
+					<input ccID="89032" type="text" name="txtamtins_t" value="0" style='width:80px;text-align:center;' readonly />				   			
+				</td>
+				<td ccID="89156" align="center" valign=top>
+					<input ccID="89193" type="text" name="txtamtins" value="0" style='width:80px;text-align:center;'  />
+				</td>
+			</tr>
+			<tr ccID="89306">
+				<td ccID="89316" height="30" align="center"><input ccID="89347" type="text" name="txtchqagency" value="" size="20" /></td>
+				<td ccID="89418" align="center">TRANSIT CENTRE</td>
+				<td ccID="89462">
+					<table ccID="89473" width="100%" border="0" style="border-collapse: collapse;" cellpadding=2>
+						<tr ccID="89561">
+							<td ccID="89574" width=50%><input ccID="89588" type="checkbox" name="txtagencyfees" onclick="gettransit()" value="1" disabled/>&nbsp;FEES</td>
+							<td ccID="89699"><input ccID="89703" type="checkbox" name="txtagencyfeesgc" value="1" onclick="getclabval_greencard()" disabled/>&nbsp;GREEN CARD</td>
+						</tr>
+					</table>
+				<td ccID="89857" align="center" >
+					<input ccID="89884" type="text" name="txtamtagency_o" value="0"style='width:80px;text-align:center;' readonly />
+					<input ccID="89990" type="hidden" name="txtclabtransfee" value="0" size=5 />
+					<input ccID="90060" type="hidden" name="txtclabtransgcfee" value="0" size=5 />
+				</td>
+				<td ccID="90142" align="center" >
+					<input ccID="90169" type="text" name="txtamtagency_t" value="0"style='width:80px;text-align:center;' readonly />
+				   <input ccID="90277" type="hidden" name="txttc_fees" value="0" size="20" />
+				   <input ccID="90347" type="hidden" name="txttc_cost" value="0" size="20" />
+				</td>
+				<td ccID="90425" align="center" >
+					<input ccID="90452" type="text" name="txtamtagency" value="0"style='width:80px;text-align:center;'  />
+				</td>
+			</tr>
+			<tr ccID="90567">
+				<td ccID="90577" height="30" align="center" valign=top><input ccID="90619" type="text" name="txtchqothr" value="" size="20" /></td>
+				<td ccID="90688" align="center" valign=top>OTHERS</td>
+				<td ccID="90735">
+					<table ccID="90746" width="100%" border="0" style="border-collapse: collapse;" cellpadding=2>
+						<tr ccID="90834">
+							<td ccID="90847" width=50%><input ccID="90861" type="checkbox" name="txtothersfees" value="1" disabled/>&nbsp;FEES </td>					
+							<td ccID="90955"><input ccID="90959" type="checkbox" name="txtothersfees2" value="1" disabled/>&nbsp;3rd Party Charges</td>
+						</tr>
+						<tr ccID="91073">
+							<td ccID="91086" colspan=2>Remarks</td>
+							
+						</tr>
+						<tr ccID="91142">
+							<td ccID="91155" colspan=2><textarea ccID="91169" cols="30" rows="5" name="txtothremarks"></textarea></td>
+						</tr>
+					</table>
+				</td>
+				<td ccID="91280" align="center" valign=top>
+					<input ccID="91317" type="text" name="txtamtothr_o" value="0" onchange="get_others(this.value)" style='width:80px;text-align:center;' />
+				</td>
+				<td ccID="91457" align="center" valign=top>
+					<input ccID="91494" type="text" name="txtamtothr_t" value="0" style='width:80px;text-align:center;' readonly />
+					<input ccID="91599" type="hidden" name="txtothfees" value="0" size="20" />
+					<input ccID="91667" type="hidden" name="txtmshipfees" value="0" size="20" />
+				</td>
+				<td ccID="91747" align="center" valign=top>
+					<input ccID="91784" type="text" name="txtamtothr" value="0" style='width:80px;text-align:center;'  />
+				</td>
+			</tr>
+	  </table>	
+	</td>
+</tr>
+<tr ccID="91924"><td ccID="91928" colspan="5">
+<input ccID="91946" type="hidden" name="txtvisa" value="0" />
+<input ccID="91996" type="hidden" name="txtfine" value="0"/>
+<input ccID="92045" type="hidden" name="txttransfees" value="0"/>
+<input ccID="92099" type="hidden" name="txttranscost" value="0"/>
+<input ccID="92153" type="hidden" name="id" value=""/></td>
+</tr>
+<tr ccID="92208">
+   <td ccID="92217" colspan="5" align="center"><input ccID="92248" type="submit" value="Save" />&nbsp;<input ccID="92290" type="button" onclick="clearfield()" value="Reset" /></td>
+</tr>
+</table>
+</form>
+</body>
+</html>

@@ -1,0 +1,12 @@
+<project version="Crimson Editor 3.60">
+	<localfile path="C:\Program Files\Apache Software Foundation\Apache2.2\htdocs\skimclab\index.php" />
+	<localfile path="C:\Program Files\Apache Software Foundation\Apache2.2\htdocs\skimclab\license.txt" />
+	<localfile path="C:\Program Files\Apache Software Foundation\Apache2.2\htdocs\skimclab\SKIM.prj" />
+</project>
+
+<workspace version="Crimson Editor 3.60">
+	<localfile path="C:\Program Files\Apache Software Foundation\Apache2.2\htdocs\skimclab\system\application\controllers\contLabour.php" linenum="1045" placement="2:3:-1:-1:-4:-30:88:116:1055:591" />
+	<localfile path="C:\Program Files\Apache Software Foundation\Apache2.2\htdocs\skimclab\system\application\models\modelLabour.php" linenum="1" placement="0:1:-1:-1:-4:-30:110:145:1081:624" />
+	<localfile path="C:\Program Files\Apache Software Foundation\Apache2.2\htdocs\skimclab\system\application\views\labor\labor_edit_attachdoc.php" linenum="92" placement="0:1:-1:-1:-4:-30:132:174:1103:653" />
+</workspace>
+

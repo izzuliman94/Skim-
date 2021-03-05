@@ -1,0 +1,36 @@
+<script type="text/javascript">
+<!--
+function menuGoTo(locationHref)
+{
+	var x = (/\?/.test(locationHref) ? "&" : "?");
+	location.href = locationHref + x + "menu_scrolltop=" + String(document.getElementById("menu").scrollTop);
+}
+//-->
+</script>
+	<div id="menu" style="height: 35em; overflow-y: scroll">
+		<h2 class="hide">Menu:</h2>
+		<ul>
+			<li><a href="javascript:menuGoTo('admin_masters.php?t=countries')">Countries</a></li>
+			<li><a href="javascript:menuGoTo('index.php?t=airports')">Airports</a></li>
+			<li><a href="javascript:menuGoTo('index.php?t=awb_agent_prefix')">AWB Agent Prefix</a></li>
+			<li><a href="javascript:menuGoTo('index.php?t=awb_status')">AWB Status</a></li>
+			<li><a href="javascript:menuGoTo('index.php?t=cargo_arrival_status')">Cargo Arrival Status</a></li>
+			<li><a href="javascript:menuGoTo('index.php?t=cargo_condition')">Cargo Condition</a></li>
+			<li><a href="javascript:menuGoTo('index.php?t=cargo_integrity')">Cargo Integrity</a></li>
+			<li><a href="javascript:menuGoTo('index.php?t=cargo_types')">Cargo Types</a></li>
+			<li><a href="javascript:menuGoTo('entities.php')">Entities</a></li>
+			<li><a href="javascript:menuGoTo('index.php?t=freight_status')">Freight Status</a></li>
+		</ul>
+	</div>
+<script type="text/javascript">
+<!--
+<?php
+if (isset($_GET["menu_scrolltop"]))
+{
+?>
+document.getElementById("menu").scrollTop = <?php echo $_GET["menu_scrolltop"]; ?>;
+<?php
+}
+?>
+//-->
+</script> 

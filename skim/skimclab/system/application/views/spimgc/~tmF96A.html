@@ -1,0 +1,194 @@
+<?php 
+h ccID="5"eader("Content-type: application/octet-stream"); 
+header("Content-Disposition: attachment; filename=lampiran_qbe_renewal.xls"); 
+header("Pragma: no-cache"); 
+header("Expires: 0"); // this is my export to excel 
+?>
+<table ccID="229" style="text-align: left; width: 700px;" align="center" border="1" cellpadding="0" cellspacing="0">
+<tr ccID="336" align="center">
+    <th ccID="361">No.</th>
+    <th ccID="379">Name</th>
+    <th ccID="398">Passport</th>
+    <th ccID="421">Gender</th>
+    <th ccID="442">Occupation Sector</th>
+    <th ccID="474">Nationality</th>
+    <th ccID="500">DOB</th>
+    <th ccID="518">Insured For</th>
+    <th ccID="544">Work Permit ID</th>
+    <th ccID="573">Work Permit Expiry</th>
+    <th ccID="606">INS Status</th>
+    <th ccID="631">Next Kin</th>
+    <th ccID="654">Relationship</th>
+	<th ccID="678">Address</th>
+	<th ccID="697">Tel No.</th>
+	<th ccID="716">IG Amount</th>
+</tr>
+<?php 
+
+if($allFCLlampiran->num_rows() == 0){ 
+
+?>
+<tr ccID="799" align="center">
+    <td ccID="824">&nbsp;</td>
+    <td ccID="845">&nbsp;</td>
+    <td ccID="866">&nbsp;</td>  
+    <td ccID="889">&nbsp;</td>
+    <td ccID="910">&nbsp;</td>
+    <td ccID="931">&nbsp;</td>
+    <td ccID="952">&nbsp;</td>
+    <td ccID="973">&nbsp;</td>
+    <td ccID="994">&nbsp;</td>
+    <td ccID="1015">&nbsp;</td>
+    <td ccID="1036">&nbsp;</td>
+    <td ccID="1057">&nbsp;</td>
+    <td ccID="1078">&nbsp;</td>    
+</tr>
+<?php
+}else{
+$i = 1;
+foreach($allFCLlampiran->result() as $lampfcl){
+?>
+<tr ccID="1183" align="center">
+    <td ccID="1208"><?php echo $i++; ?></td>
+    <td ccID="1242"><?php echo $lampfcl->fcl_name; ?></td>
+    <td ccID="1290"><?php echo $lampfcl->fcl_newpassno; ?></td>
+	<td ccID="1340"><?php if($lampfcl->fcl_gender == 1){
+		         echo "MALE"; 
+	             }else{
+				 echo "FEMALE";
+				 }
+		?></td>
+	<td ccID="1471"><?php echo $lampfcl->fcl_wt ?></td>
+    <td ccID="1516"><?php echo $lampfcl->fcl_nationality; ?></td>
+	<td ccID="1568"><?php echo date('d M Y',strtotime($lampfcl->fcl_dob)); ?></td>
+	<td ccID="1637"><?php echo 'P'; ?></td>
+	<td ccID="1667"><?php echo $lampfcl->fcl_permitno; ?></td>
+	<td ccID="1716"><?php echo date('d M Y',strtotime($lampfcl->fcl_plksdate1))." - ". date('d M Y',strtotime($lampfcl->fcl_plksdate2)); ?></td>
+    <td ccID="1850"><?php echo 'N'; ?></td>
+	<td ccID="1880"><?php echo $lampfcl->fcl_next_of_kin;?></td>
+    <td ccID="1934"><?php echo $lampfcl->fcl_relationship;?></td>
+    <td ccID="1989"><?php echo $lampfcl->fcl_add ?></td>
+	<td ccID="2032"><?php echo ''; ?></td>
+	<td ccID="2061"><?php echo ''; ?></td>
+
+        
+</tr>
+
+<?php 
+}}
+?>
+</table>
+<br ccID="2136" />
+<table ccID="2144" style="text-align: left; width: 700px;" align="center">
+<tr ccID="2208" align="left">
+  <td ccID="2229">&nbsp;</td>
+  <td ccID="2248">&nbsp;</td>
+  <td ccID="2267">&nbsp;</td>
+  <td ccID="2286">&nbsp;</td>
+  <td ccID="2305">&nbsp;</td>
+  <td ccID="2324">&nbsp;</td>
+  <td ccID="2343">&nbsp;</td>
+  <td ccID="2362">&nbsp;</td>
+  <td ccID="2381">Comp Reg No :<?php echo $lampiran->ctr_comp_regno?></td>
+</tr>
+<tr ccID="2450" align="left">
+  <td ccID="2471">&nbsp;</td>
+  <td ccID="2490">&nbsp;</td>
+  <td ccID="2509">&nbsp;</td>
+  <td ccID="2528">&nbsp;</td>
+  <td ccID="2547">&nbsp;</td>
+  <td ccID="2566">&nbsp;</td>
+  <td ccID="2585">&nbsp;</td>
+  <td ccID="2604">&nbsp;</td>
+  <td ccID="2623">Comp & Add : <?php echo $lampiran->ctr_comp_name?></td>
+</tr>
+<tr ccID="2691"  align="left">
+  <td ccID="2713">&nbsp;</td>
+  <td ccID="2732">&nbsp;</td>
+  <td ccID="2751">&nbsp;</td>
+  <td ccID="2770">&nbsp;</td>
+  <td ccID="2789">&nbsp;</td>
+  <td ccID="2808">&nbsp;</td>
+  <td ccID="2827">&nbsp;</td>
+  <td ccID="2846">&nbsp;</td>
+  <td ccID="2865"><?php echo $lampiran->ctr_addr1?></td>
+</tr>
+<tr ccID="2916"  align="left">
+  <td ccID="2938">&nbsp;</td>
+  <td ccID="2957">&nbsp;</td>
+  <td ccID="2976">&nbsp;</td>
+  <td ccID="2995">&nbsp;</td>
+  <td ccID="3014">&nbsp;</td>
+  <td ccID="3033">&nbsp;</td>
+  <td ccID="3052">&nbsp;</td>
+  <td ccID="3071">&nbsp;</td>
+  <td ccID="3090"><?php echo $lampiran->ctr_addr2?></td>
+</tr>
+<tr ccID="3141"  align="left">
+  <td ccID="3163">&nbsp;</td>
+  <td ccID="3182">&nbsp;</td>
+  <td ccID="3201">&nbsp;</td>
+  <td ccID="3220">&nbsp;</td>
+  <td ccID="3239">&nbsp;</td>
+  <td ccID="3258">&nbsp;</td>
+  <td ccID="3277">&nbsp;</td>
+  <td ccID="3296">&nbsp;</td>
+  <td ccID="3315"><?php echo $lampiran->ctr_addr3?></td>
+</tr>
+<tr ccID="3366"  align="left">
+  <td ccID="3388">&nbsp;</td>
+  <td ccID="3407">&nbsp;</td>
+  <td ccID="3426">&nbsp;</td>
+  <td ccID="3445">&nbsp;</td>
+  <td ccID="3464">&nbsp;</td>
+  <td ccID="3483">&nbsp;</td>
+  <td ccID="3502">&nbsp;</td>
+  <td ccID="3521">&nbsp;</td>
+  <td ccID="3540"><?php echo $lampiran->ctr_pcode?></td>
+</tr>
+<tr ccID="3591"  align="left">
+   <td ccID="3614">&nbsp;</td>
+   <td ccID="3634">&nbsp;</td>
+   <td ccID="3654">&nbsp;</td>
+   <td ccID="3674">&nbsp;</td>
+   <td ccID="3694">&nbsp;</td>
+  <td ccID="3713">&nbsp;</td>
+  <td ccID="3732">&nbsp;</td>
+  <td ccID="3751">&nbsp;</td>
+  <td ccID="3770"><?php echo $lampiran->state_name ?></td>
+</tr>
+<tr ccID="3823"  align="left">
+   <td ccID="3846">&nbsp;</td>
+   <td ccID="3866">&nbsp;</td>
+   <td ccID="3886">&nbsp;</td>
+   <td ccID="3906">&nbsp;</td>
+   <td ccID="3926">&nbsp;</td>
+  <td ccID="3945">&nbsp;</td>
+  <td ccID="3964">&nbsp;</td>
+  <td ccID="3983">&nbsp;</td>
+  <td ccID="4002">PIC : <?php echo $lampiran->wo_personincharge ?></td>
+</tr>
+<tr ccID="4068"  align="left">
+  <td ccID="4090">&nbsp;</td>
+  <td ccID="4109">&nbsp;</td>
+  <td ccID="4128">&nbsp;</td>
+  <td ccID="4147">&nbsp;</td>
+  <td ccID="4166">&nbsp;</td>
+  <td ccID="4185">&nbsp;</td>
+  <td ccID="4204">&nbsp;</td>
+  <td ccID="4223">&nbsp;</td>
+  <td ccID="4242">Workorder No : <?php echo $lampiran->wo_num?></td>
+</tr>
+<tr ccID="4305"  align="left">
+  <td ccID="4327">&nbsp;</td>
+  <td ccID="4346">&nbsp;</td>
+  <td ccID="4365">&nbsp;</td>
+  <td ccID="4384">&nbsp;</td>
+  <td ccID="4403">&nbsp;</td>
+  <td ccID="4422">&nbsp;</td>
+  <td ccID="4441">&nbsp;</td>
+  <td ccID="4460">&nbsp;</td>
+  <td ccID="4479">OR No : <?php echo $lampiran->pay_refno?></td>
+</tr>
+</table>
+

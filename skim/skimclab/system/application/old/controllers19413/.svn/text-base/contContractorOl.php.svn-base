@@ -1,0 +1,108 @@
+<?php
+	class ContContractorOl extends Controller {
+		function ContContractorOl(){
+			parent::Controller();
+			$this->load->library('session');
+			$this->load->Model('ModelContractor');
+		}
+		function index(){
+			$this->load->view('contractor_ol/dashboard.php');
+		}
+		
+		function registrationForm(){
+			$data['companyROC'] = $this->uri->segment(3);
+			
+			$data['allStates'] = $this->ModelContractor->getAllStates();
+			$data['allGrades'] = $this->ModelContractor->getAllCtrGrades();
+			$data['allCategories'] = $this->ModelContractor->getAllCtrCategories();
+			$data['allSpec'] = $this->ModelContractor->getAllCtrSpec();
+			
+			$this->load->view('contractor_ol/company_reg.php', $data);
+		}	
+		
+		function searchCompany(){
+			$companyROC = trim($_POST['txtcompanyroc']);
+			$sqlQuery = "SELECT contractors.*, mst_ctr_appstatus.appstatus_desc FROM contractors 
+						 LEFT JOIN mst_ctr_appstatus ON mst_ctr_appstatus.appstatus_id = contractors.ctr_appstatus
+						 WHERE ctr_comp_regno = '$companyROC'";
+			
+			$ctrRecord = $this->db->query($sqlQuery);
+			$data['ctrRecord'] = $ctrRecord;
+			$data['companyROC'] = $companyROC;
+			
+			if($ctrRecord->num_rows > 0){
+				$this->load->view('contractor_ol/dashboard', $data);
+			}
+			else{
+				redirect('contContractorOl/registrationForm/' . $companyROC);
+			}
+		}
+		
+		function registrationFormSubmit(){
+			$tempclabno = $this->ModelContractor->generateTempClabNo();
+			$insertflag = '2';		//1-register through CLAB, 2-register online
+			$companyname = strtoupper(trim($_POST['companyname']));	
+			$companyregno = trim($_POST['companyregno']);	
+			$address1 = strtoupper(trim($_POST['address1']));	
+			$address2 = strtoupper(trim($_POST['address2']));	
+			$address3 = strtoupper(trim($_POST['address3']));	
+			$postcode = trim($_POST['postcode']);	
+			$state = $_POST['state'];	
+			$telephone1 = trim($_POST['telephone1']);	
+			$telephone2 = trim($_POST['telephone2']);	
+			$fax = trim($_POST['fax']);	
+			$cidbreg = trim($_POST['cidbreg']);	
+			
+			$cidbexpire = trim($_POST['cidbexpire']);	
+				if($cidbexpire == '') $cidbexpire = "0000-00-00";
+				else $cidbexpire = date('Y-m-d', strtotime($cidbexpire));
+			
+			$email = trim($_POST['email']);
+			$grade = trim($_POST['grade']);	
+			$category = trim($_POST['category']);	
+			$specialization = trim($_POST['specialization']);	
+			
+			if(isset($_POST['periodreg'])) $periodreg = $_POST['periodreg'];
+			else $periodreg = '';
+			
+			$clabExpDate = "0000-00-00";		
+			
+			if(isset($_POST['form24'])) $form24 = $_POST['form24'];	
+			else $form24 = '';
+			
+			if(isset($_POST['form49'])) $form49 = $_POST['form49'];	
+			else $form49 = '';
+			
+			if(isset($_POST['cidb_certcopy'])) $cidb_certcopy = $_POST['cidb_certcopy'];	
+			else $cidb_certcopy = '';
+			
+			if(isset($_POST['others'])) $others = $_POST['others'];	
+			else $others = '';
+			
+			$attach_others = trim($_POST['attach_others']);
+			$director = trim($_POST['director']);	
+			$directorMobile = trim($_POST['directorMobile']);	
+			$contactperson = trim($_POST['contactperson']);	
+			$contactMobile = trim($_POST['contactMobile']);	
+			$contactDesig = trim($_POST['contactDesig']);	
+			$enteredby = trim($_POST['enteredby']);	
+			$entereddate = date('Y-m-d', strtotime($_POST['entereddate']));	
+			$ctr_appstatus = '1'; //appplication status = open
+			$ctr_status = '1'; //contractor status = active
+			
+			$insertQuery = "INSERT INTO contractors (ctr_clab_no, ctr_datereg, ctr_comp_name, ctr_comp_regno, ctr_addr1, ctr_addr2, ctr_addr3, ctr_pcode, ctr_state, ctr_telno, 
+							ctr_telno1, ctr_fax, ctr_email, ctr_cidb_regno, ctr_cidbexp_date, ctr_grade, ctr_category, ctr_spec, ctr_periodreg,
+							ctr_procsby, ctr_procdate, ctr_appstatus, ctr_attach_form24, ctr_attach_form49, ctr_attach_copycidb, ctr_attach_others, ctr_attach_specify, 
+							ctr_dir_name, ctr_dir_mobileno, ctr_contact_name, ctr_contact_desg, ctr_contact_mobileno, ctr_status, ctr_clabexp_date, ctr_insertflag) 
+							VALUES ('$tempclabno', NOW(), ".$this->db->escape($companyname).",'$companyregno','$address1','$address2','$address3','$postcode', '$state', '$telephone1',
+							'$telephone2', '$fax', '$email', '$cidbreg', '$cidbexpire', '$grade', '$category', '$specialization', '$periodreg', 
+							'$enteredby', '$entereddate', '$ctr_appstatus', '$form24', '$form49', '$cidb_certcopy', '$others', '$attach_others', 
+							'$director', '$directorMobile', '$contactperson', '$contactDesig', '$contactMobile', '$ctr_status', '$clabExpDate', '$insertflag');";
+			
+			$this->db->query($insertQuery);
+			
+			$data['statusMsg'] = "<font color=\"red\"><strong>Your company $companyname has been registered. CLAB number will be issued after approval.</strong></font>";
+			$this->load->view('contractor_ol/dashboard', $data);
+		}
+	}
+?>

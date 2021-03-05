@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/clabproject_svn/!svn/ver/21/SKIM/system/application/views/available
+END
+availableFormDetails.php
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/clabproject_svn/!svn/ver/25/SKIM/system/application/views/available/availableFormDetails.php
+END
+availableLabourDetails.php
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/clabproject_svn/!svn/ver/13/SKIM/system/application/views/available/availableLabourDetails.php
+END
+availableLaborList.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/clabproject_svn/!svn/ver/6/SKIM/system/application/views/available/availableLaborList.php
+END
+newAvailable_form.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/clabproject_svn/!svn/ver/21/SKIM/system/application/views/available/newAvailable_form.php
+END
+editAvailable_regislabor_pt1.php
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/clabproject_svn/!svn/ver/25/SKIM/system/application/views/available/editAvailable_regislabor_pt1.php
+END
+availableForm.php
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/clabproject_svn/!svn/ver/21/SKIM/system/application/views/available/availableForm.php
+END
+editAvailable_regislabor_pt2.php
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/clabproject_svn/!svn/ver/10/SKIM/system/application/views/available/editAvailable_regislabor_pt2.php
+END
+editAvailable.php
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/clabproject_svn/!svn/ver/25/SKIM/system/application/views/available/editAvailable.php
+END
+availableDashboard.php
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/clabproject_svn/!svn/ver/10/SKIM/system/application/views/available/availableDashboard.php
+END

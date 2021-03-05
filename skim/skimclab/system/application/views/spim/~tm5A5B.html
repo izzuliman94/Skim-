@@ -1,0 +1,359 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>SKIM</title>
+<link href="<?php echo base_url();?>/css/sippsstyle.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="<?php echo base_url();?>/js/switchcontent.js" >
+
+/***********************************************
+* Switch Content script- © Dynamic Drive (www.dynamicdrive.com)
+* This notice must stay intact for legal use. Last updated April 05th, 2007.
+* Visit http://www.dynamicdrive.com/ for full source code
+***********************************************/
+
+</script>
+<!--new calendar-->
+ <link href="<?php echo base_url();?>js/scwdatepicker/scw.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="<?php echo base_url();?>js/scwdatepicker/scw.js"></script>
+    <script type="text/javascript">
+        function datebutton_onclick(elementId, thisRef)
+        {
+	        switch (scwVisibilityStatus)
+	        {
+		        case "hidden":
+			        scwShow(document.getElementById(elementId), thisRef);
+			        break;
+		        case "visible":
+			        scwHide();
+	        }
+        }
+    </script>	
+
+<script language="JavaScript" src="<?php echo base_url()?>js/validator.js"></script>
+<script type="text/javascript">
+	function checktrigger(chkbox, txtbox, datebox){
+		if(chkbox.checked == true){
+			//get date
+			today = new Date()
+			tdate = today.getDate()
+			tmonth = today.getMonth() + 1
+			tyear = today.getFullYear()
+			
+			txtbox.value=document.newWorkorderForm.currentuser.value
+			datebox.value=tdate + "-" + tmonth + "-" + tyear
+		}
+		else {
+			txtbox.value=""
+			datebox.value=""
+		}
+	}
+	
+	function openuploadwindow(){
+		var workorderid = document.newWorkorderForm.workorderno.value
+		var companyname = document.newWorkorderForm.txtclabno.value
+		var url = "<?php echo site_url('contSpim/uploadDocView');?>/" + workorderid + "/" + companyname
+		
+		window.open(url)
+	}
+	
+	function selectall(){
+	     //document.newWorkorderForm.chkreqform.checked = true;
+		 document.newWorkorderForm.chkawardletter.checked = true;
+		 document.newWorkorderForm.chkaccopic.checked = true;
+		 document.newWorkorderForm.chkempletter.checked = true;
+		 document.newWorkorderForm.chksupagree.checked = true;
+		 //document.newWorkorderForm.chksignedpay.checked = true;
+		 //document.newWorkorderForm.dtreqform.value = '<?php echo date('d-m-Y')?>';
+		 document.newWorkorderForm.dtawardletter.value = '<?php echo date('d-m-Y')?>';
+		 document.newWorkorderForm.dtaccopic.value = '<?php echo date('d-m-Y')?>';
+		 document.newWorkorderForm.dtcompletedoc.value = '<?php echo date('d-m-Y')?>';
+		 document.newWorkorderForm.dtempletter.value = '<?php echo date('d-m-Y')?>';
+		 document.newWorkorderForm.dtsupagree.value = '<?php echo date('d-m-Y')?>';
+		 //document.newWorkorderForm.dtsignedpay.value = '<?php echo date('d-m-Y')?>';
+		 
+	}
+	
+	function deselectall(){
+	     //document.newWorkorderForm.chkreqform.checked = false;
+		 document.newWorkorderForm.chkawardletter.checked = false;
+		 document.newWorkorderForm.chkaccopic.checked = false;
+		 document.newWorkorderForm.chkempletter.checked = false;
+		 document.newWorkorderForm.chksupagree.checked = false;
+		 //document.newWorkorderForm.chksignedpay.checked = false;
+		 //document.newWorkorderForm.dtreqform.value = '';
+		 document.newWorkorderForm.dtawardletter.value = '';
+		 document.newWorkorderForm.dtaccopic.value = '';
+		 document.newWorkorderForm.dtcompletedoc.value = '';
+		 document.newWorkorderForm.dtempletter.value = '';
+		 document.newWorkorderForm.dtsupagree.value = '';
+		 //document.newWorkorderForm.dtsignedpay.value = '';
+		 
+	}
+	
+	function paymentlist(clabno){
+	
+	  var frm = "new";
+	  var url = "<?php echo site_url('contSpim/openreceipt');?>/" + frm + "/" + clabno ;
+window.open(url, 'Payment list', 'height=350,width=700, toolbar=no, directories=no, status=no, location=no, menubar=no, scrollbars=yes') 
+	
+	}
+</script>  
+<style type="text/css">
+<!--
+.style1 {color: #FF0000}
+-->
+</style>
+</head>
+
+<body ccID="4285">
+<?php 
+	$accessibility = $this->session->userdata('emp_accessibility');
+?>
+<h4 ccID="4371"><a ccID="4375" href="<?php echo site_url();?>/contSpim/spimDashbrd">SPIM</a> <img ccID="4440" src="<?php echo base_url();?>/images/right_arrow.gif" width="13" height="14" /> New Work Order </h4>
+<h3 ccID="4547" id="switchsection1-title" class="handcursor">New Work Order <img ccID="4611" src="<?php echo base_url();?>/images/down_arrow_org.gif" width="13" height="14" /></h3>
+  <form ccID="4707" action="<?php echo site_url();?>/contSpim/newWorkOrderPt2Submit" method="POST" name="newWorkorderForm" id="newWorkorderForm"  onsubmit="return v.exec();">
+    <table ccID="4873" width="100%" border="0">
+		<tr ccID="4908">
+			<td ccID="4917" width="15%">Workorder No</td>
+			<td ccID="4955" width="33%"><input ccID="4971" type="text" name="workorderno" value="<?php echo "&lt;auto generate&gt;";?>" READONLY /></td>
+			<td ccID="5076" width="13%">Date Submit</td>
+			<td ccID="5113" width="19%">
+				<input ccID="5135" type="text" name="dtsubmit" id="dtsubmit" value="<?php echo date('d-m-Y');?>" size="12" READONLY/>
+				<!--input id="button1" name="btnDate1" type="button" class="scwdatepicker" onclick="scwShow(document.getElementById('dtsubmit'), this)" /-->			</td>
+		    <td ccID="5402" width="20%"><input ccID="5418" type="text" name="trackdate" id="trackdate" value="<?php echo date('Y-m-d G:i:s');?>" readonly="READONLY" /></td>
+		</tr>
+		<tr ccID="5551">
+			<td ccID="5560">Company Name</td>
+			<td ccID="5586"><input ccID="5590" type="text" name="txtcompname" size="50" value="<?php echo $ctrRow->ctr_comp_name;?>" READONLY /></td>
+			<td ccID="5704">CLAB No.</td>
+			<td ccID="5726" colspan="2"><input ccID="5742" type="text" name="txtclabno" value="<?php echo $ctrRow->ctr_clab_no;?>" READONLY /></td>
+		</tr>
+		<tr ccID="5850">
+			<td ccID="5859">Contact Person</td>
+			<td ccID="5887"><input ccID="5891" type="text" name="txtcontact" size="30" value="<?php echo $ctrRow->ctr_contact_name;?>" /></td>
+			<td ccID="5998">Contact Number</td>
+			<td ccID="6026" colspan="2"><input ccID="6042" type="text" name="txtcontactno" value="<?php echo $ctrRow->ctr_contact_mobileno;?>" /></td>
+		</tr>
+		<tr ccID="6153">
+			<td ccID="6162" id="t_fcl">No. Of FCL <font ccID="6188" color="red">*</font></td>
+			<td ccID="6224">
+				<input ccID="6234" type="text" name="txtfcltotal" size="4" /> 
+				Country: 
+				<SELECT ccID="6305" name="selcountry">
+					<option ccID="6338" value=""></option>	
+ 					<?php foreach($allCountries->result() as $country){ ?>	
+ 					<option ccID="6436" value="<?php echo $country->cty_id;?>"><?php echo $country->cty_desc;?></option>	
+ 					<?php } ?>
+				</SELECT>			</td>
+			<td ccID="6571">Agency Name</td>
+			<td ccID="6596" colspan="2"><SELECT ccID="6612" name="selagency">
+				<?php foreach($allAgencies->result() as $agency){
+				?>
+					<option ccID="6707" value="<?php echo $agency->agency_id;?>"><?php echo $agency->agency_name;?></option>
+				<?php }
+				?>
+				</SELECT>			</td>
+		</tr>
+		<tr ccID="6856">
+			<td ccID="6865">REPLACEMENT</td>
+			<td ccID="6890" colspan="4">
+				<input ccID="6912" type="checkbox" name="chkisreplace" value="1"/>
+				Date: <input ccID="6978" type="text" name="dtreplacement" id="dtreplacement" size="12" />
+					  <input ccID="7058" id="button2" name="btnDate2" type="button" class="scwdatepicker" onclick="scwShow(document.getElementById('dtreplacement'), this)" />
+				&nbsp; &nbsp; Reason: <input ccID="7226" type="text" name="replacereason" size="60" />			</td>
+		</tr>
+		<tr ccID="7299">
+			<td ccID="7308">Person In Charge (CLAB)</td>
+			<td ccID="7345"><input ccID="7349" type="text" name="txtPersonInCharge" value="<?php echo $this->session->userdata('username');?>" /></td>
+			<td ccID="7464">Key In By</td>
+			<td ccID="7487" colspan="2"><input ccID="7503" type="text" name="txtkeyinby" value="<?php echo $this->session->userdata('username');?>" />
+				Date: <input ccID="7613" type="text" name="dtkeyin" id="dtkeyin" value="<?php echo date('d-m-Y');?>" size="12"/>
+					  <input ccID="7716" id="button4" name="btnDate4" type="button" class="scwdatepicker" onclick="scwShow(document.getElementById('dtkeyin'), this)" />			</td>
+		</tr>
+		<tr ccID="7871">
+		   <td ccID="7882">Sender Name</td>
+		   <td ccID="7909"><input ccID="7913" type="text" size="50" name="txtsendername" value="" /></td>
+		   <td ccID="7986">Sender IC No. <span ccID="8004" class="style1">*</span></td>
+	      <td ccID="8047" colspan="2"><input ccID="8063" type="text" name="txtsenderic" value="" /></td>
+		</tr>
+		<tr ccID="8130">
+		  <td ccID="8140">Sender Contact No </td>
+		  <td ccID="8173"><input ccID="8177" type="text" name="txtsenderctc" value="" /></td>
+		  <td ccID="8238">Approval Ref</td>
+          <!--td>Visa Date</td-->
+		  <td ccID="8300" colspan="2"><!--input type="text" name="dtvisa" id="dtvisa" size="12" value=""/-->
+		<!--input id="button2" name="btnDate2" type="button" class="scwdatepicker" onclick="scwShow(document.getElementById('dtvisa'), this)" /-->
+		<select ccID="8532" name="selapproval">
+          <?php foreach($allapproval->result() as $approval){
+				?>
+          <option ccID="8642" value="<?php echo $approval->app_id;?>"><?php echo $approval->app_desc;?></option>
+          <?php }
+				?>
+        </select></td>		 
+	  </tr>
+	  <tr ccID="8801">
+		  <td ccID="8811">Attending Officer </td>
+		  <td ccID="8844"><input ccID="8848" type="text" name="txtattnoff" value="" size="40"/></td>
+		  <td ccID="8916">&nbsp;</td>
+		  <td ccID="8937" colspan="2">&nbsp;</td>
+	  </tr>
+    </table>
+    <br ccID="8994" />
+    <table ccID="9006" width="80%" border="0">
+    	<tr ccID="9043">
+    		<th ccID="9055" align="LEFT"> REQUIRED DOCUMENTS (Comp) & Date Received</th>
+    		<th ccID="9127" align="RIGHT"><!--input type="button" name="btnUpload" value="Upload Documents" onclick="openuploadwindow();" DISABLED/--></th>
+    	</tr>
+    	<tr ccID="9277">
+    		<!--td><input type="checkbox" name="chkreqform" value="1"/>Request Form (R02) &nbsp; &nbsp;&nbsp;
+				<input type="text" name="dtreqform" id="dtreqform" size="11"/>
+    			<input id="button5" name="btnDate5" type="button" class="scwdatepicker" onclick="scwShow(document.getElementById('dtreqform'), this)" />
+    		</td-->
+			<td ccID="9619"><input ccID="9623" type="checkbox" name="chkaccopic" value="1"/>Accomodation Pic/Add 
+    			<input ccID="9705" type="text" name="dtaccopic" id="dtaccopic" size="11" />
+    			<input ccID="9777" id="button9" name="btnDate9" type="button" class="scwdatepicker" onclick="scwShow(document.getElementById('dtaccopic'), this)" />
+    		</td>
+    		<td ccID="9934"><input ccID="9938" type="checkbox" name="chkempletter" value="1"/>Employer Application Letter  &nbsp; &nbsp; &nbsp; &nbsp; 
+    			<input ccID="10058" type="text" name="dtempletter" id="dtempletter" size="11" />
+    			<input ccID="10134" id="button6" name="btnDate6" type="button" class="scwdatepicker" onclick="scwShow(document.getElementById('dtempletter'), this)" />
+    		</td>
+    	</tr>
+    	<tr ccID="10304">
+    		<td ccID="10316"><input ccID="10320" type="checkbox" name="chkawardletter" value="1"/>Letter of Award &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp; 
+    			<input ccID="10450" type="text" name="dtawardletter" id="dtawardletter" size="11" />
+    			<input ccID="10530" id="button7" name="btnDate7" type="button" class="scwdatepicker" onclick="scwShow(document.getElementById('dtawardletter'), this)" />
+    		</td>
+    		<td ccID="10691"><input ccID="10695" type="checkbox" name="chksupagree" value="1"/>Supplier Agreement &nbsp; &nbsp; &nbsp;
+    			<input ccID="10796" type="text" name="dtsupagree" id="dtsupagree" size="11" />
+    			<input ccID="10870" id="button8" name="btnDate8" type="button" class="scwdatepicker" onclick="scwShow(document.getElementById('dtsupagree'), this)" />
+    		</td>
+    	</tr>
+    	<tr ccID="11039">
+    		
+    		<!--td><input type="checkbox" name="chksignedpay" value="1"/>Signed Payment Advice 
+    			<input type="text" name="dtsignedpay" id="dtsignedpay" size="11" />
+    			<input id="button10" name="btnDate10" type="button" class="scwdatepicker" onclick="scwShow(document.getElementById('dtsignedpay'), this)" />
+    		</td-->
+    	</tr>
+    	<tr ccID="11401">
+    		<td ccID="11413" colspan="2" align="LEFT">
+    			Date Documents Completed: <input ccID="11477" type="text" name="dtcompletedoc" id="dtcompletedoc" />
+    			<input ccID="11547" id="button11" name="btnDate11" type="button" class="scwdatepicker" onclick="scwShow(document.getElementById('dtcompletedoc'), this)" />
+    		</td>
+    	</tr>
+		<tr ccID="11718">
+		    <td ccID="11730" colspan="2"><input ccID="11746" type="button" value="Select All" onclick="selectall()"/>
+	        <input ccID="11820" type="button" value="Deselect All" onclick="deselectall()"/></td>
+		</tr>
+    </table>
+    <br ccID="11921" />
+     <table ccID="11934" width="80%" border="0">
+    	<tr ccID="11971">
+    		<th ccID="11983" colspan="6" align="LEFT">PAYMENT</th>
+    	</tr>
+    	<tr ccID="12043">
+    		<td ccID="12055" colspan="6" id="t_payref">OFFICIAL RECEIPT NO <font ccID="12105" color="red">*</font>.: 
+    		  <input ccID="12144" type="text" name="payrefno" value="" size="50" />
+			<input ccID="12205" type="button" value="..." onclick="paymentlist('<?php echo $ctrRow->ctr_clab_no;?>')"/></td>
+    	</tr>
+    	<tr ccID="12323">
+    		<td ccID="12335">Admin Fee:</td>
+    		<td ccID="12362">
+    			<SELECT ccID="12375" name="seladminfee">
+    				<option ccID="12412" value="NO">NO</option>
+    				<option ccID="12452" value="YES">YES</option>
+    			</SELECT>    		</td>
+    		<td ccID="12521">LEVY:</td>
+    		<td ccID="12543">
+    			<SELECT ccID="12556" name="sellevy">
+    				<option ccID="12589" value="NO">NO</option>
+    				<option ccID="12629" value="YES">YES</option>
+    			</SELECT>    		</td>
+    		<td ccID="12698">PLKS:</td>
+    		<td ccID="12720">
+    			<SELECT ccID="12733" name="selplks">
+    				<option ccID="12766" value="NO">NO</option>
+    				<option ccID="12806" value="YES">YES</option>
+    			</SELECT>    		</td>
+    	</tr>
+    	 	<tr ccID="12888">
+    		<td ccID="12900">Agency Fee:</td>
+    		<td ccID="12928">
+    			<SELECT ccID="12941" name="selagencyfee">
+    				<option ccID="12979" value="NO">NO</option>
+    				<option ccID="13019" value="YES">YES</option>
+    	   	    </SELECT>    		</td>
+    		<td ccID="13094">FOMEMA:</td>
+    		<td ccID="13118">
+    			<SELECT ccID="13131" name="selfomema">
+    				<option ccID="13166" value="NO">NO</option>
+    				<option ccID="13206" value="YES">YES</option>
+    	   	    </SELECT>    		</td>
+    		<td ccID="13281">VISA:</td>
+    		<td ccID="13303">
+    			<SELECT ccID="13316" name="selvisa">
+    				<option ccID="13349" value="NO">NO</option>
+    				<option ccID="13389" value="YES">YES</option>
+    	   	    </SELECT>    		</td>
+    	</tr>
+    	 	<tr ccID="13477">
+    		<td ccID="13489">IG:</td>
+    		<td ccID="13509">
+    			<SELECT ccID="13522" name="selig">
+    				<option ccID="13553" value="NO">NO</option>
+    				<option ccID="13593" value="YES">YES</option>
+    	   	    </SELECT>    		</td>
+    		<td ccID="13668">FWCS:</td>
+	  <td ccID="13687"><select ccID="13691" name="selfwcs">
+        <option ccID="13724" value="NO">NO</option>
+        <option ccID="13764" value="YES">YES</option>
+      </select></td>
+    		<td ccID="13826">FWHS:</td>
+    		<td ccID="13848"><select ccID="13852" name="selfwhs">
+              <option ccID="13891" value="NO">NO</option>
+              <option ccID="13937" value="YES">YES</option>
+            </select></td>
+    	</tr>
+    </table>
+   
+    <br ccID="14034" />
+    <table ccID="14046" width="100%" border="0">
+    	<tr ccID="14084">
+    		<td ccID="14096" align="center">
+				<input ccID="14121" type="submit" name="btnSave" value=" Save Workorder " onclick="return confirm('Are you sure you want to save?');" />
+				<input ccID="14250" type="button" name="btnCancel" value=" Back " onclick="history.back();" />    		
+    		</td>
+    	</tr>
+    </table>
+  </form>
+  <p ccID="14391" align="center">&nbsp;</p>
+</div>
+
+  <!--javascript for form validation-->
+    <script ccID="14476">
+	// form fields description structure
+	var a_fields = {
+		'txtfcltotal': {
+			'l': 'No. of FCL',  // label
+			'r': true,    // required
+			't': 't_fcl'// id of the element to highlight if input not validated
+		},
+		'payrefno':{'l':'Official Receipt No','r':true,'t':'t_payref'}
+		'txtsenderic':{'l':'Sender IC No','r':true,'t':'t_Sender'}
+	},
+
+	o_config = {
+		'to_disable' : ['Submit', 'Reset'],
+		'alert' : 1
+	}
+
+	// validator constructor call
+	var v = new validator('newWorkorderForm', a_fields, o_config);
+
+	</script>
+    <!--END OF FORM VALIDATION JAVASCRIPT-->
+
+</body>
+</html>

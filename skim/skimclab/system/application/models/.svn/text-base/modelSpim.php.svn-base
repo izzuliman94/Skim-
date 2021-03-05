@@ -1,0 +1,170 @@
+<?php
+	class ModelSpim extends Model{
+		function ModelSpim(){
+			parent::Model();
+			$this->load->database();	
+		}
+		
+		function getCtrByClabNo($clabno){
+			$sqlQuery = "SELECT ctr_clab_no, ctr_comp_name, ctr_contact_name, ctr_contact_mobileno, ctr_status 
+			             FROM contractors 
+			             WHERE ctr_clab_no = '$clabno'";
+			
+			return $this->db->query($sqlQuery);	
+		}
+		
+		function getCtrNameByClabNo($clabno){
+			$sqlQuery = "SELECT ctr_comp_name AS name FROM contractors WHERE ctr_clab_no = '$clabno'";
+			
+			$compRecord = $this->db->query($sqlQuery);
+			$compRow = $compRecord->row();
+			
+			return $compRow->name;
+		}
+		
+		function searchCtr($searchby, $keyword){
+			$sqlQuery = "SELECT ctr_clab_no, ctr_comp_name, ctr_contact_name, ctr_contact_mobileno, ctr_status, emp_status_desc
+						 FROM contractors
+						 LEFT JOIN mst_emp_status ON mst_emp_status.emp_statusid = contractors.ctr_status
+						 WHERE $searchby LIKE '%$keyword%'"	;
+			
+			return $this->db->query($sqlQuery);
+		}
+		
+		function getAllCountries(){
+			$sqlquery = "SELECT * FROM mst_countries ORDER BY cty_desc";	
+			
+			return $this->db->query($sqlquery);
+		}
+		
+		function getNextWONumber(){
+			$sqlQuery = "SELECT MAX(wo_id) as maxid FROM workorders";	
+			$woRecord = $this->db->query($sqlQuery);
+			$woRow = $woRecord->row();
+			
+			return $woRow->maxid + 1;
+		}
+		
+		function getNextUploadID(){
+			$sqlQuery = "SELECT CASE WHEN COUNT(*) = 0 THEN 1 ELSE MAX(upload_id) + 1 END AS next_uploadid FROM wo_upload";
+			
+			$uploadIDRecord = $this->db->query($sqlQuery);
+			$uploadIDRow = $uploadIDRecord->row();
+			
+			return $uploadIDRow->next_uploadid;
+		}
+		
+		function getAllFCLFiles($workorderid){
+			$sqlQuery = "SELECT wo_upload.*, employees.emp_name 
+						 FROM wo_upload 
+						 LEFT JOIN employees ON employees.emp_id = wo_upload.upload_by
+						 WHERE upload_filetype = 'FCL List' AND upload_woid = '$workorderid'";	
+			
+			return $this->db->query($sqlQuery);
+		}
+		
+		function getWOByWoidOrCompname($searchby, $keyword){
+			$sqlQuery = "SELECT wo.wo_id, wo.wo_num, wo.wo_clab_no, wo.wo_fcl_total, ctr.ctr_comp_name, wo_status.wo_latest_progress 
+						 FROM workorders wo 
+						 LEFT JOIN wo_status ON wo.wo_id = wo_status.status_woid
+						 LEFT JOIN contractors ctr
+						 ON wo.wo_clab_no = ctr.ctr_clab_no
+			   			 WHERE $searchby LIKE '%$keyword%'";
+			
+			return $this->db->query($sqlQuery);	
+		}
+		
+		function getWObyWOid($workorderid){
+			$sqlQuery = "SELECT workorders.*, wo_agency.*, wo_doc.*, wo_legal.*, wo_payment.*, wo_status.*, ctr.ctr_clab_no, ctr.ctr_comp_name, ctr.ctr_contact_name, ctr.ctr_contact_mobileno, mst_countries.cty_desc, wo_agency.agency_name
+			            FROM workorders 
+						LEFT JOIN wo_agency ON workorders.wo_agency = wo_agency.agency_id
+						LEFT JOIN wo_doc ON workorders.wo_id = wo_doc.doc_woid
+						LEFT JOIN wo_legal ON workorders.wo_id = wo_legal.legal_woid
+						LEFT JOIN wo_payment ON workorders.wo_id = wo_payment.pay_woid
+						LEFT JOIN wo_status ON workorders.wo_id = wo_status.status_woid
+						LEFT JOIN contractors ctr ON workorders.wo_clab_no = ctr.ctr_clab_no
+						LEFT JOIN mst_countries ON workorders.wo_fcl_country = mst_countries.cty_id
+						WHERE workorders.wo_id = $workorderid";
+			
+			$woRecord = $this->db->query($sqlQuery);
+			return $woRecord->row();	
+		}
+		
+		function getWorkordersByStatus($wo_status, $returnType){
+			$sqlQuery = "SELECT wo.wo_id, wo_num, wo.wo_clab_no, wo.wo_fcl_total, wo.wo_keyin_date, contractors.ctr_comp_name, wo_latest_progress
+						 FROM workorders wo
+ 						 LEFT JOIN contractors ON wo.wo_clab_no = contractors.ctr_clab_no
+						 LEFT JOIN wo_status ON wo.wo_id = wo_status.status_woid";
+			if($wo_status != "overall"){
+				if($wo_status == "open")
+					$sqlQuery .= " WHERE wo_status.wo_latest_progress NOT IN ('receive calling visa', 'closed')";
+				else if($wo_status == "closed")
+					$sqlQuery .= " WHERE wo_status.wo_latest_progress IN ('receive calling visa', 'closed')";
+				else
+					$sqlQuery .= " WHERE wo_status.wo_latest_progress = '$wo_status'";
+			}
+			
+			$woRecord = $this->db->query($sqlQuery);
+			
+			if($returnType == "sum") 
+				return $woRecord->num_rows();
+			else
+				return $woRecord;
+		}
+		
+		function getWoByJIMAckDate($duration, $returnType){
+			$sqlQuery = "SELECT wo.wo_id, wo_num, wo.wo_clab_no, wo.wo_fcl_total, wo.wo_keyin_date, contractors.ctr_comp_name, wo_latest_progress
+						 FROM workorders wo
+ 						 LEFT JOIN contractors ON wo.wo_clab_no = contractors.ctr_clab_no
+						 LEFT JOIN wo_status ON wo.wo_id = wo_status.status_woid";
+			if($duration == "less14")
+				$sqlQuery .= " WHERE NOW() <= date_add(wo_status.wo_jimackdate, INTERVAL 14 DAY)";
+			else
+				$sqlQuery .= "  WHERE NOW() > date_add(wo_status.wo_jimackdate, INTERVAL 14 DAY)";
+			
+			$sqlQuery .= " AND wo_status.wo_latest_progress = 'JIM acknowledgement'";
+			
+			$workordersRecord = $this->db->query($sqlQuery);
+			
+			if($returnType == "sum") 
+				return $workordersRecord->num_rows();
+			else
+				return $workordersRecord;
+		}
+		
+		function getAllAgencies(){
+			$selectQuery = "SELECT * FROM wo_agency ORDER BY agency_name";
+			
+			return $this->db->query($selectQuery);	
+		}
+		
+		function getNextPhTrackLogID(){
+			$sqlQuery = "SELECT CASE WHEN COUNT(*) = 0 THEN 1 ELSE MAX(track_id) + 1 END AS next_trackid 
+			             FROM wo_phonetrack";
+			
+			$phTrackRecord = $this->db->query($sqlQuery);
+			$phTrackRow = $phTrackRecord->row();
+			
+			return $phTrackRow->next_trackid;	
+		}
+		
+		function getAllPhTrackLog($workorderid){
+			$sqlQuery = "SELECT * FROM wo_phonetrack 
+			           	WHERE track_wo_id = $workorderid
+						ORDER BY track_id DESC";
+			
+			return $this->db->query($sqlQuery);	
+		}
+		
+		function getWoUnderCurrentUser($currentuser){
+			$sqlQuery = "SELECT workorders.*, wo_status.wo_latest_progress, wo_status.wo_receivedate, contractors.ctr_comp_name FROM workorders 
+						LEFT JOIN wo_status ON workorders.wo_id = wo_status.status_woid
+						LEFT JOIN contractors ON contractors.ctr_clab_no = workorders.wo_clab_no
+						WHERE wo_status.wo_latest_progress NOT IN ('closed', 'receive calling visa')
+						AND workorders.wo_keyin_by = '$currentuser'
+						ORDER BY wo_date";
+			
+			return $this->db->query($sqlQuery);	
+		}
+	}
+?>

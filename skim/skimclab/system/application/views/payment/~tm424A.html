@@ -1,0 +1,550 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>SKIM - SPIM</title>
+<style type="text/css">
+th {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	color: #000000;
+	font-weight: bold;
+}
+
+td {
+font-family:"Century Gothic";
+	font-size: 9px;
+	color: #333333;
+}
+.style1 {
+	font-size: 14px;
+	font-weight: bold;
+}
+.style2 {
+	font-size: 10px;
+	font-weight: bold;
+}
+.style7 {font-size: 7px}
+.style8 {
+	font-size: 16px;
+	font-weight: bold;
+}
+</style>
+<?php
+
+function convert_number_to_words($number) {
+   
+    $hyphen      = '-';
+    $conjunction = ' and ';
+    $separator   = ', ';
+    $negative    = 'negative ';
+    $decimal     = ' point ';
+    $dictionary  = array(
+        0                   => 'zero',
+        1                   => 'one',
+        2                   => 'two',
+        3                   => 'three',
+        4                   => 'four',
+        5                   => 'five',
+        6                   => 'six',
+        7                   => 'seven',
+        8                   => 'eight',
+        9                   => 'nine',
+        10                  => 'ten',
+        11                  => 'eleven',
+        12                  => 'twelve',
+        13                  => 'thirteen',
+        14                  => 'fourteen',
+        15                  => 'fifteen',
+        16                  => 'sixteen',
+        17                  => 'seventeen',
+        18                  => 'eighteen',
+        19                  => 'nineteen',
+        20                  => 'twenty',
+        30                  => 'thirty',
+        40                  => 'fourty',
+        50                  => 'fifty',
+        60                  => 'sixty',
+        70                  => 'seventy',
+        80                  => 'eighty',
+        90                  => 'ninety',
+        100                 => 'hundred',
+        1000                => 'thousand',
+        1000000             => 'million',
+        1000000000          => 'billion',
+        1000000000000       => 'trillion',
+        1000000000000000    => 'quadrillion',
+        1000000000000000000 => 'quintillion'
+    );
+   
+    if (!is_numeric($number)) {
+        return false;
+    }
+   
+    if (($number >= 0 && (int) $number < 0) || (int) $number < 0 - PHP_INT_MAX) {
+        // overflow
+        trigger_error(
+            'convert_number_to_words only accepts numbers between -' . PHP_INT_MAX . ' and ' . PHP_INT_MAX,
+            E_USER_WARNING
+        );
+        return false;
+    }
+
+    if ($number < 0) {
+        return $negative . convert_number_to_words(abs($number));
+    }
+   
+    $string = $fraction = null;
+   
+    if (strpos($number, '.') !== false) {
+        list($number, $fraction) = explode('.', $number);
+    }
+   
+    switch (true) {
+        case $number < 21:
+            $string = $dictionary[$number];
+            break;
+        case $number < 100:
+            $tens   = ((int) ($number / 10)) * 10;
+            $units  = $number % 10;
+            $string = $dictionary[$tens];
+            if ($units) {
+                $string .= $hyphen . $dictionary[$units];
+            }
+            break;
+        case $number < 1000:
+            $hundreds  = $number / 100;
+            $remainder = $number % 100;
+            $string = $dictionary[$hundreds] . ' ' . $dictionary[100];
+            if ($remainder) {
+                $string .= $conjunction . convert_number_to_words($remainder);
+            }
+            break;
+        default:
+            $baseUnit = pow(1000, floor(log($number, 1000)));
+            $numBaseUnits = (int) ($number / $baseUnit);
+            $remainder = $number % $baseUnit;
+            $string = convert_number_to_words($numBaseUnits) . ' ' . $dictionary[$baseUnit];
+            if ($remainder) {
+                $string .= $remainder < 100 ? $conjunction : $separator;
+                $string .= convert_number_to_words($remainder);
+            }
+            break;
+    }
+   
+    if (null !== $fraction && is_numeric($fraction)) {
+        $string .= $decimal;
+        $words = array();
+        foreach (str_split((string) $fraction) as $number) {
+            $words[] = $dictionary[$number];
+        }
+        $string .= implode(' ', $words);
+    }
+   
+    return $string;
+}
+
+?>
+</head>
+<body ccID="4591">
+<?php 
+//$amt = $payment->clab_amount + $payment->amt_clabren + $payment->amt_contreg + $payment->amt_contren + $payment->amt_rehire + 
+//$payment->local_amount + $payment->amt_greencard + $payment->amt_clabfee + $payment->jim_amount + $payment->fomema_amount + 
+//$payment->ins_amount + $payment->agency_amount + $payment->others_amount;
+$discount= $payment->amt_disc;
+$rmkdisc=$payment->rmk_disc;
+$nofcl= $payment->no_of_fcl;
+$totgst=0;$totbefgst=0;$unitINS=0;
+$totos=0;$addgst=0;$tso=0;$tsr=0;$tgst=0;$tamt = 0;
+?>
+<table ccID="5127" align="center" width="104%">
+<tr ccID="5164">
+	<td ccID="5171">
+	<table ccID="5178" width="90%" align="center">			
+		<tr ccID="5219">
+		  <td ccID="5229" height="15" colspan="5"><span ccID="5257" class="style1">CONSTRUCTION LABOUR EXCHANGE CENTRE BERHAD (CLAB)</span> <span ccID="5335" class="style7">(634396-W)</span><br ccID="5373" />
+			Level 2, Annexe Block, Menara Milenium 8, Jalan Damalela, <br ccID="5442" />
+			Bukit Damansara 50490 Kuala Lumpur<br ccID="5487" />
+			Tel : 03-2095 9599     Fax : 03-2095 9566&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong ccID="5575">GST ID No</strong> : <strong ccID="5604">001341655040</strong><br ccID="5633" /></td>
+		  <td ccID="5650" width="10%" height="15"><span ccID="5678" style="font-size: 6pt; font-family: &quot;Arial&quot;; color: navy;"><img ccID="5753" src="<?php echo base_url();?>images/logoLetter.jpg" /></span></td>
+		</tr>
+		<tr ccID="5837"><td ccID="5841" colspan="5" height=40px><div ccID="5869" align="center"><span ccID="5889" class="style8">OFFICIAL RECEIPT / TAX INVOICE</span></div></td></tr>						
+
+		<tr ccID="5975">
+			<td ccID="5984" width="12%" height="10"><strong ccID="6012">To </strong></td>
+			<td ccID="6042" width="3%" >:</td>
+			<td ccID="6069" ><?php echo $payment->pmt_receive_from; ?></td>
+			<td ccID="6125" width="17%"><div ccID="6141" align="right"><strong ccID="6160">No. </strong></div></td>
+			<td ccID="6197"><strong ccID="6201"> :</strong></td>
+			<td ccID="6230"><div ccID="6234" align="left"><?php echo substr($payment->pmt_receipt_no,2);  ?></div></td>
+		</tr>
+		<tr ccID="6326">
+			<td ccID="6335" height="10"><strong ccID="6351">Address </strong></td>
+			<td ccID="6386" >:</td>
+			<td ccID="6402"><?php echo $payment->pmt_addr; ?></td>
+			<td ccID="6449" ><div ccID="6454" align="right"><strong ccID="6473">Date</strong></div></td>
+			<td ccID="6510"><strong ccID="6514"> :</strong></td>
+			<td ccID="6543"><div ccID="6547" align="left"><?php echo date("d F Y",strtotime($payment->pmt_datecreated)); ?></div></td>
+		</tr>
+	</table>
+<br ccID="6663"/>
+<table ccID="6670" width="90%"  cellpadding="3" border="1" align="center" bordercolor="#cccccc" style="border-collapse: collapse;">
+				
+<tr ccID="6797">
+  <td ccID="6805" width="120px" height="20"><div ccID="6835" align="center" class="style2">CHEQUE NO.</div></td>
+  <td ccID="6895" width="150px" ><div ccID="6914" align="center" class="style2">PAYMENT TO</div></td>
+  <td ccID="6974" ><div ccID="6979" align="center" class="style2">DESCRIPTION OF PAYMENT</div></td>
+  <td ccID="7051" width="50px" ><div ccID="7069" align="center" class="style2">FCL</div></td>
+  <td ccID="7122" width="100px" ><div ccID="7141" align="center" class="style2">UNIT PRICE (RM)</div></td>
+  <td ccID="7206" width="100px" ><div ccID="7225" align="center" class="style2">TOTAL (RM)</div></td>
+</tr>
+<?php if($payment->payment_type=='V'){ ?>
+<tr ccID="7333">
+	<td ccID="7340" height="20" align=center><?php echo wordwrap($payment->pmt_chq_clab,25,"<br>\n",true); ?></td>
+	<td ccID="7441" ><div ccID="7446" align="center">CLAB</div></td>
+	<td ccID="7484" >
+		<?php 
+		$vdr1='';$vdr2='';$vdr3='';$unitV=0;
+		
+		if($payment->chk_clab_fees == '1') {$vdr1="ADMIN/AGENCY FEE, ";	$unitV = $unitV + $payment->clab_adm_fee;}
+		if($payment->chk_clab_grncad == '1') {$vdr2="GREEN CARD, " ; $unitV = $unitV + $payment->clab_gc_fee;}	
+		if($payment->chk_clab_tsitcent == '1') {$vdr3="TRANSIT CENTRE, " ; $unitV = $unitV + $payment->clab_tc_fee;}
+
+		$vdr = $vdr1.$vdr2.$vdr3;
+		$totgst=$totgst+($nofcl*$unitV);
+		echo rtrim($vdr,", ");
+		?>	
+	</td>
+	<td ccID="7983" align=center><?php echo $nofcl ?></td>
+	<td ccID="8028" align=center><?php echo number_format($unitV,2) ?></td>
+	<td ccID="8090" ><div ccID="8095" align="center"><?php echo number_format($nofcl*$unitV,2) ?></div></td>
+</tr>
+<?php
+}
+if($payment->payment_type=='R'){ 
+?> 
+<tr ccID="8229">
+	<td ccID="8236" height="20" align=center><?php echo wordwrap($payment->pmt_chq_clab_ren,25,"<br>\n",true); ?></td>
+	<td ccID="8341" ><div ccID="8346" align="center">RENEWAL PERMIT</div></td>
+	<td ccID="8394" >
+		<?php 
+		$ren1='';$ren2='';$unitR=0;
+		if($payment->chk_clab_fees_ext == '1') {$ren1="ADMIN FEE EXT, "; $unitR = $unitR + $payment->clab_ren_fee;}
+		if($payment->chk_clab_fees_extgc == '1') {$ren2="GREEN CARD, " ; $unitR = $unitR + $payment->clab_rengc_fee;}
+		
+		$ren = $ren1.$ren2;
+		$totgst=$totgst+($nofcl*$unitR);
+		echo rtrim($ren,", ");
+		?>
+	</td>
+	<td ccID="8770" align=center><?php echo $nofcl ?></td>
+	<td ccID="8815" align=center><?php echo number_format($unitR,2) ?></td>
+	<td ccID="8877"><div ccID="8881" align="center"><?php echo number_format($nofcl*$unitR,2) ?></div></td>
+</tr>
+<?php
+}
+if($payment->payment_type=='CR'){ 
+?> 
+<tr ccID="9016">
+	<td ccID="9023" height="20" align=center><?php echo wordwrap($payment->chqno_contreg,25,"<br>\n",true); ?></td>
+	<td ccID="9125" ><div ccID="9130" align="center">CONTRACTOR REGISTRATION</div></td>
+	<td ccID="9187" >
+		<?php 
+		if($payment->chk_contreg1 == '1') echo "REGISTRATION YEAR 1"; 
+		if($payment->chk_contreg2 == '1') echo "REGISTRATION YEAR 2" ;
+		if($payment->chk_contreg3 == '1') echo "REGISTRATION YEAR 3" ;
+		
+		$totgst=$totgst+($payment->clab_contreg_fee);
+		?>
+	</td>
+	<td ccID="9470" align=center><?php echo $nofcl ?></td>
+	<td ccID="9515" align=center><?php echo number_format($payment->clab_contreg_fee,2) ?></td>
+	<td ccID="9597" ><div ccID="9602" align="center"><?php echo number_format($payment->clab_contreg_fee,2) ?></div></td>
+</tr>
+<?php
+}
+if($payment->payment_type=='CRN'){ 
+?>
+<tr ccID="9750">
+	<td ccID="9757" height="20" align=center><?php echo wordwrap($payment->chqno_contren,25,"<br>\n",true); ?></td>
+	<td ccID="9859" ><div ccID="9864" align="center">CONTRACTOR RENEWAL</div></td>
+	<td ccID="9916" >
+		<?php 
+		if($payment->chk_contren1 == '1') echo "RENEWAL YEAR 1"; 
+		if($payment->chk_contren2 == '1') echo "RENEWAL YEAR 2" ;		
+		if($payment->chk_contren3 == '1') echo "RENEWAL YEAR 3" ;
+		
+		$totgst=$totgst+($payment->clab_contren_fee);
+		?>
+	</td>
+	<td ccID="10186" align=center><?php echo $nofcl ?></td>
+	<td ccID="10231" align=center><?php echo number_format($payment->clab_contren_fee,2) ?></td>
+	<td ccID="10313" ><div ccID="10318" align="center"><?php echo number_format($payment->clab_contren_fee,2) ?></div></td>
+</tr>
+<?php
+}
+if($payment->payment_type=='REH'){ 
+?>
+<tr ccID="10466">
+	<td ccID="10473" height="20" align=center><?php echo wordwrap($payment->chqno_rehire,25,"<br>\n",true); ?></td>
+	<td ccID="10574" ><div ccID="10579" align="center">REHIRING</div></td>
+	<td ccID="10621" >
+		<?php 
+		if($payment->chk_rehire1 == '1') echo "1st PAYMENT"; 
+		if($payment->chk_rehire2 == '1') echo "2nd PAYMENT" ;	
+			
+		$totgst=$totgst+($nofcl*$payment->clab_reh_fee);
+		?>
+	</td>
+	<td ccID="10825" align=center><?php echo $nofcl ?></td>
+	<td ccID="10870" align=center><?php echo number_format($payment->clab_reh_fee,2) ?></td>
+	<td ccID="10948" ><div ccID="10953" align="center"><?php echo number_format($nofcl*$payment->clab_reh_fee,2) ?></div></td>
+</tr>
+<?php
+}
+if($payment->payment_type=='LW'){ 
+?>
+<tr ccID="11103">
+	<td ccID="11110" height="20" align=center><?php echo wordwrap($payment->pmt_chq_local,25,"<br>\n",true); ?></td>
+	<td ccID="11212" ><div ccID="11217" align="center">CLAB(Local Worker)</div></td>
+	<td ccID="11269" >
+		<?php 
+		if($payment->chk_local_dis == '1') echo "DISBURSEMENT"; 
+		if($payment->chk_local_reim == '1') echo "REIMBURSEMENT";	
+		
+		$totgst=$totgst+($nofcl*$payment->clab_lw_fee);
+		?>
+	</td>
+	<td ccID="11478" align=center><?php echo $nofcl ?></td>
+	<td ccID="11523" align=center><?php echo number_format($payment->clab_lw_fee,2) ?></td>
+	<td ccID="11600"><div ccID="11604" align="center"><?php echo number_format($nofcl*$payment->clab_lw_fee,2) ?></div></td>
+</tr>
+<?php
+}
+if($payment->payment_type=='GRC' || $payment->payment_type=='REH'){ 
+?>
+<tr ccID="11787">
+	<td ccID="11794" height="20" align=center><?php echo wordwrap($payment->pmt_chk_green,25,"<br>\n",true); ?></td>
+	<td ccID="11896" ><div ccID="11901" align="center">GREEN CARD</div></td>
+	<td ccID="11945" >
+		<?php 
+		if($payment->chk_green_new == '1') echo "NEW"; 
+		if($payment->chk_green_ren == '1') echo "RENEW";
+			
+		$totgst=$totgst+($nofcl*$payment->clab_green_fee);
+		?>
+	</td>
+	<td ccID="12139" align=center><?php echo $nofcl ?></td>
+	<td ccID="12184" align=center><?php echo number_format($payment->clab_green_fee,2) ?></td>
+	<td ccID="12264"><div ccID="12268" align="center"><?php echo number_format($nofcl*$payment->clab_green_fee,2) ?></div></td>
+</tr>
+<?php
+}
+if($payment->payment_type=='FEE'){ 
+?>
+<tr ccID="12421">
+	<td ccID="12428" height="20" align=center><?php echo wordwrap($payment->chqno_clabfee,25,"<br>\n",true); ?></td>
+	<td ccID="12530" ><div ccID="12535" align="center">CLAB FEE</div></td>
+	<td ccID="12577" >
+		<?php 
+		if($payment->chk_member == '1') echo "MEMBERSHIP"; 
+		if($payment->chk_intro == '1') echo "INTRODUCER";
+		
+		$totgst=$totgst+($nofcl*$payment->clab_fee);
+		?>
+	</td>
+	<td ccID="12769" align=center><?php echo $nofcl ?></td>
+	<td ccID="12814" align=center><?php echo number_format($payment->clab_fee,2) ?></td>
+	<td ccID="12888" ><div ccID="12893" align="center"><?php echo number_format($nofcl*$payment->clab_fee,2) ?></div></td>
+</tr>
+<?php
+}
+if($payment->payment_type=='T'){ 
+?>
+<tr ccID="13038">
+	<td ccID="13045" height="20" align=center><?php echo wordwrap($payment->agency_chq_no,25,"<br>\n",true); ?></td>
+	<td ccID="13147" ><div ccID="13152" align="center">TRANSIT CENTRE</div></td>
+	<td ccID="13200" >
+		<?php 
+		$fees1='';$fees2='';$unitTC=0;
+		if($payment->chk_agency_fees == '1') {$fees1="FEES, "; $unitTC = $unitTC + $payment->clab_trans_fee;}
+		if($payment->chk_agency_feesgc == '1') {$fees2="GREEN CARD" ; $unitTC = $unitTC + $payment->clab_transgc_fee;}
+
+		$fees = $fees1.$fees2;
+		$totgst=$totgst+($nofcl*$unitTC);
+		echo rtrim($fees,", ");
+		?>
+	</td>
+	<td ccID="13577" align=center><?php echo $nofcl ?></td>
+	<td ccID="13622" align=center><?php echo number_format($unitTC,2) ?></td>
+	<td ccID="13685" ><div ccID="13690" align="center"><?php echo number_format($nofcl*$unitTC,2) ?></div></td>
+</tr>
+<?php
+}
+if($payment->payment_type=='V' || $payment->payment_type=='R' || 
+$payment->payment_type=='REH' || $payment->payment_type=='CP' || 
+$payment->payment_type=='COM' || $payment->payment_type=='SP'){ 
+?>
+<tr ccID="13989">
+	<td ccID="13996" height="20" align=center><?php echo wordwrap($payment->pmt_chq_jim,25,"<br>\n",true); ?></td>
+	<td ccID="14096" ><div ccID="14101" align="center">JIM</div></td>
+	<td ccID="14138">
+		<?php 
+		$jim='';$jim1='';$jim2='';$jim3='';$jim4='';$jim5='';$jim6='';$jim7='';$unitJIM=0;$totos=0;
+		
+		if($payment->chk_jim_plks == '1') {$jim1="PLKS, "; $unitJIM = $unitJIM  + 60;}
+		if($payment->chk_jim_fees == '1') {$jim2="FEES, "; $unitJIM = $unitJIM  + 125;}
+		if($payment->chk_jim_visa == '1') {$jim3="VISA, "; $unitJIM = $unitJIM  + $payment->visa_ref;} 
+		if($payment->chk_jim_levi == '1') {$jim4="LEVY, "; $unitJIM = $unitJIM  + 1850;}	
+		if($payment->chk_jim_sp == '1') {$jim5="SPECIAL PASS, ";  $unitJIM = $unitJIM  + 100;}
+		if($payment->chk_jim_cp == '1') {$jim6="CANCEL PERMIT, "; $unitJIM = $unitJIM  + $payment->fine_ref;}
+		if($payment->chk_jim_compound == '1') {$jim7="COMPOUND,"; $unitJIM = $unitJIM  + 1000;}
+		
+		$jim = $jim1.$jim2.$jim3.$jim4.$jim5.$jim6.$jim7;
+		$totjim=$nofcl*$unitJIM;
+		$totos=$totos+$totjim;
+		echo rtrim($jim,", ");
+		?>
+	</td>
+	<td ccID="15040" align=center><?php echo $nofcl ?></td>
+	<td ccID="15085" align=center><?php echo number_format($unitJIM,2) ?></td>
+	<td ccID="15149"><div ccID="15153" align="center"><?php echo number_format($totjim,2) ?></div></td>
+</tr>
+<?php
+}
+if($payment->payment_type=='V' || $payment->payment_type=='R' || $payment->payment_type=='REH' || $payment->payment_type=='T'){ 
+?>
+<tr ccID="15375">
+	<td ccID="15382" height="15" align=center><?php echo wordwrap($payment->pmt_chq_fomema,25,"<br>\n",true); ?> <div ccID="15478" align="left"></div></td>
+	<td ccID="15510"><div ccID="15514" align="center">FOMEMA</div></td>
+	<td ccID="15554">
+		<?php 
+		$fom1='';$fom2='';$unitFOM=0;
+		if($payment->chk_fomema_male == '1') {$fom1="VDR, "; $unitFOM=180;}
+		if($payment->chk_fomema_female == '1') {$fom2="RENEW, " ;  $unitFOM=200;}
+
+		$fom = $fom1.$fom2;
+		$totgst=$totgst+($nofcl*$unitFOM);
+		echo rtrim($fom,", ");
+		?>
+	</td>
+	<td ccID="15855" align=center><?php echo $nofcl ?></td>
+	<td ccID="15900" align=center><?php echo number_format($unitFOM,2) ?></td>
+	<td ccID="15964" ><div ccID="15969" align="center"><?php echo number_format($nofcl*$unitFOM,2) ?></div></td>
+</tr>
+<?php
+}
+if($payment->payment_type=='V' || $payment->payment_type=='R' || $payment->payment_type=='REH'){ 
+?>
+<tr ccID="16168">
+	<td ccID="16175" height="15" align=center><?php echo wordwrap($payment->ins_chq_no,25,"<br>\n",true); ?><div ccID="16266" align="left"></div></td>
+	<td ccID="16298"><div ccID="16302" align="center">INSURANCE</div></td>
+	<td ccID="16345">
+		<?php 
+		$ins1='';$ins2='';$ins3='';$insu=0;
+		if($payment->chk_ins_ig == '1') {$ins1="IG, "; $unitINS =  $unitINS  + 10; }
+		if($payment->chk_ins_fwcs == '1') {$ins2="FWCS, " ; $unitINS = $unitINS + 10; }
+		if($payment->chk_ins_fwhs == '1') {$ins3="FWHS, " ;  $unitINS = $unitINS  + 10; }
+		
+		$ins = $ins1.$ins2.$ins3;
+		$totgst=$totgst+$payment->ins_amounto;
+		echo rtrim($ins,", ");
+		?>
+	</td>
+	<td ccID="16764" align=center><?php echo $nofcl ?></td>
+	<td ccID="16809" align=center><?php //echo  $unitINS ?></td>
+	<td ccID="16859"><div ccID="16863" align="center"><?php  echo number_format($payment->ins_amounto,2)  ?></div></td>
+</tr>
+<?php
+}
+if($payment->chk_others_fees == '1' || $payment->chk_others_fees2 == '1' || $payment->remarks_others <> ''){ 
+?>
+<tr ccID="17082">	
+	<td ccID="17090" height="15" align=center valign=top><?php echo wordwrap($payment->others_chq_no,25,"<br>\n",true); ?></td>
+	<td ccID="17203" valign=top align="center" >OTHERS</td>
+	<td ccID="17248">
+		<?php
+		$oth1='';$oth2='';
+		if($payment->chk_others_fees == '1') {$oth1="FEES, "; $totgst=$totgst+$payment->others_amount_o;}
+		if($payment->chk_others_fees2 == '1') {$oth2="3rd PARTY CHARGES, " ;$totos=$totos+$payment->others_amount_o;}	
+				
+		$oth = $oth1.$oth2;		
+		echo rtrim($oth,", ");
+		if($payment->remarks_others <> ''){
+			echo "<br><br><u>Remarks:</u><br>"; ?>
+			<textarea ccID="17642" cols="30" rows="3" name="txtothremarks" style='width:90%;height:30px;font-family:"Century Gothic";font-size: 9px;color: #333333;border:0'><?php echo $payment->remarks_others?></textarea>
+		<?php
+		}
+		?>
+	</td>
+	<td ccID="17869" align=center></td>
+	<td ccID="17894" align=center></td>
+	<td ccID="17919" align="center"  valign=top><?php echo $payment->others_amount_o; ?></td>
+</tr>
+<?php } ?>
+<tr ccID="18016">
+	<td ccID="18023" height="20"></td>
+	<td ccID="18047">&nbsp;</td>
+	<td ccID="18065" colspan=2></td>
+	<!--td align="center"><?php $tgst=($totgst-$unitINS)*0.06; echo number_format($tgst,2); ?></td-->
+	<td ccID="18187" align="center">0.00</td>
+	<!--td align="center"><?php $tsr=$totgst-$unitINS; echo number_format($tsr,2); ?></td-->
+	<td ccID="18309" align="center">0.00</td>
+</tr>
+<tr ccID="18346">
+	<td ccID="18353" height="20"></td>
+	<td ccID="18377">&nbsp;</td>
+	<td ccID="18395" colspan=3></td>
+	<!--td align="center"><?php $tso=$totos+$unitINS; echo number_format($tso,2)?></td-->
+	<td ccID="18505" align="center">0.00</td>
+</tr>
+<tr ccID="18542">
+	<td ccID="18549" height="20"></td>
+	<td ccID="18573">&nbsp;</td>
+	<td ccID="18591" colspan=3>Total Before Tax (RM)</td>
+	<td ccID="18634" align="center"><?php $tsr=$totgst-$unitINS; $tso=$totos+$unitINS; $totbefgst=$tsr+$tso; echo number_format($totbefgst,2); ?></td>
+</tr>
+<tr ccID="18776">
+	<td ccID="18783" height="20"></td>
+	<td ccID="18807">&nbsp;</td>
+	<td ccID="18825" colspan=3>Add Service Tax @ 6%</td>
+	<!--td align="center"><?php $addgst=$tsr*0.06;echo number_format($addgst,2)?></td-->
+	<td ccID="18954" align="center"><?php $addgst=0;echo number_format($addgst,2)?></td>
+</tr>
+<tr ccID="19034">
+	<td ccID="19041" height="20"></td>
+	<td ccID="19065">&nbsp;</td>
+	<td ccID="19083" colspan=3>Total (RM)</td>
+	<td ccID="19115" align="center"><div ccID="19134" align="center"><?php $tamt=$totbefgst+$addgst; echo number_format($tamt,2); ?></div></td>
+</tr>
+<tr ccID="19237">
+	<td ccID="19244" height="30" align=right>Amount in words (RM):</td>
+	<td ccID="19301" colspan="5"><?php echo strtoupper(convert_number_to_words($tamt)." Ringgit Malaysia Only") ?></td>
+</tr>
+</table>
+<table ccID="19422" width="90%" height="70" align="center" bordercolor="#FFFFFF" style="border-collapse: collapse;">
+	<tr ccID="19528">
+		<td ccID="19536" height="25" colspan="3">Recruitment will only be processed upon full payment and documentation.</td>
+		<!--td width="23%" rowspan="4"><div align="right">.........................................................................<br />Authorised Signature</div></td-->
+		<td ccID="19810" width="23%"><div ccID="19826" align="right" >Prepared By</div></td>
+	</tr>
+	
+	<tr ccID="19882">
+	<td ccID="19889" height="25" colspan="3">This is a Computer Generated Receipt, No Signature Required</td>
+	<td ccID="19984" colspan=4><div ccID="19998" align="right" valign=top><b ccID="20028"><?php echo $payment->pmt_datecreatedby//$this->session->userdata('username');?></b></div></td>
+	</tr>	
+	<tr ccID="20137">
+		<td ccID="20145" height="50" colspan="4"></td>
+	</tr>
+	<tr ccID="20189">
+		<td ccID="20197" height="11" colspan="4" align=center><span ccID="20238" class="style7">Johor : Johor Regional Office. c/o CIDB Johor, Lot 2067, Batu 3, Jalan Tampoi, 81200 Johor Bahru, Johor Darul Takzim. Tel : 07-235 9599 Fax : 07-237 9566</span></td>
+	</tr>
+	<tr ccID="20435">
+		<td ccID="20443" height="14" colspan="4" align=center><span ccID="20484" class="style7">Penang Regional Office, No 12, Ground Floor, Jalan Todak 5, Pusat Bandar Seberang Jaya, 13700 Pulau Pinang. Tel : 04-397 9599 Fax : 04-397 9566</span></td>
+	</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>

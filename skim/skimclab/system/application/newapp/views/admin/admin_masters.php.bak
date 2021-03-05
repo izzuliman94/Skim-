@@ -1,0 +1,49 @@
+<?php
+
+$list_type = (isset($_GET["t"]) ? $_GET["t"] : "");
+
+$src_iframe1 = " src=\"" . base_url() . "/system/application/views/admin/lists/countries.php\"";
+if (strlen($list_type) > 0)
+{
+	$src_iframe1 = " src=\"". base_url() . "/system/application/views/admin/lists/countries.php\"";
+}
+?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Masters</title>
+<link href="<?php echo base_url();?>/css/screen.css" media="screen" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<br />
+
+<div id="main">
+<?php
+include "includes/menu.php"
+?>
+	<div id="content" style="border-left: 1px solid #eeeeee; clear: right; float: right; padding-left: 15px; padding-right: 0px; width: 549px">
+		<h2>
+		 --Title Goes Here--
+		</h2>
+		<div style="border: 1px solid #cccccc; height: 26em; width: 100%">
+			<iframe id="iframe1" name="iframe1" frameborder="0" scrolling="yes" src="<?php echo site_url();?>contAdmin/countriesIframe" style="height: 100%; width: 100%"></iframe>
+		</div>
+	</div>
+</div>
+<!-- ifrBlank is to prevent the IE progress bar from "loading forever" -->
+<iframe id="ifrBlank" name="ifrBlank" frameborder="0" style="height: 0; width: 0"></iframe>
+<script type="text/javascript">
+<!--
+<?php
+if ($list_type == "sectors")
+{
+?>
+//document.getElementById("menu").scrollTop = document.getElementById("menu_<?php echo $list_type; ?>").offsetTop;
+<?php
+}
+?>
+//-->
+</script>
+</body>
+</html>

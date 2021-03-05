@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<title>:: CLAB Renewal Letter :: - SKIM</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<table width="682" border="0" cellpadding="0" cellspacing="0" align=center >       
+       <tr>                         
+          <td width="682">
+          <br />    
+          <font face="Arial" color="#000000" size="2">Ref&nbsp;&nbsp; :&nbsp;  </font>
+          <span style="font-size: 10.0pt; font-family: Arial; color: black">
+          CLAB/NAA1</span><font face="Arial" color="#000000" size="2">/<?php echo date('y');?>/<?php echo substr($ctr->ctr_clab_no, -6);?></font></p>
+			
+		  <p style="line-height: 150%; margin-top: 0; margin-bottom: 0">&nbsp;</p>
+			
+			<p style="line-height: 150%; margin-top: 0; margin-bottom: 0">
+            <font face="Arial" size="2"><font color="#000000">Date :&nbsp;  <?php echo date('j F Y');?></font>
+			
+            <p>&nbsp;</p>
+          <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber1" height="19">
+            <tr>
+              <td width="35%" height="19" valign="top"><font face="Arial" style="font-size: 10pt"><b><?php echo $ctr->ctr_comp_name;?> (<?php echo $ctr->ctr_comp_regno;?>)</b></font></td>
+              <td width="67%" height="19">&nbsp;</td>
+            </tr>
+            <tr>
+              <td width="33%" height="19" valign="top"><font face="Arial" style="font-size: 10pt"><?php echo $ctr->ctr_addr;?></font></td>
+              <td width="67%" height="19">&nbsp;</td>
+            </tr>
+            <tr>
+              <td width="33%" height="19" valign="top"><font face="Arial" style="font-size: 10pt">TEL : <?php echo $ctr->ctr_telno;?></font></td>
+              <td width="67%" height="19">&nbsp;</td>
+            </tr>
+            <tr>
+              <td width="33%" height="19" valign="top">&nbsp;</td>
+              <td width="67%" height="19">&nbsp;</td>
+            </tr>
+            <tr>
+              <td width="33%" height="19" valign="top">&nbsp;</td>
+              <td width="67%" height="19">
+              <p align="right"></td>
+            </tr>
+          </table>
+          <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber2" height="19">
+            <tr>
+              <td width="50%" height="19">
+              <font face="Arial" color="#000000" size="2"><b>(Attn :  <?php echo $ctr->ctr_contact_name;?>)</b></font></td>
+              <td width="50%" height="19">
+              <p align="right">
+              <font face="Arial" color="#000000" size="2">Fax : <?php echo $ctr->ctr_fax;?></font></td>
+            </tr>
+          </table>
+          <p>&nbsp;<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber3" height="18">
+            <tr>
+              <td width="100%" height="18">
+              <font face="Arial" color="#000000" size="2">Dear 
+              Sir/Madam,</font></td>
+            </tr>
+          </table>
+          <p>&nbsp;<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber4">
+            <tr>
+              <td width="100%"><b><u>
+              <span style="font-size: 10.0pt; font-family: Arial; color: black">
+              CLAB RENEWAL REMINDER</span></u></b></td>
+            </tr>
+          </table>
+          <p>&nbsp;<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber5">
+            <tr>
+              <td width="100%">
+              <p align="justify">
+              <span style="font-size: 10.0pt; font-family: Arial; color: black">
+              We would 
+              like to extend our appreciation for your support to Construction Labour Exchange Centre Bhd (CLAB). 
+				Your registration have expired on <b><?php echo date('d-m-Y', strtotime($ctr->ctr_clabexp_date));?>. </b>Details of your registration 
+				are as follow. However, we wish to remind you that are as 
+				follows:</span>
+              </td>
+            </tr>
+          </table>
+          <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber7" height="47">
+            <tr>
+              <td width="100%" height="47">
+              <table class="MsoNormalTable" border="0" cellspacing="0" cellpadding="0" width="100%" style="width: 100.0%; border-collapse: collapse">
+              <tr> 
+                <td width="6%" style="width:6.0%;padding:0in 0in 0in 0in" align="CENTER"> 
+                    <span style="font-size:10.0pt;
+  font-family:Amaze;color:black">&#8226;</span></td>
+                <td style="width:32%;padding:0in; ">
+                    <span style="font-size:10.0pt;font-family:Arial;
+  color:black">&nbsp;Registration No</span></td>
+                <td style="width:60%;padding:0in; ">
+                    <span style="font-size:10.0pt;font-family:Arial;
+  color:black">: <b><?php echo $ctr->ctr_clab_no;?></b></span></td>
+              </tr>
+              <tr> 
+                <td width="6%" style="width:6.0%;padding:0in 0in 0in 0in" align="CENTER">
+                    <span style="font-size:10.0pt;
+  font-family:Amaze;color:black">&#8226;</span></td>
+                <td style="width:32%;padding:0in; ">
+                    <span style="font-size:10.0pt;font-family:Arial;
+  color:black">&nbsp;Date of Registration</span></td>
+                <td style="width:60%;padding:0in; ">
+                    <span style="font-size:10.0pt;font-family:Arial;
+  color:black">: <b><?php echo date('d-m-Y', strtotime($ctr->ctr_datereg));?></b></span></td>
+              </tr>
+              <tr> 
+                <td width="6%" style="width:6.0%;padding:0in 0in 0in 0in" align="CENTER"> 
+                    <span style="font-size:10.0pt;
+  font-family:Amaze;color:black">&#8226;</span></td>
+                <td style="width:32%;padding:0in; "> 
+                    <span style="font-size:10.0pt;font-family:Arial;
+  color:black">&nbsp;Date of Expiry</span></td>
+                <td style="width:60%;padding:0in; "> 
+                    <span style="font-size:10.0pt;font-family:Arial;
+  color:black">: <b><?php echo date('d-m-Y', strtotime($ctr->ctr_clabexp_date));?></b></span></td>
+              </tr>
+              </table>
+            </td>
+            </tr>
+          </table>
+          <br />
+          <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber9">
+            <tr>
+              <td width="100%">
+              <p align="justify"> <font face="Arial" color="#000000" size="2"> 
+              Attached herewith is the Registration Form (R01)&nbsp; and kindly 
+              return the original duly signed. </font></td>
+            </tr>
+          </table>
+          <font face="Arial" color="#000000" size="2">Thank you.</font><br /><br />
+          <font face="Arial" color="#000000" size="2">Yours Sincerely,<br />
+          CONSTRUCTION LABOUR EXCHANGE CENTRE BERHAD</font><p>
+          <font color="#000000"><br>
+&nbsp;</font><p><font face="Arial" size="2" color="#000000">CAPT (Rtd) AZLAN MOHD ISA<br />
+         CHIEF EXECUTIVE OFFICER</font></td>
+       </tr>
+       <tr>
+       	<td align="LEFT" valign="bottom"><font face="Arial" size="1.5" color="#000000"><i><?php echo $this->session->userdata('username');?><i></font></td>
+       </tr>
+      </table>
+</body>
+</html>

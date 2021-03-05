@@ -1,0 +1,52 @@
+8
+
+dir
+24
+http://192.168.2.50:81/clabproject_svn/SKIM/system/application/views/admin/includes
+http://192.168.2.50:81/clabproject_svn
+
+
+
+2009-01-09T08:05:18.296875Z
+7
+project_admin
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+1cba33dd-f089-2848-8f20-151a23b46af6
+
+menu.php.bak
+file
+
+
+
+
+2009-02-19T01:55:20.859558Z
+982c0999ad905dd1318e5d6e504435d0
+2009-01-09T08:05:18.296875Z
+7
+project_admin
+
+menu.php
+file
+
+
+
+
+2009-02-19T01:55:20.875180Z
+b7aa536893e2d3e33acb8c89518a92a1
+2009-01-09T08:05:18.296875Z
+7
+project_admin
+

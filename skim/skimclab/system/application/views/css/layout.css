@@ -1,0 +1,157 @@
+/* CSS Document */
+
+body {
+	margin:0;
+	padding:0;
+	font-family:Arial, Helvetica, sans-serif;
+	color:#003366;
+	font-size:12px;
+}
+table, td, tr, div {
+	padding: 0;
+	margin: 0;
+	vertical-align:top;
+}
+#header {
+	width: 100%; height:86px;
+	border-top: 7px solid #003366;
+}
+#logo {
+}
+#navBar {
+	color:#FFFFFF;
+	width:100%;
+	background-color:#003366;
+	height:22px;
+	text-align:right;
+	vertical-align:middle;
+}
+#content {
+	width: 100%;
+	background-color: #FFFFFF;
+}
+#contentLeft {
+	width: 60%;
+	padding: 10px;
+}
+#contentRight {
+	width: 40%;
+	padding: 10px 30px;
+}
+#footer{
+	width:100%;
+	background-color: #FFFFFF;
+	border-top: 8px solid #003366;
+	height:20px;
+	color: #003366;
+	font-weight:bold;
+	text-align:right;
+	padding-top: 5px;
+}	
+
+/* Misc */
+
+.floatRight {
+	float:right;
+}
+.floatLeft {
+	float:left;
+}
+.floatClear {
+	clear:both;
+}
+/* Fonts */
+p { 
+	padding: 0; margin:0;
+	padding-bottom: 1.5em;
+	line-height: 1.5em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	padding: 5px 0;
+	margin: 5px 0;
+	color: #990000;
+}
+h1 {
+	font-size: 18px;
+	padding-bottom: 1em;
+}
+h2 {
+	font-variant:small-caps;
+	color: #990000;
+	font-size:14px;
+	font-weight:bold;
+
+}
+h3 {
+	font-size: 14px;	
+	background: white url(../images/arrow.gif) no-repeat top left;
+	padding: 0; margin:0;
+	padding-left: 20px;
+	color:#003366;
+}
+
+h4, h5, h6 {
+	font-size: 12px;
+}
+.bold {
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight:bold;
+}
+.largeBlack {
+	font-size:24px; 
+	font-weight:bold;
+	color:#000000;
+}
+.largeGray {
+	font-size:24px; 
+	font-weight:bold;
+	color:#666666;
+}
+.RedCaps {
+	font-variant:small-caps;
+	color: #990000;
+	font-size:14px;
+	font-weight:bold;
+}
+/* Navigation */
+a:link, a:visited {
+	color: #9A0202;
+}
+a:hover {
+	color: #003366;
+}
+#navBar a{
+	color: #FFF;
+	font-size: 12px;
+	text-decoration: none;
+	padding: 0 15px;
+	font-weight: bold;
+	line-height: 22px;
+}
+#navBar a:hover{
+	color: #CCCCCC;
+}
+#footer a {
+	padding: 0 5px;
+}
+#footer a:link, #footer a:visited  {
+	text-decoration:none;
+}
+#footer a:hover {
+	text-decoration: underline;
+}
+
+/* Class Styles */
+.pullquote 	{
+	width: 40%;
+	padding: 10px 5px 0 0;
+	float:right;
+	line-height: 20px;
+}
+.pullquote p	{
+	font-size:14px;
+
+	color:#FFFFFF;
+}

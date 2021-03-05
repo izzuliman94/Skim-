@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>::SKIM - Passport/Permit Expiry Reminder Letter::</title>
+</head>
+
+<body <?php if(isset($printMsg)) echo $printMsg;?>>
+<table width="616" border="0" cellpadding="0" cellspacing="0" align=center > 
+       <tr>                         
+          <td width="616">   
+          	<br /> 
+         	<font face="Arial" size="2" color="#000000">Ref&nbsp;&nbsp; :&nbsp; CLAB/NAA1/<?php echo date('y');?>/<?php echo substr($ctr->ctr_clab_no, -6);?></font> <br /><br />
+			<font face="Arial" size="2"><font color="#000000">Date :&nbsp;  <?php echo date('j F Y');?></font>
+			<p>&nbsp;</p>
+			<p>
+          <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber1" height="19">
+            <tr>
+              <td width="33%" height="19" valign="top" colspan="2"><font face="Arial" size="2"><?php echo $ctr->ctr_comp_name;?></font></td>
+            </tr>
+            <tr>
+              <td width="33%" height="19" valign="top"><font face="Arial" size="2"><?php echo $ctr->ctr_addr1;?> <?php echo $ctr->ctr_addr2;?> <br /> <?php echo $ctr->ctr_addr3;?></font></td>
+              <td width="67%" height="19">&nbsp;</td>
+            </tr>
+            <tr>
+              <td width="33%" height="19" valign="top"><font face="Arial" size="2"><?php echo $ctr->ctr_pcode;?> <?php echo $ctr->state_name;?></font></td>
+              <td width="67%" height="19">&nbsp;</td>
+            </tr>
+            <tr>
+              <td width="33%" height="19" valign="top">&nbsp;</td>
+              <td width="67%" height="19">&nbsp;</td>
+            </tr>
+          </table>
+          <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber2" height="19">
+            <tr>
+              <td width="50%" height="19">
+              <font face="Arial" size="2" color="#000000"><b>(Attn :  <?php echo $ctr->ctr_contact_name;?>)</b></font></td>
+              <td width="50%" height="19">
+              <p align="right"><font face="Arial" size="2" color="#000000">Fax : <?php echo $ctr->ctr_fax;?></font></td>
+            </tr>
+          </table>
+          <p>&nbsp;<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber3" height="18">
+            <tr>
+              <td width="100%" height="18">
+              <font face="Arial" size="2" color="#000000">Dear 
+              Sir/Madam</font></td>
+            </tr>
+          </table>
+          <p>&nbsp;<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber4">
+            <tr>
+              <td width="100%"><b><u>
+              <font face="Arial" size="2" color="#000000">CONTRACT EXPIRY DATE</font></u></b></td>
+            </tr>
+          </table>
+          <p>&nbsp;<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber5">
+            <tr>
+              <td width="100%">
+              <p align="justify"><font face="Arial" size="2" color="#000000">We wish to draw to your attention that the contract of the following Foreign Construction Labours (FCL's) will expire   on the  stipulated date.</font></td>
+            </tr>
+      </table>
+      <br />
+      <table width="90%" border="1" align="CENTER" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+      	<tr>
+      		<th class="print">No.</th>
+      		<th class="print" align="CENTER">Name</th>
+      		<th class="print" align="CENTER">Passport No</th>
+      		<th class="print" align="CENTER"><?php echo $fieldTitle;?></th>
+      	</tr>
+      	<?php $i = 1; 
+      		foreach($expiredWorkersRecord->result() as $wkr){
+	    ?>
+	    <tr>
+	    	<td class="print"><?php echo $i++;?>.</td>
+	    	<td class="print" valign="top"><?php echo $wkr->wkr_name;?></td>
+	    	<td class="print" align="CENTER"><?php echo $wkr->wkr_passno;?></td>
+	    	<td class="print" align="CENTER"><?php if($fieldname == 'wkr_permitexp') echo date('j F Y', strtotime($wkr->wkr_permitexp)); else echo date('j F Y', strtotime($wkr->wkr_passexp));?></td>
+	    </tr>
+	    <?php }
+	    ?>
+      </table>
+      <br />
+          <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber8">
+            <tr>
+              <td width="100%">
+              <p align="justify"><font face="Arial" size="2" color="#000000"> Please inform us immediately if you wish to extend their service, failing which we will re-distribute these FCLs to  other company.</font></td>
+            </tr>
+          </table>
+          <br />
+          <font face="Arial" size="2" color="#000000">Thank you.</font><br /> <br />
+          <font face="Arial" size="2" color="#000000">Yours Sincerely,<br>
+          CONSTRUCTION LABOUR EXCHANGE CENTRE BERHAD</font><p>
+          <font color="#000000"><br>
+&nbsp;</font><p><font face="Arial" size="2" color="#000000">CAPT (Rtd) AZLAN MOHD ISA<br />
+         CHIEF EXECUTIVE OFFICER</font></td>
+       </tr>
+       <tr>
+       	<td align="LEFT" valign="bottom"><font face="Arial" size="1.5" color="#000000"><i><?php echo $this->session->userdata('username');?><i></font></td>
+       </tr>
+      </table>
+</body>
+</html>

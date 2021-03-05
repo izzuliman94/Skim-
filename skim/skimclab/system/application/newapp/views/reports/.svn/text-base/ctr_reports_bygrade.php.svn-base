@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>SKIM - REPORTS</title>
+<link href="<?php echo base_url()?>css/sippsstyle.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<table width="100%" border="0">
+	<tr>
+		<td colspan="6" class="print" align="RIGHT"><?php echo date('j F Y');?></td>
+	</tr>
+	<tr>
+		<td colspan="6" align="LEFT" class="print">
+			Grade: <?php echo $searchGrade;?> <br />
+			Status: <?php echo $searchStatus;?> <br />
+			State: <?php echo $searchState;?>
+		</td>
+	</tr>
+	<tr>
+		<th colspan="6">REGISTERED CONTRACTORS BY GRADE,STATUS, STATE</th>
+	</tr>
+	<tr>
+		<td class="print" width="5%" align="CENTER"><strong>No.</strong></td>
+		<td class="print" width="15%" align="CENTER"><strong>CLAB No.</strong></td>
+		<td class="print" width="36%" align="CENTER"><strong>COMPANY NAME</strong></td>
+		<td class="print" width="10%" align="CENTER"><strong>GRADE</strong></td>
+		<td class="print" width="17%" align="CENTER"><strong>CLAB EXPIRY DATE</strong></td>
+		<td class="print" width="17%" align="CENTER"><strong>CIDB EXPIRY DATE</strong></td>
+	</tr>
+	<?php if($ctrData->num_rows() == 0){
+	?>
+	<tr>
+		<td colspan="6" class="print">No data. Please refine your search again.</td>
+	</tr>
+	<?php }
+	else{
+		$i=1;
+		foreach($ctrData->result() as $ctr){
+	?>
+	<tr>
+		<td class="print"><?php echo $i++;?></td>
+		<td class="print" align="CENTER"><?php echo $ctr->ctr_clab_no;?></td>
+		<td class="print"><?php echo $ctr->ctr_comp_name;?></td>
+		<td class="print" align="CENTER"><?php echo $ctr->ctr_grade;?></td>
+		<td class="print" align="CENTER"><?php if($ctr->ctr_clabexp_date != "0000-00-00") echo date('d-m-Y', strtotime($ctr->ctr_clabexp_date));?></td>
+		<td class="print" align="CENTER"><?php if($ctr->ctr_cidbexp_date != "0000-00-00") echo date('d-m-Y', strtotime($ctr->ctr_cidbexp_date));?></td>
+	</tr>
+	<?php }
+	}
+	?>
+</table>
+<table width="100%" border="0">
+	<tr>
+	 	<td align="CENTER" class="print">
+	 		<input type="button" name="printList" value=" Print List " onclick="window.print();"/>
+	 		<input type="button" name="btnClose" value=" Close " onclick="window.close();"/>
+	 	</td>
+	 </tr>
+</table>
+</body>
+</html>

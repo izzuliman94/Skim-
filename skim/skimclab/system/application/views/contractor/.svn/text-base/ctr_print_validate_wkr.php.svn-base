@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+  <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+  <title>Pengesahan Pekerja</title>
+<style type="text/css">
+th {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #000000;
+	font-weight: bold;
+}
+
+td {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #333333;
+}
+</style>
+</head>
+<body>
+<table style="text-align: left; width: 616px;" align="center" border="0" cellpadding="0" cellspacing="0">
+  <tbody>
+    <tr>
+      <td colspan="4" rowspan="1">&nbsp;</td>
+    </tr>
+    <tr>
+      <td width="42%">&nbsp;</td>
+      <td width="22%">&nbsp;</td>
+      <td width="18%">&nbsp;</td>
+      <td colspan="1" rowspan="10" valign="top" width="18%"><img src="<?php echo base_url();?>images/logoLetter.jpg"><br /><br />
+      <span style="font-size: 6pt; font-family: &quot;Arial&quot;; color: navy;">
+		CONSTRUCTION LABOUR EXCHANGE CENTRE BERHAD (634396-W) <br>
+		Lot 1-3, Level 6, Block C (South), Pusat Bandar Damansara, 50490 Kuala Lumpur. <br>
+		Tel: 03-2095 9599 <br>
+		Fax: 03-2095 9566 <br>
+		E-mail: info@clab.com.my <br>
+		Website: www.clab.com.my <br>
+      </span></td>
+    </tr>
+    <tr>
+      <td colspan="2" rowspan="1">Ref: CLAB/WV/<?php echo date('y');?>/<?php echo substr($ctr->ctr_clab_no, -6);?></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td colspan="2" rowspan="1">Date:<?php echo date('j F Y');?></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td><b><?php echo $ctr->ctr_comp_name;?> (<?php echo $ctr->ctr_comp_regno;?>)</b></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td><?php echo $ctr->ctr_addr1;?> <?php echo $ctr->ctr_addr2;?>
+    	  <br />
+		  <?php echo $ctr->ctr_addr3;?></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td><?php echo $ctr->ctr_pcode;?> <?php echo $ctr->state_name;?>
+      </td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td colspan="3">&nbsp;</td>
+    </tr>
+     <tr>
+      <td colspan="3">&nbsp;</td>
+    </tr>
+     <tr>
+      <td colspan="3">&nbsp;</td>
+    </tr>
+    <tr>
+      <td style="font-weight: bold;" colspan="2" rowspan="1">(Attn:<?php echo $ctr->ctr_contact_name;?>)</td>
+      <td style="text-align: right;" colspan="2" rowspan="1">Fax:<?php echo $ctr->ctr_fax;?> </td>
+    </tr>
+    <tr>
+      <td colspan="4">&nbsp;</td>
+    </tr>
+    <tr>
+      <td colspan="4">&nbsp;</td>
+    </tr>
+    <tr>
+      <td colspan="4">Tuan / Puan,</td>
+    </tr>
+    <tr>
+      <td colspan="4">&nbsp;</td>
+    </tr>
+	<tr>
+      <td colspan="4"><strong><u>SENARAI NAMA PEKERJA</u></strong></td>
+    </tr>
+    <tr>
+      <td colspan="4">&nbsp;</td>
+    </tr>
+    <tr>
+      <td colspan="4"><p align="justify">Dengan segala hormatnya perkara diatas adalah dirujuk. </p><br />
+	  </td>
+    </tr>
+    <tr>
+      <td colspan="4">
+      	<p align="justify">Untuk makluman pihak tuan, pihak kami ingin meminta kerjasama dan jasa baik dari pihak tuan untuk mengesahan bahawa pekerja-pekerja asing ini masih lagi dibawah penyeliaan dan/atau pengelolaan pihak tuan. 
+        Pihak kami juga ingin memohon agar pihak tuan dapat menyatakan lokasi  pekerja-pekerja ini ditempatkan atau lokasi tempat mereka bekerja. </p>
+        <br />
+      </td>
+    </tr>
+    <tr>
+      <td colspan="4">
+      	<p align="justify">Bersama-sama ini kami sertakan senarai nama pekerja untuk rujukan pihak tuan dan 
+      	pihak kami berharap agar pihak tuan dapat memberi maklumbalas kepada pihak kami dalam masa tujuh(7) hari dari tarikh penerimaan surat ini.</p>
+      	<br />
+      </td>
+    </tr>
+    <tr>
+      <td colspan="4">
+      	<p align="justify">Sekiranya pihak tuan mempunyai sebarang pertanyaan, boleh menghubungi pegawai kami iaitu En Md Mohmod Che Mid 
+      	atau Puan Rohaidah Sapuan di talian 03-2095 9599 atau pihak tuan boleh menghantar surat maklum balas melalui fax di 03-2095 0566.</p>
+      	<br />
+      </td>
+    </tr>
+    <tr>
+      <td colspan="4"><p align="justify">Sekian, Terima Kasih .</p>
+      	<br />
+      </td>
+    </tr>
+    <tr>
+      <td colspan="4">Yang Benar ,<br />
+		<strong>CONSTRUCTION LABOUR EXCHANGE CENTRE BERHAD</strong></td>
+    </tr>
+    <tr>
+      <td colspan="4">&nbsp;</td>
+    </tr>
+    <tr>
+      <td colspan="4">&nbsp;</td>
+    </tr>
+    <tr>
+      <td colspan="4">&nbsp;</td>
+    </tr>
+    <tr>
+      <td colspan="4">&nbsp;</td>
+    </tr>
+    <tr>
+      <td colspan="4">MD MOHMOD CHE MID <br />
+					  TIMBALAN KETUA SOKONGAN KORPORAT 
+	  </td>
+    </tr>
+    <tr>
+      <td colspan="4">&nbsp;</td>
+    </tr>
+    <tr>
+      <td colspan="4">
+        <span style="font-size: 7pt; font-family: &quot;Arial&quot;;">
+      	<i><?php echo $this->session->userdata('username');?></i>
+      	</span></td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>
